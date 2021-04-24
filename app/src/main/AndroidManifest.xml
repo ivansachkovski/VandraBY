@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
         <activity
-            android:name=".ScrollingActivity"
-            android:label="@string/app_name"
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
             android:theme="@style/Theme.VandraBY.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
