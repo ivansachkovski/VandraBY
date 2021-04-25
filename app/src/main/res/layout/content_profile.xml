@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ProfileActivity"
+    tools:context=".activities.ProfileActivity"
     tools:showIn="@layout/activity_profile">
 
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3B3B3"
+        android:background="@color/main_background"
         android:orientation="vertical">
 
         <LinearLayout
@@ -61,14 +61,17 @@
             android:id="@+id/subscription_panel"
             android:layout_width="match_parent"
             android:layout_height="96dp"
-            android:layout_marginBottom="6dp"
             android:background="#FFFFFF"
             android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
+                android:background="@drawable/additional_button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:padding="15dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginEnd="10dp"
@@ -91,8 +94,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/additional_button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:padding="15dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginEnd="30dp"
@@ -116,12 +123,16 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/progress_panel"
+        <View
             android:layout_width="match_parent"
-            android:padding="12dp"
+            android:layout_height="3dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:id="@+id/achievements_panel"
+            android:layout_width="match_parent"
+            android:padding="6dp"
             android:layout_height="129dp"
-            android:layout_marginBottom="6dp"
             android:background="#FFFFFF"
             android:orientation="vertical">
 
@@ -129,26 +140,60 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/progress" />
+                android:padding="6dp"
+                android:text="@string/achievements" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/achievements_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:id="@+id/trips_panel"
             android:layout_width="match_parent"
-            android:padding="12dp"
+            android:padding="6dp"
             android:layout_height="207dp"
-            android:layout_marginBottom="6dp"
             android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="6dp"
                 android:textStyle="bold"
                 android:text="@string/trips" />
 
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/trips_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:id="@+id/additional_panel"
@@ -208,7 +253,7 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="3dp"
                 android:background="?android:attr/listDivider" />
 
             <LinearLayout
