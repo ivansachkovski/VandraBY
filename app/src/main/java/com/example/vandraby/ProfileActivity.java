@@ -12,6 +12,8 @@ import com.squareup.picasso.Picasso;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.EventListener;
+
 public class ProfileActivity extends AppCompatActivity {
 
     @Override
@@ -33,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserPhoto() {
-        ImageView imageView = (ImageView) findViewById(R.id.userProfileImage);
+        ImageView imageView = (ImageView) findViewById(R.id.user_profile_image);
         Picasso.with(this).load("https://sun9-21.userapi.com/impf/c637126/v637126533/10b43/3gEczuIgifs.jpg?size=1760x1707&quality=96&sign=d612a7bba1c66f1c72709fa64b2f9623&type=album").into(imageView);
     }
 
@@ -42,9 +44,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void addHelpMenu() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.yourPlacesLayout);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.your_places_layout);
         layout.setOnClickListener(view -> Snackbar.make(view, "Переход в Ваши места не реализован", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
     }
-
 }

@@ -10,4 +10,9 @@
     <string name="random_number">0</string>
     <string name="progress">Достижения</string>
     <string name="trips">Поездки</string>
+    <string name="your_places">Ваши места</string>
+    <string name="your_objects">Ваши объекты</string>
+    <string name="saved">Сохранённое</string>
+    <string name="help">Помощь</string>
+    <string name="settings">Настройки</string>
 </resources>

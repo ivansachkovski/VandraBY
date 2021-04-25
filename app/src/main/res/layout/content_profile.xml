@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/userInfoPanel"
+            android:id="@+id/user_info_panel"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:layout_marginTop="5dp"
@@ -25,7 +25,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userProfileImage"
+                android:id="@+id/user_profile_image"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginLeft="36dp"
@@ -41,7 +41,7 @@
                 android:paddingRight="10dp">
 
                 <TextView
-                    android:id="@+id/userFullNameView"
+                    android:id="@+id/user_full_name_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tmp_full_name"
@@ -49,7 +49,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/userNicknameView"
+                    android:id="@+id/user_nickname_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tmp_nickname"
@@ -58,7 +58,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/subscriptionPanel"
+            android:id="@+id/subscription_panel"
             android:layout_width="match_parent"
             android:layout_height="96dp"
             android:layout_marginBottom="6dp"
@@ -77,9 +77,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/followersCounterView"
+                    android:id="@+id/followers_counter_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
                     android:text="@string/random_number" />
 
                 <TextView
@@ -99,9 +101,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/followingCounterView"
+                    android:id="@+id/following_counter_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
                     android:text="@string/random_number" />
 
                 <TextView
@@ -113,37 +117,41 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/progressPanel"
+            android:id="@+id/progress_panel"
             android:layout_width="match_parent"
+            android:padding="12dp"
             android:layout_height="129dp"
             android:layout_marginBottom="6dp"
             android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="@string/progress" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/tripsPanel"
+            android:id="@+id/trips_panel"
             android:layout_width="match_parent"
+            android:padding="12dp"
             android:layout_height="207dp"
             android:layout_marginBottom="6dp"
             android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="@string/trips" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/additionalPanel"
+            android:id="@+id/additional_panel"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginBottom="6dp"
@@ -151,68 +159,93 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/yourPlacesLayout"
+                android:id="@+id/your_places_layout"
+                android:background="@drawable/additional_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ваши места" />
+                    android:text="@string/your_places" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/yourObjectsLayout"
+                android:id="@+id/your_objects_layout"
+                android:background="@drawable/additional_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ваши объекты" />
+                    android:text="@string/your_objects" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/savedLayout"
+                android:id="@+id/saved_layout"
+                android:background="@drawable/additional_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Сохранённое" />
+                    android:text="@string/saved" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:id="@+id/help_layout"
+                android:background="@drawable/additional_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/helpLayout"
+                android:id="@+id/settings_layout"
+                android:background="@drawable/additional_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Помощь" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/settingsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Настройки" />
+                    android:text="@string/settings" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/footerPanel"
+            android:id="@+id/footer_panel"
             android:layout_width="match_parent"
             android:layout_height="83dp"
             android:background="#FFFFFF"
