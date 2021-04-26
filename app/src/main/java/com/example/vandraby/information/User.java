@@ -1,6 +1,5 @@
 package com.example.vandraby.information;
 
-import java.security.cert.TrustAnchor;
 import java.util.Vector;
 
 public class User {

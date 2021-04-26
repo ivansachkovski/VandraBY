@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
         <activity
+            android:name=".activities.YourPlacesActivity"
+            android:label="@string/title_activity_your_places"
+            android:theme="@style/Theme.VandraBY.NoActionBar"></activity>
+        <activity
             android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.VandraBY.NoActionBar">

@@ -1,5 +1,6 @@
 package com.example.vandraby.activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -8,13 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vandraby.information.Achievement;
-import com.example.vandraby.information.DatabaseBase;
-import com.example.vandraby.information.DatabaseMock;
+import com.example.vandraby.information.DatabaseImpl;
 import com.example.vandraby.R;
 import com.example.vandraby.information.Trip;
 import com.example.vandraby.information.User;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -25,7 +24,7 @@ import java.util.Vector;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    DatabaseBase database = new DatabaseMock();
+    DatabaseImpl database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
+
+        database = new DatabaseImpl(getCacheDir());
 
         updateUserInformation();
         addInteractiveButtons();
@@ -158,8 +159,29 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void addHelpMenu() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.your_places_layout);
-        layout.setOnClickListener(view -> Snackbar.make(view, "Переход в Ваши места не реализован", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        findViewById(R.id.your_places_layout).setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.your_objects_layout).setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.saved_layout).setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.help_layout).setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.settings_layout).setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
+            startActivity(intent);
+        });
     }
 }
