@@ -208,14 +208,34 @@
                 android:background="@drawable/additional_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:paddingLeft="12dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                tools:ignore="RtlSymmetry">
+
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_place"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="@string/your_places" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -223,15 +243,34 @@
                 android:background="@drawable/additional_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:paddingLeft="12dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                tools:ignore="RtlSymmetry">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_building"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="@string/your_objects" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -240,14 +279,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:clickable="true"
+                android:paddingLeft="14dp"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                tools:ignore="RtlSymmetry">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_saved"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="@string/saved" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
             </LinearLayout>
 
             <View
@@ -262,14 +320,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:clickable="true"
+                android:paddingLeft="14dp"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                tools:ignore="RtlSymmetry">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_help"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="@string/help" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -280,12 +357,31 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:paddingLeft="14dp"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                tools:ignore="RtlSymmetry">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_settings"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="@string/settings" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp" />
             </LinearLayout>
         </LinearLayout>
 
