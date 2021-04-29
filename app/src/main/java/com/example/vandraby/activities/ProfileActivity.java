@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         userFullName.setText(user.getFullName());
 
         TextView userNickname = (TextView) findViewById(R.id.user_nickname_view);
-        userNickname.setText(user.getNickname());
+        userNickname.setText(String.format("@%s", user.getNickname()));
     }
 
     private void updateUserSubscriptions(@NonNull User user) {

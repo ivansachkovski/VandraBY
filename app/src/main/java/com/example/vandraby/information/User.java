@@ -16,7 +16,7 @@ public class User {
     public User(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
 
-        nickname = String.format("@%s", jsonObject.getString("nickname"));
+        nickname = jsonObject.getString("nickname");
 
         firstName = jsonObject.getString("first_name");
         lastName = jsonObject.getString("last_name");
