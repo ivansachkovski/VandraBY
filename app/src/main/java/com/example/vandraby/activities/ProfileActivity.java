@@ -24,8 +24,6 @@ import java.util.Vector;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    DatabaseImpl database;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +33,13 @@ public class ProfileActivity extends AppCompatActivity {
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
-        database = new DatabaseImpl(getCacheDir());
-
         updateUserInformation();
         addInteractiveButtons();
 
     }
 
     private void updateUserInformation() {
+        DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
         User user = database.getUser();
 
         updateUserPhoto(user);
@@ -143,7 +140,6 @@ public class ProfileActivity extends AppCompatActivity {
         view.addView(locationType);
         view.addView(district);
         view.addView(region);
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setClickable(true);

@@ -1,5 +1,9 @@
 package com.example.vandraby.information;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Vector;
 
 public class User {
@@ -7,6 +11,57 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
+    }
+
+    public User(JSONObject jsonObject) throws JSONException {
+        id = jsonObject.getInt("id");
+
+        nickname = String.format("@%s", jsonObject.getString("nickname"));
+
+        firstName = jsonObject.getString("first_name");
+        lastName = jsonObject.getString("last_name");
+
+        photoUrl = jsonObject.getString("photo_url");
+
+        followersNumber = jsonObject.getInt("followers_counter");
+        followingsNumber = jsonObject.getInt("followings_counter");
+
+        //followers = jsonObject.getJSONArray("followers");
+        //followings = jsonObject.getJSONArray("followings");
+
+        trips = getFakeTrips();
+        achievements = getFakeAchievements();
+    }
+
+    private Vector<Trip> getFakeTrips() {
+        String correctUrl = "https://cdn-s-static.arzamas.academy/x/119-bass-QqFwvKssCCYDK2ZmNx4zWzic/dom/img/dom-2.jpg";
+
+        Vector<Trip> trips = new Vector<>();
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+
+        return trips;
+    }
+
+    private Vector<Achievement> getFakeAchievements() {
+        String correctUrl = "https://lh3.googleusercontent.com/proxy/V4UY1p4wfixpFVPvBNUXl5SPy8vyB04lJ82zivKNu7zL1TvaiLTwzj2qNpQE6IKU2htVsvstKImW4VEyGwffFjZsapgFe-BRbiPZ";
+
+        Vector<Achievement> achievements = new Vector<>();
+        achievements.add(new Achievement(correctUrl, "пёс"));
+        achievements.add(new Achievement(correctUrl, "лох"));
+        achievements.add(new Achievement(correctUrl, "чмо"));
+        achievements.add(new Achievement(correctUrl, "хуй заморский"));
+        achievements.add(new Achievement(correctUrl, "говно"));
+        achievements.add(new Achievement(correctUrl, "урод"));
+        achievements.add(new Achievement(correctUrl, "поц"));
+        achievements.add(new Achievement(correctUrl, "хер"));
+
+        return achievements;
     }
 
     public String getFirstName() {
@@ -46,11 +101,11 @@ public class User {
     }
 
     public int getFollowingNumber() {
-        return followingNumber;
+        return followingsNumber;
     }
 
-    void setFollowingNumber(int followingNumber) {
-        this.followingNumber = followingNumber;
+    void setFollowingNumber(int followingsNumber) {
+        this.followingsNumber = followingsNumber;
     }
 
     public String getPhotoUrl() {
@@ -77,15 +132,21 @@ public class User {
         this.trips = trips;
     }
 
-    private String firstName;
-    private String lastName;
+    private int id;
+
     private String nickname;
 
+    private String firstName;
+    private String lastName;
+
+    Vector<Integer> followers;
+    Vector<Integer> followings;
+
     int followersNumber;
-    int followingNumber;
+    int followingsNumber;
 
     private String photoUrl;
 
-    private Vector<Achievement> achievements = new Vector<Achievement>();
-    private Vector<Trip> trips = new Vector<Trip>();
+    private Vector<Achievement> achievements = new Vector<>();
+    private Vector<Trip> trips = new Vector<>();
 }

@@ -11,19 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
-        <activity
-            android:name=".activities.YourPlacesActivity"
-            android:label="@string/title_activity_your_places"
-            android:theme="@style/Theme.VandraBY.NoActionBar"></activity>
-        <activity
-            android:name=".activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.VandraBY.NoActionBar">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.YourPlacesActivity"
+            android:label="@string/title_activity_your_places"
+            android:theme="@style/Theme.VandraBY.NoActionBar" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.VandraBY.NoActionBar">
         </activity>
     </application>
 
