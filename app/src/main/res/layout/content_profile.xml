@@ -30,7 +30,9 @@
                 android:layout_height="64dp"
                 android:layout_marginLeft="36dp"
                 android:layout_marginRight="18dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginStart="36dp"
+                android:layout_marginEnd="18dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -126,7 +128,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="?android:attr/listDivider" />
+            android:background="@color/main_background" />
 
         <LinearLayout
             android:id="@+id/achievements_panel"
@@ -160,14 +162,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="?android:attr/listDivider" />
+            android:background="@color/main_background" />
 
         <LinearLayout
             android:id="@+id/trips_panel"
             android:layout_width="match_parent"
             android:padding="6dp"
             android:layout_height="207dp"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
@@ -193,7 +195,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="?android:attr/listDivider" />
+            android:background="@color/main_background" />
 
         <LinearLayout
             android:id="@+id/additional_panel"
@@ -258,7 +260,7 @@
                     android:layout_marginEnd="14dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:layout_weight="1"
@@ -310,7 +312,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
-                android:background="?android:attr/listDivider" />
+                android:background="@color/main_background" />
 
             <LinearLayout
                 android:id="@+id/help_layout"
@@ -386,14 +388,96 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="14dp"
-            android:background="?android:attr/listDivider" />
+            android:background="@color/main_background" />
 
         <LinearLayout
             android:id="@+id/footer_panel"
             android:layout_width="match_parent"
             android:layout_height="83dp"
             android:background="#FFFFFF"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:background="@drawable/additional_button_style"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/additional_button_style"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_guide" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/additional_button_style"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/additional_button_style"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_database" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/additional_button_style"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_profile" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

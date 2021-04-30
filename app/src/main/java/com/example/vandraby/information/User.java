@@ -49,7 +49,7 @@ public class User {
     }
 
     private Vector<Achievement> getFakeAchievements() {
-        String correctUrl = "https://lh3.googleusercontent.com/proxy/V4UY1p4wfixpFVPvBNUXl5SPy8vyB04lJ82zivKNu7zL1TvaiLTwzj2qNpQE6IKU2htVsvstKImW4VEyGwffFjZsapgFe-BRbiPZ";
+        String correctUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/ColumbaOenas.jpg/1200px-ColumbaOenas.jpg";
 
         Vector<Achievement> achievements = new Vector<>();
         achievements.add(new Achievement(correctUrl, "пёс"));

@@ -155,27 +155,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void addHelpMenu() {
-        findViewById(R.id.your_places_layout).setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.your_objects_layout).setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.saved_layout).setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
-            startActivity(intent);
-        });
-
         findViewById(R.id.help_layout).setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.settings_layout).setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
             startActivity(intent);
         });
