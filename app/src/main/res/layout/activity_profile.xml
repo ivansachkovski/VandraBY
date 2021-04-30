@@ -35,4 +35,14 @@
 
     <include layout="@layout/content_profile" />
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_footer_height"
+        app:contentInsetStart="0dp"
+        android:layout_gravity="bottom">
+
+        <include layout="@layout/footer_panel"/>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
