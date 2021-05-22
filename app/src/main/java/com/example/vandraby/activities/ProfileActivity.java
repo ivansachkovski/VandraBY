@@ -160,4 +160,9 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    public void onGoToGame(View view) {
+        Intent intent = new Intent(getApplicationContext(), SwipeActivity.class);
+        startActivity(intent);
+    }
 }

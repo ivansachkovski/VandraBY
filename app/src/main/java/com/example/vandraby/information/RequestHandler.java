@@ -19,6 +19,14 @@ public class RequestHandler {
     public static StringRequest getLoginRequest(String login, String password, LoginActivity activity) {
         String url ="https://vandraby.000webhostapp.com/login.php";
 
+        if (login.equals("")) {
+            login = "vsachkovski";
+            password = "123456";
+        }
+
+        String finalLogin = login;
+        String finalPassword = password;
+
         return new StringRequest(Request.Method.POST, url,
                 response -> {
                     if (response.length() > 0) {
@@ -42,8 +50,8 @@ public class RequestHandler {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("login", login);
-                params.put("password", password);
+                params.put("login", finalLogin);
+                params.put("password", finalPassword);
 
                 return params;
             }

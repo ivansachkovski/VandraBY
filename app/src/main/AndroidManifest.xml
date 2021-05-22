@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
+        <activity android:name=".activities.SwipeActivity"></activity>
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +26,7 @@
         <activity
             android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.VandraBY.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.VandraBY.NoActionBar"></activity>
     </application>
 
 </manifest>
