@@ -28,9 +28,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
         updateUserInformation();
@@ -51,28 +51,28 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserPhoto(@NonNull User user) {
-        ImageView imageView = (ImageView) findViewById(R.id.user_profile_image);
+        ImageView imageView = findViewById(R.id.user_profile_image);
         Picasso.with(this).load(user.getPhotoUrl()).into(imageView);
     }
 
     private void updateUserName(@NonNull User user) {
-        TextView userFullName = (TextView) findViewById(R.id.user_full_name_view);
+        TextView userFullName = findViewById(R.id.user_full_name_view);
         userFullName.setText(user.getFullName());
 
-        TextView userNickname = (TextView) findViewById(R.id.user_nickname_view);
+        TextView userNickname = findViewById(R.id.user_nickname_view);
         userNickname.setText(String.format("@%s", user.getNickname()));
     }
 
     private void updateUserSubscriptions(@NonNull User user) {
-        TextView followersCounter = (TextView) findViewById(R.id.followers_counter_view);
+        TextView followersCounter = findViewById(R.id.followers_counter_view);
         followersCounter.setText(String.valueOf(user.getFollowersNumber()));
 
-        TextView followingCounter = (TextView) findViewById(R.id.following_counter_view);
+        TextView followingCounter = findViewById(R.id.following_counter_view);
         followingCounter.setText(String.valueOf(user.getFollowingNumber()));
     }
 
     private void updateUserAchievements(@NonNull User user) {
-        LinearLayout achievementsContainer = (LinearLayout) findViewById(R.id.achievements_container);
+        LinearLayout achievementsContainer = findViewById(R.id.achievements_container);
 
         Vector<Achievement> achievements = user.getAchievements();
         for (Achievement achievement : achievements) {
@@ -108,7 +108,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     void updateUserTrips(@NonNull User user) {
-        LinearLayout tripsContainer = (LinearLayout) findViewById(R.id.trips_container);
+        LinearLayout tripsContainer = findViewById(R.id.trips_container);
 
         Vector<Trip> trips = user.getTrips();
         for (Trip trip : trips) {
