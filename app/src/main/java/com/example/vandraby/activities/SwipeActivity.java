@@ -1,8 +1,6 @@
 package com.example.vandraby.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import java.lang.Object.*;
-import java.util.Arrays;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -20,7 +18,7 @@ import com.example.vandraby.callbacks.DragAndDropSightCallback;
 import com.example.vandraby.listeners.DragAndDropSightListener;
 import com.example.vandraby.R;
 import com.example.vandraby.information.DatabaseImpl;
-import com.example.vandraby.information.RequestHandler;
+import com.example.vandraby.information.RequestCreator;
 import com.example.vandraby.information.Sight;
 import com.squareup.picasso.Picasso;
 
@@ -93,7 +91,7 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
 
     private void loadSightsFromDatabase() {
 
-        StringRequest request = RequestHandler.getAllSightsRequest(this);
+        StringRequest request = RequestCreator.getAllSightsRequest(this);
 
         DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
         database.sendRequest(request);

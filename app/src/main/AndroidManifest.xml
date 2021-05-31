@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
         <activity android:name=".activities.SwipeActivity"></activity>
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".activities.AuthorizationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
