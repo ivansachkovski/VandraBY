@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.vandraby.information.Achievement;
 import com.example.vandraby.information.DatabaseImpl;
+import com.example.vandraby.requests.RequestQueue;
 import com.example.vandraby.R;
 import com.example.vandraby.information.Trip;
 import com.example.vandraby.information.User;
@@ -39,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserInformation() {
-        DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
+        DatabaseImpl database = DatabaseImpl.getInstance();
         User user = database.getUser();
 
         updateUserPhoto(user);

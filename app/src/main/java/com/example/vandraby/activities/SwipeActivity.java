@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,11 +15,10 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.callbacks.DragAndDropSightCallback;
-import com.example.vandraby.information.User;
 import com.example.vandraby.listeners.DragAndDropSightListener;
 import com.example.vandraby.R;
-import com.example.vandraby.information.DatabaseImpl;
-import com.example.vandraby.information.RequestFactory;
+import com.example.vandraby.requests.RequestQueue;
+import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.information.Sight;
 import com.squareup.picasso.Picasso;
 
@@ -95,8 +93,8 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
 
         StringRequest request = RequestFactory.createGetAllSightsRequest(this);
 
-        DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
-        database.sendRequest(request);
+        RequestQueue requestQueue = RequestQueue.getInstance(getCacheDir());
+        requestQueue.sendRequest(request);
     }
 
     public void onSuccessLoadSights(Sight[] sights) {

@@ -1,4 +1,4 @@
-package com.example.vandraby.information;
+package com.example.vandraby.requests;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.activities.SwipeActivity;
 import com.example.vandraby.callbacks.AuthorizationCallback;
+import com.example.vandraby.information.Sight;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;

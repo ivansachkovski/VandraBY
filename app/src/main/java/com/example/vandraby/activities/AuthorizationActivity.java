@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -14,7 +12,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.R;
 import com.example.vandraby.callbacks.AuthorizationCallback;
 import com.example.vandraby.information.DatabaseImpl;
-import com.example.vandraby.information.RequestFactory;
+import com.example.vandraby.requests.RequestQueue;
+import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.information.User;
 
 import org.json.JSONException;
@@ -40,8 +39,8 @@ public class AuthorizationActivity extends AppCompatActivity implements Authoriz
 
         StringRequest request = RequestFactory.createAuthorizationRequest(login, password, this);
 
-        DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
-        database.sendRequest(request);
+        RequestQueue requestQueue = RequestQueue.getInstance(getCacheDir());
+        requestQueue.sendRequest(request);
     }
 
     @Override
@@ -54,8 +53,8 @@ public class AuthorizationActivity extends AppCompatActivity implements Authoriz
 
                 StringRequest request = RequestFactory.createGetUserInformationByIdRequest(userId, this);
 
-                DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
-                database.sendRequest(request);
+                RequestQueue requestQueue = RequestQueue.getInstance(getCacheDir());
+                requestQueue.sendRequest(request);
                 return;
             }
         } catch (JSONException e) {
@@ -72,7 +71,7 @@ public class AuthorizationActivity extends AppCompatActivity implements Authoriz
             if (success) {
                 User user = new User(jsonResponse);
 
-                DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
+                DatabaseImpl database = DatabaseImpl.getInstance();
                 database.setUser(user);
 
                 Intent intent = new Intent(this, ProfileActivity.class);
