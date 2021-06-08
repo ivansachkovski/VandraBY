@@ -7,11 +7,6 @@ import org.json.JSONObject;
 import java.util.Vector;
 
 public class User {
-    public User(String firstName, String lastName, String nickname) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nickname = nickname;
-    }
 
     public User(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
@@ -26,9 +21,6 @@ public class User {
         followersNumber = jsonObject.getInt("followers_counter");
         followingsNumber = jsonObject.getInt("followings_counter");
 
-        //followers = jsonObject.getJSONArray("followers");
-        //followings = jsonObject.getJSONArray("followings");
-
         trips = getFakeTrips();
         achievements = getFakeAchievements();
     }
@@ -37,13 +29,13 @@ public class User {
         String correctUrl = "https://cdn-s-static.arzamas.academy/x/119-bass-QqFwvKssCCYDK2ZmNx4zWzic/dom/img/dom-2.jpg";
 
         Vector<Trip> trips = new Vector<>();
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Очко твоей мамаши", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место1", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место2", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место3", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место4", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место5", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место6", "Пинск", "Костюшко"));
+        trips.add(new Trip(correctUrl, "Место7", "Пинск", "Костюшко"));
 
         return trips;
     }
@@ -52,32 +44,16 @@ public class User {
         String correctUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/ColumbaOenas.jpg/1200px-ColumbaOenas.jpg";
 
         Vector<Achievement> achievements = new Vector<>();
-        achievements.add(new Achievement(correctUrl, "пёс"));
-        achievements.add(new Achievement(correctUrl, "лох"));
-        achievements.add(new Achievement(correctUrl, "чмо"));
-        achievements.add(new Achievement(correctUrl, "хуй заморский"));
-        achievements.add(new Achievement(correctUrl, "говно"));
-        achievements.add(new Achievement(correctUrl, "урод"));
-        achievements.add(new Achievement(correctUrl, "поц"));
-        achievements.add(new Achievement(correctUrl, "хер"));
+        achievements.add(new Achievement(correctUrl, "1"));
+        achievements.add(new Achievement(correctUrl, "2"));
+        achievements.add(new Achievement(correctUrl, "3"));
+        achievements.add(new Achievement(correctUrl, "4"));
+        achievements.add(new Achievement(correctUrl, "5"));
+        achievements.add(new Achievement(correctUrl, "6"));
+        achievements.add(new Achievement(correctUrl, "7"));
+        achievements.add(new Achievement(correctUrl, "8"));
 
         return achievements;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getFullName() {
@@ -88,64 +64,40 @@ public class User {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
     public int getFollowersNumber() {
         return followersNumber;
-    }
-
-    void setFollowersNumber(int followersNumber) {
-        this.followersNumber = followersNumber;
     }
 
     public int getFollowingNumber() {
         return followingsNumber;
     }
 
-    void setFollowingNumber(int followingsNumber) {
-        this.followingsNumber = followingsNumber;
-    }
-
     public String getPhotoUrl() {
         return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public Vector<Achievement> getAchievements() {
         return achievements;
     }
 
-    public void setAchievements(Vector<Achievement> achievements) {
-        this.achievements = achievements;
-    }
-
     public Vector<Trip> getTrips() {
         return trips;
     }
 
-    public void setTrips(Vector<Trip> trips) {
-        this.trips = trips;
-    }
-
     private int id;
 
-    private String nickname;
+    private final String nickname;
 
-    private String firstName;
-    private String lastName;
-
-    Vector<Integer> followers;
-    Vector<Integer> followings;
+    private final String firstName;
+    private final String lastName;
 
     int followersNumber;
     int followingsNumber;
 
     private String photoUrl;
+
+    private Vector<Integer> likedSights = new Vector<>();
+    private Vector<Integer> dislikedSights = new Vector<>();
 
     private Vector<Achievement> achievements = new Vector<>();
     private Vector<Trip> trips = new Vector<>();

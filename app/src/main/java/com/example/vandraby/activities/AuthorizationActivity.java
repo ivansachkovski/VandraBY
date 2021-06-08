@@ -4,16 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.R;
 import com.example.vandraby.callbacks.AuthorizationCallback;
 import com.example.vandraby.information.DatabaseImpl;
-import com.example.vandraby.information.RequestCreator;
+import com.example.vandraby.information.RequestFactory;
 import com.example.vandraby.information.User;
 
 import org.json.JSONException;
@@ -31,10 +32,13 @@ public class AuthorizationActivity extends AppCompatActivity implements Authoriz
     public void onAttemptToBeAuthorized(View view) {
         onBlockScreen();
 
-        EditText loginBox = findViewById(R.id.login_box);
-        EditText passwordBox = findViewById(R.id.password_box);
+        String login = ((TextView)findViewById(R.id.login_box)).getText().toString();
+        String password = ((TextView)findViewById(R.id.login_box)).getText().toString();
 
-        StringRequest request = RequestCreator.getAuthorizationRequest(loginBox.getText().toString(), passwordBox.getText().toString(), this);
+        login = login.isEmpty() ? "admin" : login;
+        password = password.isEmpty() ? "admin" : password;
+
+        StringRequest request = RequestFactory.createAuthorizationRequest(login, password, this);
 
         DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
         database.sendRequest(request);
@@ -48,7 +52,7 @@ public class AuthorizationActivity extends AppCompatActivity implements Authoriz
             if (success) {
                 int userId = jsonResponse.getInt("id");
 
-                StringRequest request = RequestCreator.getUserInformationRequest(userId, this);
+                StringRequest request = RequestFactory.createGetUserInformationByIdRequest(userId, this);
 
                 DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
                 database.sendRequest(request);

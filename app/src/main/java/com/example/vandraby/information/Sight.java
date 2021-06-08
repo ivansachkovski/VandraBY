@@ -3,20 +3,21 @@ package com.example.vandraby.information;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Vector;
-
 public class Sight {
+    private final int id;
+    private final String name;
+    private final String description;
+    private final String[] photoUrls;
 
-    public Sight(JSONObject jsonObject) {
-        try {
-            name = (String) jsonObject.get("name");
-            description = (String) jsonObject.get("description");
+    public Sight(JSONObject jsonObject) throws JSONException {
+        id = jsonObject.getInt("id");
+        name = jsonObject.getString("name");
+        description = jsonObject.getString("description");
+        photoUrls = jsonObject.getString("urls").split(";");
+    }
 
-            photoUrls = ((String) jsonObject.get("urls")).split(";");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -30,8 +31,4 @@ public class Sight {
     public String[] getPhotoUrls() {
         return photoUrls;
     }
-
-    private String name;
-    private String description;
-    private String[] photoUrls;
 }

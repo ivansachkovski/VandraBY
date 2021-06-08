@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,16 +16,17 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.callbacks.DragAndDropSightCallback;
+import com.example.vandraby.information.User;
 import com.example.vandraby.listeners.DragAndDropSightListener;
 import com.example.vandraby.R;
 import com.example.vandraby.information.DatabaseImpl;
-import com.example.vandraby.information.RequestCreator;
+import com.example.vandraby.information.RequestFactory;
 import com.example.vandraby.information.Sight;
 import com.squareup.picasso.Picasso;
 
 public class SwipeActivity extends AppCompatActivity implements DragAndDropSightCallback {
 
-    private static final int MIN_SWIPE_DISTANCE = 150;
+    private static final int MIN_SWIPE_DISTANCE = 500;
     private float xPressed; // to implement swipes
 
     private Sight[] sights;
@@ -91,7 +93,7 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
 
     private void loadSightsFromDatabase() {
 
-        StringRequest request = RequestCreator.getAllSightsRequest(this);
+        StringRequest request = RequestFactory.createGetAllSightsRequest(this);
 
         DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
         database.sendRequest(request);
@@ -100,7 +102,7 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
     public void onSuccessLoadSights(Sight[] sights) {
 
         Toast.makeText(this, "All sights were loaded.", Toast.LENGTH_SHORT).show();
-
+        
         pointerToCurrentSight = 0;
         this.sights = sights;
         this.sightIndexes = new int[sights.length];
