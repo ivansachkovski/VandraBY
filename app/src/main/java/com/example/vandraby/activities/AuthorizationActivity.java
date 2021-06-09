@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.R;
-import com.example.vandraby.callbacks.AuthorizationCallback;
 import com.example.vandraby.information.DatabaseImpl;
 import com.example.vandraby.requests.RequestQueue;
 import com.example.vandraby.requests.RequestFactory;
@@ -19,52 +20,68 @@ import com.example.vandraby.information.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AuthorizationActivity extends AppCompatActivity implements AuthorizationCallback {
-    private final static String LOGGER = "78787878";
+import java.util.Arrays;
+
+public class AuthorizationActivity extends AppCompatActivity {
+    private final static String LOGGER_TAG = "78787878";
+
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorization);
+
+        requestQueue = RequestQueue.getInstance(getCacheDir());
     }
 
     public void onAttemptToBeAuthorized(View view) {
-        onBlockScreen();
+        // Block the screen to avoid user's manipulation during running the requests
+        blockScreen();
 
+        // Get user's input
         String login = ((TextView)findViewById(R.id.login_box)).getText().toString();
-        String password = ((TextView)findViewById(R.id.login_box)).getText().toString();
-
+        String password = ((TextView)findViewById(R.id.password_box)).getText().toString();
+        // TODO::remove this default values
         login = login.isEmpty() ? "admin" : login;
         password = password.isEmpty() ? "admin" : password;
 
-        StringRequest request = RequestFactory.createAuthorizationRequest(login, password, this);
-
-        RequestQueue requestQueue = RequestQueue.getInstance(getCacheDir());
+        // Check if the user with these credentials exists
+        StringRequest request = RequestFactory.createAuthorizationRequest(login, password, this::onSuccessAuthorizationRequest, this::onFailAuthorizationRequest);
         requestQueue.sendRequest(request);
     }
 
-    @Override
     public void onSuccessAuthorizationRequest(String response) {
         try {
             JSONObject jsonResponse = new JSONObject(response);
             boolean success = jsonResponse.getBoolean("success");
             if (success) {
+                // Get user's id from json response
                 int userId = jsonResponse.getInt("id");
 
-                StringRequest request = RequestFactory.createGetUserInformationByIdRequest(userId, this);
-
-                RequestQueue requestQueue = RequestQueue.getInstance(getCacheDir());
+                // Get general information about the user by id
+                StringRequest request = RequestFactory.createGetUserInformationByIdRequest(userId, this::onSuccessGetUserInformationLoadingRequest, this::onFailGetUserInformationLoadingRequest);
                 requestQueue.sendRequest(request);
                 return;
+            } else {
+                // TODO::check return code to check if there are some issues or user is not exist
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(LOGGER_TAG, Arrays.toString(e.getStackTrace()));
         }
-        onUnblockScreen();
+
+        // Unblock screen because authorization request was not successful
+        unblockScreen();
     }
 
-    @Override
-    public void onSuccessUserInformationLoadingRequest(String response) {
+    public void onFailAuthorizationRequest(VolleyError error) {
+        Log.e(LOGGER_TAG, error.getMessage());
+
+        // Unblock screen because authorization request failed
+        unblockScreen();
+    }
+
+    public void onSuccessGetUserInformationLoadingRequest(String response) {
         try {
             JSONObject jsonResponse = new JSONObject(response);
             boolean success = jsonResponse.getBoolean("success");
@@ -80,25 +97,28 @@ public class AuthorizationActivity extends AppCompatActivity implements Authoriz
                 return;
             }
         } catch (JSONException e) {
-            onUnblockScreen();
             e.printStackTrace();
         }
-        onUnblockScreen();
+
+        // Unblock screen because get user information request failed
+        unblockScreen();
     }
 
-    @Override
-    public void onFail(VolleyError error) {
-        onUnblockScreen();
+    public void onFailGetUserInformationLoadingRequest(VolleyError error) {
+        Log.e(LOGGER_TAG, error.getMessage());
+
+        // Unblock screen because get user information request failed
+        unblockScreen();
     }
 
-    private void onBlockScreen() {
+    private void blockScreen() {
         findViewById(R.id.login_box).setVisibility(View.INVISIBLE);
         findViewById(R.id.password_box).setVisibility(View.INVISIBLE);
         findViewById(R.id.button_enter).setVisibility(View.INVISIBLE);
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
     }
 
-    private void onUnblockScreen() {
+    private void unblockScreen() {
         findViewById(R.id.login_box).setVisibility(View.VISIBLE);
         findViewById(R.id.password_box).setVisibility(View.VISIBLE);
         findViewById(R.id.button_enter).setVisibility(View.VISIBLE);

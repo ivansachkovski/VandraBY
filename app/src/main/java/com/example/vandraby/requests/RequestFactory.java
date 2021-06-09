@@ -5,9 +5,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.activities.SwipeActivity;
-import com.example.vandraby.callbacks.AuthorizationCallback;
 import com.example.vandraby.information.Sight;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,10 +26,10 @@ public class RequestFactory {
     private final static String GET_USER_INFORMATION_BY_ID_URL = "requests/GetUserInformationById.php";
     private final static String GET_ALL_SIGHTS_URL = "requests/GetAllSights.php";
 
-    public static StringRequest createAuthorizationRequest(String login, String password, AuthorizationCallback callback) {
+    public static StringRequest createAuthorizationRequest(String login, String password, Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
         String url = String.format("%s/%s", BASE_URL, AUTHORIZATION_URL);
 
-        return new StringRequest(Request.Method.POST, url, callback::onSuccessAuthorizationRequest, callback::onFail) {
+        return new StringRequest(Request.Method.POST, url, onSuccess, onFail) {
             @Override
             protected @NotNull Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -40,26 +40,10 @@ public class RequestFactory {
         };
     }
 
-    public static StringRequest createGetUserInformationByIdRequest(int userId, AuthorizationCallback callback) {
+    public static StringRequest createGetUserInformationByIdRequest(int userId, Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
         String url = String.format("%s/%s", BASE_URL, GET_USER_INFORMATION_BY_ID_URL);
 
-        return new StringRequest(Request.Method.POST, url,
-                response -> {
-                    Log.i(LOGGER_TAG, "GetUserInformationById response: " + response);
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean("success");
-                        if (success) {
-                            callback.onSuccessUserInformationLoadingRequest(response);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                error ->                                    {
-                    Toast.makeText((Context) callback, error.getMessage(), Toast.LENGTH_LONG).show();
-                }) {
-
+        return new StringRequest(Request.Method.POST, url, onSuccess, onFail) {
             @Override
             protected @NotNull Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
