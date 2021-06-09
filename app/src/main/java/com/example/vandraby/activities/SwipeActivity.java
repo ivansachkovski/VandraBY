@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.callbacks.DragAndDropSightCallback;
 import com.example.vandraby.listeners.DragAndDropSightListener;
@@ -22,16 +24,17 @@ import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.information.Sight;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class SwipeActivity extends AppCompatActivity implements DragAndDropSightCallback {
-
+    private static final String LOGGER_TAG = "123123";
     private static final int MIN_SWIPE_DISTANCE = 500;
-    private float xPressed; // to implement swipes
 
     private final Queue<Sight> sightsQueue = new LinkedList<>();
     private ImageView picture;
@@ -85,9 +88,33 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
         loadSightsFromDatabase();
     }
 
+    private void onSuccessGetAllSightsRequest(String response) {
+        Log.i(LOGGER_TAG, "GetAllSightsRequest response: " + response);
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            boolean success = jsonObject.getBoolean("success");
+            if (success) {
+                JSONArray jsonSights = jsonObject.getJSONArray("sights");
+
+                Sight[] sights = new Sight[jsonSights.length()];
+                for (int i = 0; i < jsonSights.length(); i++) {
+                    sights[i] = new Sight(jsonSights.getJSONObject(i));
+                }
+                onSuccessLoadSights(sights);
+            }
+        } catch (JSONException e) {
+            Toast.makeText(this, "Невозможно распарсить json.", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void onFailGetAllSightsRequest(VolleyError error) {
+        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
     private void loadSightsFromDatabase() {
 
-        StringRequest request = RequestFactory.createGetAllSightsRequest(this);
+        StringRequest request = RequestFactory.createGetAllSightsRequest(this::onSuccessGetAllSightsRequest, this::onFailGetAllSightsRequest);
 
         RequestQueue requestQueue = RequestQueue.getInstance(getCacheDir());
         requestQueue.sendRequest(request);
@@ -95,7 +122,7 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
 
     public void onSuccessLoadSights(Sight[] sights) {
 
-        Toast.makeText(this, "All sights were loaded.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "All sights are ready", Toast.LENGTH_SHORT).show();
 
         sightsQueue.addAll(Arrays.asList(sights));
 
@@ -105,7 +132,7 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
     private void onUpdateSightElement(float startX, float currentX) {
         Sight sight = sightsQueue.peek();
         if (sight == null) {
-            Toast.makeText(this, "Объекты закончились", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No more objects", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -1,6 +1,5 @@
 package com.example.vandraby.listeners;
 
-import android.content.ClipDescription;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.Toast;
