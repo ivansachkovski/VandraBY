@@ -22,14 +22,18 @@ import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.information.Sight;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class SwipeActivity extends AppCompatActivity implements DragAndDropSightCallback {
 
     private static final int MIN_SWIPE_DISTANCE = 500;
     private float xPressed; // to implement swipes
 
-    private Sight[] sights;
-    private int[] sightIndexes;
-    private int pointerToCurrentSight = -1;
+    private final Queue<Sight> sightsQueue = new LinkedList<>();
     private ImageView picture;
 
     private float savedPressedX;
@@ -57,19 +61,11 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
         });
 
         mainLayout.setOnClickListener(view -> {
-
-            // Toast.makeText(view.getContext(), "simple click", Toast.LENGTH_SHORT).show();
-
-            int width = picture.getWidth();
-            sightIndexes[pointerToCurrentSight] = updateValue(sightIndexes[pointerToCurrentSight], (savedPressedX < width / 2.0) ? (-1) : 1, 0, sights[pointerToCurrentSight].getPhotoUrls().length - 1);
-
-            updateSightPicture(pointerToCurrentSight, sightIndexes[pointerToCurrentSight]);
+            onUpdateSightElement(0, 0);
         });
 
         mainLayout.setOnLongClickListener(view -> {
-
             // Toast.makeText(view.getContext(), "long click", Toast.LENGTH_SHORT).show();
-
             ClipData clipData = ClipData.newPlainText("", "");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view) {
                 @Override
@@ -100,59 +96,61 @@ public class SwipeActivity extends AppCompatActivity implements DragAndDropSight
     public void onSuccessLoadSights(Sight[] sights) {
 
         Toast.makeText(this, "All sights were loaded.", Toast.LENGTH_SHORT).show();
-        
-        pointerToCurrentSight = 0;
-        this.sights = sights;
-        this.sightIndexes = new int[sights.length];
+
+        sightsQueue.addAll(Arrays.asList(sights));
 
         onUpdateSightElement(0, 0);
     }
 
-    private int updateValue(int currentValue, int addition, int minRange, int maxRange) {
-
-        currentValue += addition;
-        if (currentValue < minRange) {
-            currentValue = maxRange;
-        }
-        else if (currentValue > maxRange) {
-            currentValue = minRange;
-        }
-
-        return currentValue;
-    }
-
     private void onUpdateSightElement(float startX, float currentX) {
+        Sight sight = sightsQueue.peek();
+        if (sight == null) {
+            Toast.makeText(this, "Объекты закончились", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         float distanceX = startX - currentX;
-
         if (Math.abs(distanceX) >= MIN_SWIPE_DISTANCE) {
             // we have to swipe the element
-            // Toast.makeText(this, "swipe.", Toast.LENGTH_SHORT).show();
-            pointerToCurrentSight = updateValue(pointerToCurrentSight, (distanceX > 0) ? (-1) : 1, 0, sights.length - 1);
+            if (distanceX < 0) {
+                Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Dislike", Toast.LENGTH_SHORT).show();
+            }
+            sightsQueue.poll();
         }
         else if (distanceX == 0) {
             // it was a simple click, change the picture of the current sight
             // Toast.makeText(this, "pressed.", Toast.LENGTH_SHORT).show();
             int width = picture.getWidth();
-            sightIndexes[pointerToCurrentSight] = updateValue(sightIndexes[pointerToCurrentSight], (currentX < width / 2.0) ? (-1) : 1, 0, sights[pointerToCurrentSight].getPhotoUrls().length - 1);
+            if (currentX < width / 2.0) {
+                sight.updatePhotoIndex(-1);
+            }
+            else {
+                sight.updatePhotoIndex(1);
+            }
         }
 
-        // TODO::check if we should not change the picture
-        updateSightPicture(pointerToCurrentSight, sightIndexes[pointerToCurrentSight]);
-        updateSightDescription(pointerToCurrentSight);
+        sight = sightsQueue.peek();
+        if (sight != null) {
+            updateSightPicture(sight);
+            updateSightDescription(sight);
+        }
+        else {
+            picture.setVisibility(View.INVISIBLE);
+        }
     }
 
-    public void updateSightPicture(int sightIndex, int urlIndex) {
-
-        String url = sights[sightIndex].getPhotoUrls()[urlIndex];
+    public void updateSightPicture(Sight sight) {
+        int photoIndex = sight.getPhotoIndex();
+        String url = sight.getPhotoUrls()[photoIndex];
         Picasso.with(this).load(url).into(picture);
     }
 
-    private void updateSightDescription(int sightIndex) {
-
-        String description = sights[sightIndex].getDescription();
+    private void updateSightDescription(Sight sight) {
         TextView descriptionView = findViewById(R.id.sight_description);
-        descriptionView.setText(description);
+        descriptionView.setText(sight.getDescription());
     }
 
     @Override
