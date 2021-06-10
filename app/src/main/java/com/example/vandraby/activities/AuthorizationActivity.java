@@ -112,16 +112,12 @@ public class AuthorizationActivity extends AppCompatActivity {
     }
 
     private void blockScreen() {
-        findViewById(R.id.login_box).setVisibility(View.INVISIBLE);
-        findViewById(R.id.password_box).setVisibility(View.INVISIBLE);
-        findViewById(R.id.button_enter).setVisibility(View.INVISIBLE);
+        findViewById(R.id.authorization_layout).setVisibility(View.INVISIBLE);
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
     }
 
     private void unblockScreen() {
-        findViewById(R.id.login_box).setVisibility(View.VISIBLE);
-        findViewById(R.id.password_box).setVisibility(View.VISIBLE);
-        findViewById(R.id.button_enter).setVisibility(View.VISIBLE);
+        findViewById(R.id.authorization_layout).setVisibility(View.VISIBLE);
         findViewById(R.id.progressBar).setVisibility(View.INVISIBLE);
     }
 }
