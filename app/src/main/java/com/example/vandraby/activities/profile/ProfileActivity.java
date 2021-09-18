@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserInformation() {
-        DatabaseImpl database = DatabaseImpl.getInstance();
+        DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
         User user = database.getUser();
 
         updateUserPhoto(user);

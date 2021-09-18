@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class AuthorizationActivity extends AppCompatActivity {
     private final static String LOGGER_TAG = "78787878";
 
-    RequestQueue requestQueue;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +42,32 @@ public class AuthorizationActivity extends AppCompatActivity {
         // Get user's input
         String login = ((TextView)findViewById(R.id.login_box)).getText().toString();
         String password = ((TextView)findViewById(R.id.password_box)).getText().toString();
+
         // TODO::remove this default values
         login = login.isEmpty() ? "admin" : login;
         password = password.isEmpty() ? "admin" : password;
 
+        DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
+        database.loadUser(login, password,
+                () -> {
+                    return null;
+                },
+                () -> {
+                    return null;
+                }
+        );
+
         // Check if the user with these credentials exists
         StringRequest request = RequestFactory.createAuthorizationRequest(login, password, this::onSuccessAuthorizationRequest, this::onFailAuthorizationRequest);
         requestQueue.sendRequest(request);
+    }
+
+    public void onOk() {
+
+    }
+
+    public void onFail() {
+
     }
 
     public void onSuccessAuthorizationRequest(String response) {
@@ -88,7 +107,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             if (0 == returnCode) {
                 User user = new User(jsonResponse);
 
-                DatabaseImpl database = DatabaseImpl.getInstance();
+                DatabaseImpl database = DatabaseImpl.getInstance(getCacheDir());
                 database.setUser(user);
 
                 Intent intent = new Intent(this, ProfileActivity.class);
