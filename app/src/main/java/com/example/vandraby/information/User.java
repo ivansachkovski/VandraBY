@@ -21,6 +21,8 @@ public class User {
         followersNumber = jsonObject.getInt("followers_counter");
         followingsNumber = jsonObject.getInt("followings_counter");
 
+        is_owner = jsonObject.getBoolean("is_owner");
+
         trips = getFakeTrips();
         achievements = getFakeAchievements();
     }
@@ -84,7 +86,7 @@ public class User {
         return trips;
     }
 
-    private int id;
+    private final int id;
 
     private final String nickname;
 
@@ -101,4 +103,6 @@ public class User {
 
     private Vector<Achievement> achievements = new Vector<>();
     private Vector<Trip> trips = new Vector<>();
+
+    private final boolean is_owner; // TODO::change the name of the flag
 }
