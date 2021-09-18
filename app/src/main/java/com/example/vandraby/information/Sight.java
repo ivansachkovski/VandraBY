@@ -39,6 +39,8 @@ public class Sight {
         return photoIndex;
     }
 
+    public String getActualPhotoUrl() { return photoUrls[photoIndex]; }
+
     public void updatePhotoIndex(int offset) {
         photoIndex += offset;
         if (photoIndex < 0) {

@@ -17,6 +17,18 @@
     <string name="help">Помощь</string>
     <string name="settings">Настройки</string>
     <string name="title_activity_your_places">ScrollingActivity</string>
+
+    <string name="btn_register">Регистрация</string>
+    <string name="btn_login">Войти</string>
+
+    <string name="hint_edit_login">Введите ваш логин</string>
+    <string name="hint_edit_password">Введите ваш пароль</string>
+
+    <string name="static_login">Логин</string>
+    <string name="static_password">Пароль</string>
+
+    <string name="static_welcome">Добро пожаловать\nк Vandra</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

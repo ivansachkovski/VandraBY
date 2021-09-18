@@ -1,4 +1,4 @@
-package com.example.vandraby.activities;
+package com.example.vandraby.activities.authorization;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.R;
+import com.example.vandraby.activities.profile.ProfileActivity;
 import com.example.vandraby.information.DatabaseImpl;
 import com.example.vandraby.requests.RequestQueue;
 import com.example.vandraby.requests.RequestFactory;
@@ -54,8 +54,8 @@ public class AuthorizationActivity extends AppCompatActivity {
     public void onSuccessAuthorizationRequest(String response) {
         try {
             JSONObject jsonResponse = new JSONObject(response);
-            boolean success = jsonResponse.getBoolean("success");
-            if (success) {
+            int returnCode = jsonResponse.getInt("code");
+            if (0 == returnCode) {
                 // Get user's id from json response
                 int userId = jsonResponse.getInt("id");
 
@@ -84,8 +84,8 @@ public class AuthorizationActivity extends AppCompatActivity {
     public void onSuccessGetUserInformationLoadingRequest(String response) {
         try {
             JSONObject jsonResponse = new JSONObject(response);
-            boolean success = jsonResponse.getBoolean("success");
-            if (success) {
+            int returnCode = jsonResponse.getInt("code");
+            if (0 == returnCode) {
                 User user = new User(jsonResponse);
 
                 DatabaseImpl database = DatabaseImpl.getInstance();
@@ -95,6 +95,9 @@ public class AuthorizationActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 return;
+            }
+            else {
+                // TODO::
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -8,6 +8,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 
 import java.io.File;
+import java.util.concurrent.CountDownLatch;
 
 public class RequestQueue {
     private static RequestQueue instance = null;

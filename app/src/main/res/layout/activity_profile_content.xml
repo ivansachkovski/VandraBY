@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.ProfileActivity"
+    tools:context=".activities.profile.ProfileActivity"
     tools:showIn="@layout/activity_profile">
 
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_background"
+        android:background="@color/layout_background"
         android:orientation="vertical">
 
         <LinearLayout
@@ -128,7 +128,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="@color/main_background" />
+            android:background="@color/layout_background" />
 
         <LinearLayout
             android:id="@+id/achievements_panel"
@@ -162,7 +162,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="@color/main_background" />
+            android:background="@color/layout_background" />
 
         <LinearLayout
             android:id="@+id/trips_panel"
@@ -195,7 +195,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="@color/main_background" />
+            android:background="@color/layout_background" />
 
         <LinearLayout
             android:id="@+id/additional_panel"
@@ -348,7 +348,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
-                android:background="@color/main_background" />
+                android:background="@color/layout_background" />
 
             <LinearLayout
                 android:id="@+id/help_layout"
@@ -424,7 +424,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="14dp"
-            android:background="@color/main_background" />
+            android:background="@color/layout_background" />
 
         <include layout="@layout/footer_panel"/>
 

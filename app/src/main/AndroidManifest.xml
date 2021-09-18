@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
-        <activity android:name=".activities.SwipeActivity"></activity>
-        <activity android:name=".activities.AuthorizationActivity">
+        <activity android:name=".activities.swipe.SwipeActivity"></activity>
+        <activity android:name=".activities.authorization.AuthorizationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
             android:label="@string/title_activity_your_places"
             android:theme="@style/Theme.VandraBY.NoActionBar" />
         <activity
-            android:name=".activities.ProfileActivity"
+            android:name=".activities.profile.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.VandraBY.NoActionBar" />
     </application>

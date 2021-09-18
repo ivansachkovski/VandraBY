@@ -1,4 +1,4 @@
-package com.example.vandraby.activities;
+package com.example.vandraby.activities.profile;
 
 import android.content.Intent;
 import android.os.Build;
@@ -8,9 +8,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.vandraby.activities.YourPlacesActivity;
+import com.example.vandraby.activities.swipe.SwipeActivity;
 import com.example.vandraby.information.Achievement;
 import com.example.vandraby.information.DatabaseImpl;
-import com.example.vandraby.requests.RequestQueue;
 import com.example.vandraby.R;
 import com.example.vandraby.information.Trip;
 import com.example.vandraby.information.User;
