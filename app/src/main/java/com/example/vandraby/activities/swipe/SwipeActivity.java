@@ -34,10 +34,10 @@ public class SwipeActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar2);
         bottomPanel = findViewById(R.id.swipe_bottom_panel);
 
-        Button buttonLike = findViewById(R.id.button_like);
+        ImageView buttonLike = findViewById(R.id.button_like);
         buttonLike.setOnClickListener(view -> controller.onLikeButtonClick());
 
-        Button buttonDislike = findViewById(R.id.button_dislike);
+        ImageView buttonDislike = findViewById(R.id.button_dislike);
         buttonDislike.setOnClickListener(view -> controller.onDislikeButtonClick());
 
         FrameLayout frameLayout = findViewById(R.id.main);

@@ -39,26 +39,38 @@
                 android:layout_gravity="bottom"
                 android:orientation="vertical">
 
+                <!--Layout for control buttons: like, dislike, info-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/button_like"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_margin="6dp"
-                        android:text="Like" />
-
-                    <Button
+                    <ImageView
                         android:id="@+id/button_dislike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_margin="6dp"
-                        android:text="Dislike" />
+                        android:paddingHorizontal="22dp"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:src="@drawable/ic_swipe_dislike" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="22dp"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:src="@drawable/ic_swipe_info" />
+
+                    <ImageView
+                        android:id="@+id/button_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="22dp"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:src="@drawable/ic_swipe_like" />
 
                 </LinearLayout>
 
