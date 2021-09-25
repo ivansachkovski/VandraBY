@@ -1,7 +1,9 @@
 package com.example.vandraby.activities.swipe;
 
+import android.provider.ContactsContract;
 import android.widget.Toast;
 
+import com.example.vandraby.information.DatabaseImpl;
 import com.example.vandraby.information.Sight;
 
 public class SwipeController {
@@ -27,7 +29,9 @@ public class SwipeController {
     public void onLikeButtonClick() {
         Sight sight = model.getCurrentSight();
         // TODO::save sight as liked sight
-        Toast.makeText(view, "LIKE", Toast.LENGTH_SHORT).show();
+        DatabaseImpl.getInstance(null).getUser().addLikedSight(sight.getId());
+        DatabaseImpl.getInstance(null).updateUser();
+        Toast.makeText(view, "LIKE - " + sight.getId(), Toast.LENGTH_SHORT).show();
 
         model.swipe();
         updateScreen(model.getCurrentSight());
@@ -36,7 +40,9 @@ public class SwipeController {
     public void onDislikeButtonClick() {
         Sight sight = model.getCurrentSight();
         // TODO::save sight as disliked sight
-        Toast.makeText(view, "DISLIKE", Toast.LENGTH_SHORT).show();
+        DatabaseImpl.getInstance(null).getUser().addDislikedSight(sight.getId());
+        DatabaseImpl.getInstance(null).updateUser();
+        Toast.makeText(view, "DISLIKE - " + sight.getId(), Toast.LENGTH_SHORT).show();
 
         model.swipe();
         updateScreen(model.getCurrentSight());

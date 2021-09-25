@@ -21,6 +21,16 @@ public class User {
         followersNumber = jsonObject.getInt("followers_counter");
         followingsNumber = jsonObject.getInt("followings_counter");
 
+        likedSights.clear();
+        try {
+            JSONArray jsonArray = jsonObject.getJSONArray("liked_sights");
+            for (int i = 0; i < jsonArray.length(); ++i) {
+                likedSights.add(jsonArray.getInt(i));
+            }
+        } catch (JSONException exception) {
+            exception.printStackTrace();
+        }
+
         is_owner = jsonObject.getBoolean("is_owner");
 
         trips = getFakeTrips();
@@ -105,4 +115,29 @@ public class User {
     private Vector<Trip> trips = new Vector<>();
 
     private final boolean is_owner; // TODO::change the name of the flag
+
+    /**
+     * Convert User object to JSON format.
+     *
+     * @return JSON presentation of User object.
+     *
+     * @throws JSONException if any issues during creating JSON object.
+     */
+    public JSONObject toJson() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("nickname", nickname);
+        jsonObject.put("first_name", firstName);
+        jsonObject.put("last_name", lastName);
+        jsonObject.put("photo_url", photoUrl);
+        jsonObject.put("liked_sights", likedSights);
+        return jsonObject;
+    }
+
+    public void addLikedSight(int id) {
+        likedSights.add(id);
+    }
+
+    public void addDislikedSight(int id) {
+        dislikedSights.add(id);
+    }
 }
