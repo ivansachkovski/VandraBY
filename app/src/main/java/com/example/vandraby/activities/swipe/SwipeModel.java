@@ -77,9 +77,4 @@ public class SwipeModel {
     public void swipe() {
         sights.poll();
     }
-
-    public void updateShowedPhoto() {
-        Sight sight = sights.peek();
-        sight.updatePhotoIndex(1);
-    }
 }

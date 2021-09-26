@@ -20,17 +20,24 @@
             android:layout_gravity="center" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="20dp"
             android:layout_margin="15dp">
 
-            <ImageView
-                android:id="@+id/sight_picture"
+            <!--Layout for indicator of photo carousel-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="photo of sight"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/swipe_bottom_panel"
@@ -52,7 +59,7 @@
                         android:src="@drawable/ic_swipe_map_pin" />
 
                     <TextView
-                        android:id="@+id/sight_description"
+                        android:id="@+id/sight_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:shadowColor="@color/black"
@@ -96,6 +103,13 @@
                         android:src="@drawable/ic_swipe_like" />
 
                 </LinearLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/sliding_tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    app:tabMode="auto" />
 
                 <!--Layout for object's name-->
                 <LinearLayout

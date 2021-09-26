@@ -22,6 +22,7 @@ public class SwipeController {
         model.loadDataFromDatabase(() -> {
             view.updateScreen(model.getCurrentSight());
             view.unblockScreen();
+            view.fooUdp();
             return null;
         });
     }
@@ -34,7 +35,8 @@ public class SwipeController {
         Toast.makeText(view, "LIKE - " + sight.getId(), Toast.LENGTH_SHORT).show();
 
         model.swipe();
-        updateScreen(model.getCurrentSight());
+        updateScreen();
+        view.fooUdp();
     }
 
     public void onDislikeButtonClick() {
@@ -45,15 +47,12 @@ public class SwipeController {
         Toast.makeText(view, "DISLIKE - " + sight.getId(), Toast.LENGTH_SHORT).show();
 
         model.swipe();
-        updateScreen(model.getCurrentSight());
+        updateScreen();
+        view.fooUdp();
     }
 
-    public void onUpdatePicture() {
-        model.updateShowedPhoto();
-        updateScreen(model.getCurrentSight());
-    }
-
-    private void updateScreen(Sight sight) {
+    private void updateScreen() {
+        Sight sight = model.getCurrentSight();
         if (sight != null) {
             view.updateScreen(sight);
         } else {
