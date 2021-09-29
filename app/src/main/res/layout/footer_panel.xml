@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_home" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -37,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_guide" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -53,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -69,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_database" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -85,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_profile" />
+
     </LinearLayout>
 
 </LinearLayout>

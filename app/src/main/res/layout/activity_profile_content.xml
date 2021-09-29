@@ -56,7 +56,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tmp_nickname"
                     android:textStyle="normal" />
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -93,6 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/followers" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -121,6 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/following" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -155,6 +159,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                 </LinearLayout>
+
             </HorizontalScrollView>
 
         </LinearLayout>
@@ -188,6 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal" />
+
             </HorizontalScrollView>
 
         </LinearLayout>
@@ -237,6 +243,7 @@
                     android:src="@drawable/ic_arrow"
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -273,6 +280,7 @@
                     android:src="@drawable/ic_arrow"
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -308,6 +316,7 @@
                     android:src="@drawable/ic_arrow"
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -343,6 +352,7 @@
                     android:src="@drawable/ic_arrow"
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp" />
+
             </LinearLayout>
 
             <View
@@ -383,6 +393,7 @@
                     android:src="@drawable/ic_arrow"
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -418,7 +429,9 @@
                     android:src="@drawable/ic_arrow"
                     android:layout_marginRight="14dp"
                     android:layout_marginEnd="14dp" />
+
             </LinearLayout>
+
         </LinearLayout>
 
         <View

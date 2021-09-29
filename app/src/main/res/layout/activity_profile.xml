@@ -31,6 +31,7 @@
                 app:popupTheme="@style/Theme.VandraBY.PopupOverlay" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/activity_profile_content" />
