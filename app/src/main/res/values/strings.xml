@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">VandraBY</string>
     <string name="action_settings">Settings</string>
+
     <string name="title_activity_profile">VANDRA</string>
+    <string name="title_activity_your_places">LikedObjects</string>
+    <string name="title_activity_object_details">ObjectDetails</string>
+
     <string name="vandra">VANDRA</string>
     <string name="tmp_full_name">Имя Фамилия</string>
     <string name="tmp_nickname">_@nickname</string>
@@ -16,7 +20,6 @@
     <string name="saved">Сохранённое</string>
     <string name="help">Помощь</string>
     <string name="settings">Настройки</string>
-    <string name="title_activity_your_places">ScrollingActivity</string>
 
     <string name="btn_register">Регистрация</string>
     <string name="btn_login">Войти</string>

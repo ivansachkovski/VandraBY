@@ -91,6 +91,7 @@
                         android:paddingHorizontal="22dp"
                         android:focusable="true"
                         android:clickable="true"
+                        android:onClick="onDetailsClick"
                         android:src="@drawable/ic_swipe_info" />
 
                     <ImageView

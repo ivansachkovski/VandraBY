@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.vandraby.ObjectDetailsActivity;
 import com.example.vandraby.R;
 import com.example.vandraby.information.Sight;
 import com.google.android.material.tabs.TabLayout;
@@ -72,6 +74,10 @@ public class SwipeActivity extends AppCompatActivity {
         controller.run();
     }
 
+    public void onDetailsClick(View v) {
+        Intent intent = new Intent(this, ObjectDetailsActivity.class);
+        startActivity(intent);
+    }
 
     public void fooUdp() {
         pagerAdapter.notifyDataSetChanged();
