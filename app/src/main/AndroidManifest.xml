@@ -14,7 +14,7 @@
         <activity
             android:name=".ObjectDetailsActivity"
             android:label="@string/title_activity_object_details"
-            android:theme="@style/Theme.VandraBY.NoActionBar"></activity>
+            android:theme="@style/Theme.VandraBY.NoActionBar" />
         <activity android:name=".activities.swipe.SwipeActivity" />
         <activity android:name=".activities.authorization.AuthorizationActivity">
             <intent-filter>
@@ -23,10 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.YourPlacesActivity"
-            android:label="@string/title_activity_your_places"
-            android:theme="@style/Theme.VandraBY.NoActionBar" />
         <activity
             android:name=".activities.profile.ProfileActivity"
             android:label="@string/title_activity_profile"

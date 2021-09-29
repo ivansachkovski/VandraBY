@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.vandraby.activities.YourPlacesActivity;
 import com.example.vandraby.activities.swipe.SwipeActivity;
 import com.example.vandraby.information.Achievement;
 import com.example.vandraby.information.DatabaseImpl;
@@ -158,8 +157,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void addHelpMenu() {
         findViewById(R.id.help_layout).setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), YourPlacesActivity.class);
-            startActivity(intent);
+
         });
     }
 
