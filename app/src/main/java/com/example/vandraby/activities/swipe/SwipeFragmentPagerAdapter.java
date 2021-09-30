@@ -3,7 +3,6 @@ package com.example.vandraby.activities.swipe;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.vandraby.PageFragment;
 import com.example.vandraby.information.Sight;
 
 public class SwipeFragmentPagerAdapter extends FragmentStatePagerAdapter {

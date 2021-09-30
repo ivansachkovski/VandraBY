@@ -1,4 +1,4 @@
-package com.example.vandraby;
+package com.example.vandraby.activities.swipe;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.vandraby.R;
 import com.squareup.picasso.Picasso;
 
 public class PageFragment extends Fragment {

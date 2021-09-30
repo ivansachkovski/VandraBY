@@ -1,7 +1,8 @@
-package com.example.vandraby;
+package com.example.vandraby.activities.objectdetails;
 
 import android.os.Bundle;
 
+import com.example.vandraby.R;
 import com.example.vandraby.information.DatabaseImpl;
 import com.example.vandraby.information.User;
 import com.google.android.material.appbar.CollapsingToolbarLayout;

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
         <activity
-            android:name=".ObjectDetailsActivity"
+            android:name=".activities.objectdetails.ObjectDetailsActivity"
             android:label="@string/title_activity_object_details"
             android:theme="@style/Theme.VandraBY.NoActionBar" />
         <activity android:name=".activities.swipe.SwipeActivity" />

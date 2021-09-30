@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.vandraby.ObjectDetailsActivity;
+import com.example.vandraby.activities.objectdetails.ObjectDetailsActivity;
 import com.example.vandraby.R;
 import com.example.vandraby.information.Sight;
 import com.google.android.material.tabs.TabLayout;
