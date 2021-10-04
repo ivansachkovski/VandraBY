@@ -5,110 +5,87 @@
     android:layout_height="match_parent"
     tools:context=".activities.authorization.AuthorizationActivity">
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/authorization_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
-        <LinearLayout
-            android:id="@+id/authorization_layout"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:gravity="center_horizontal"
+            android:text="@string/static_welcome"
+            android:textSize="30sp" />
 
-            <TextView
+        <!--Login layout-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/ic_user" />
+
+            <EditText
+                android:id="@+id/login_box"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:ems="10"
-                android:clickable="false"
-                android:focusable="false"
-                android:text="@string/static_welcome"
-                android:textSize="30sp"
-                android:gravity="center_horizontal" />
-
-            <!--Login layout-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="2dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_user"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginEnd="14dp" />
-
-                <EditText
-                    android:id="@+id/login_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:ems="10"
-                    android:hint="@string/hint_edit_login"
-                    android:inputType="textEmailAddress" />
-
-            </LinearLayout>
-
-            <!--Password layout-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/ic_padlock"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginEnd="14dp" />
-
-                <EditText
-                    android:id="@+id/password_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:ems="10"
-                    android:hint="@string/hint_edit_password"
-                    android:inputType="textPassword" />
-
-            </LinearLayout>
-
-            <!--Control buttons layout-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/button_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:text="@string/btn_register" />
-
-                <Button
-                    android:id="@+id/button_enter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:onClick="onAttemptToBeAuthorized"
-                    android:text="@string/btn_login" />
-
-            </LinearLayout>
+                android:hint="@string/hint_edit_login"
+                android:inputType="textEmailAddress" />
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
+        <!--Password layout-->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyle"
-            android:layout_gravity="center"
-            android:visibility="invisible" />
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
 
-    </FrameLayout>
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/ic_padlock" />
+
+            <EditText
+                android:id="@+id/password_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/hint_edit_password"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+
+        <!--Control buttons layout-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:onClick="onAttemptToBeAuthorized"
+                android:text="@string/btn_login" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,8 +53,7 @@ public class SwipeModel {
                 this.sights.addAll(Arrays.asList(sights));
                 ready.call();
                 //onSuccessLoadSights(sights);
-            }
-            else {
+            } else {
                 // TODO::
             }
         } catch (JSONException e) {

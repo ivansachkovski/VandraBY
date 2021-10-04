@@ -1,28 +1,26 @@
 package com.example.vandraby.activities.swipe;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.vandraby.activities.objectdetails.ObjectDetailsActivity;
+import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.vandraby.BasicActivityWithFooter;
 import com.example.vandraby.R;
+import com.example.vandraby.activities.objectdetails.ObjectDetailsActivity;
 import com.example.vandraby.information.Sight;
 import com.google.android.material.tabs.TabLayout;
 
-public class SwipeActivity extends AppCompatActivity {
+public class SwipeActivity extends BasicActivityWithFooter {
     SwipeModel model = new SwipeModel();
     SwipeController controller = new SwipeController(model, this);
 
-    private ProgressBar pbWaiting;
     private CardView cardView;
 
     private ViewPager pager;
@@ -33,7 +31,6 @@ public class SwipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
 
-        pbWaiting = findViewById(R.id.progressBar2);
         cardView = findViewById(R.id.cardView);
 
         ImageView ivButtonLike = findViewById(R.id.button_like);
@@ -93,11 +90,9 @@ public class SwipeActivity extends AppCompatActivity {
 
     public void blockScreen() {
         cardView.setVisibility(View.INVISIBLE);
-        pbWaiting.setVisibility(View.VISIBLE);
     }
 
     public void unblockScreen() {
-        pbWaiting.setVisibility(View.INVISIBLE);
         cardView.setVisibility(View.VISIBLE);
     }
 }

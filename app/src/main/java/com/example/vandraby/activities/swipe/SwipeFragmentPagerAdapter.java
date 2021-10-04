@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.vandraby.information.Sight;
 
+import org.jetbrains.annotations.NotNull;
+
 public class SwipeFragmentPagerAdapter extends FragmentStatePagerAdapter {
     SwipeModel swipeModel;
 
@@ -14,7 +16,7 @@ public class SwipeFragmentPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public PageFragment getItem(int position) {
+    public @NotNull PageFragment getItem(int position) {
         Sight sight = swipeModel.getCurrentSight();
         if (sight == null) {
             return PageFragment.newInstance("");
@@ -24,7 +26,7 @@ public class SwipeFragmentPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public int getItemPosition(Object object) {
+    public int getItemPosition(@NotNull Object object) {
         return POSITION_NONE;
     }
 

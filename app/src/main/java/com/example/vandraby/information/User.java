@@ -32,40 +32,6 @@ public class User {
         }
 
         is_owner = jsonObject.getBoolean("is_owner");
-
-        trips = getFakeTrips();
-        achievements = getFakeAchievements();
-    }
-
-    private Vector<Trip> getFakeTrips() {
-        String correctUrl = "https://cdn-s-static.arzamas.academy/x/119-bass-QqFwvKssCCYDK2ZmNx4zWzic/dom/img/dom-2.jpg";
-
-        Vector<Trip> trips = new Vector<>();
-        trips.add(new Trip(correctUrl, "Место1", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Место2", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Место3", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Место4", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Место5", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Место6", "Пинск", "Костюшко"));
-        trips.add(new Trip(correctUrl, "Место7", "Пинск", "Костюшко"));
-
-        return trips;
-    }
-
-    private Vector<Achievement> getFakeAchievements() {
-        String correctUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/ColumbaOenas.jpg/1200px-ColumbaOenas.jpg";
-
-        Vector<Achievement> achievements = new Vector<>();
-        achievements.add(new Achievement(correctUrl, "1"));
-        achievements.add(new Achievement(correctUrl, "2"));
-        achievements.add(new Achievement(correctUrl, "3"));
-        achievements.add(new Achievement(correctUrl, "4"));
-        achievements.add(new Achievement(correctUrl, "5"));
-        achievements.add(new Achievement(correctUrl, "6"));
-        achievements.add(new Achievement(correctUrl, "7"));
-        achievements.add(new Achievement(correctUrl, "8"));
-
-        return achievements;
     }
 
     public String getFullName() {
@@ -76,24 +42,8 @@ public class User {
         return nickname;
     }
 
-    public int getFollowersNumber() {
-        return followersNumber;
-    }
-
-    public int getFollowingNumber() {
-        return followingsNumber;
-    }
-
     public String getPhotoUrl() {
         return photoUrl;
-    }
-
-    public Vector<Achievement> getAchievements() {
-        return achievements;
-    }
-
-    public Vector<Trip> getTrips() {
-        return trips;
     }
 
     private final int id;
@@ -110,9 +60,6 @@ public class User {
 
     private Vector<Integer> likedSights = new Vector<>();
     private Vector<Integer> dislikedSights = new Vector<>();
-
-    private Vector<Achievement> achievements = new Vector<>();
-    private Vector<Trip> trips = new Vector<>();
 
     private final boolean is_owner; // TODO::change the name of the flag
 

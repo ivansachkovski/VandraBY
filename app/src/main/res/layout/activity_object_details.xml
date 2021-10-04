@@ -23,14 +23,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_user"/>
+                    android:src="@drawable/ic_user" />
 
                 <TextView
-                    android:id="@+id/tv_object_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pinsk, Belarus" />
@@ -50,12 +49,12 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_user"/>
+                        android:src="@drawable/ic_user" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="9999"/>
+                        android:text="9999" />
 
                 </LinearLayout>
 
@@ -67,12 +66,12 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_user"/>
+                        android:src="@drawable/ic_user" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Охуенный стиль"/>
+                        android:text="Охуенный стиль" />
 
                 </LinearLayout>
 
@@ -83,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:text="Extra information"/>
+                android:text="Extra information" />
 
         </LinearLayout>
 

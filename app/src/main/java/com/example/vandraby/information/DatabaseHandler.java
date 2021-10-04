@@ -1,36 +1,28 @@
 package com.example.vandraby.information;
 
-import android.app.VoiceInteractor;
-import android.telecom.Call;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.requests.RequestQueue;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.util.Arrays;
 import java.util.concurrent.Callable;
 
-public class DatabaseImpl {
+public class DatabaseHandler {
 
     private RequestQueue requestQueue;
 
-    private static DatabaseImpl instance = null;
+    private static DatabaseHandler instance = null;
     private User user = null;
 
-    private DatabaseImpl(File cacheDir) {
+    private DatabaseHandler(File cacheDir) {
         requestQueue = RequestQueue.getInstance(cacheDir);
     }
 
-    public static DatabaseImpl getInstance(File cacheDir) {
+    public static DatabaseHandler getInstance(File cacheDir) {
         if (instance == null) {
-            instance = new DatabaseImpl(cacheDir);
+            instance = new DatabaseHandler(cacheDir);
         }
 
         return instance;
@@ -55,7 +47,7 @@ public class DatabaseImpl {
         this.user = user;
     }
 
-    public User getUser() {
+    public User getCurrentUser() {
         return user;
     }
 }
