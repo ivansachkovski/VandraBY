@@ -23,7 +23,6 @@ public class SwipeActivity extends BasicActivityWithFooter {
 
     private CardView cardView;
 
-    private ViewPager pager;
     private PagerAdapter pagerAdapter;
 
     @Override
@@ -39,33 +38,13 @@ public class SwipeActivity extends BasicActivityWithFooter {
         ImageView ivButtonDislike = findViewById(R.id.button_dislike);
         ivButtonDislike.setOnClickListener(view -> controller.onDislikeButtonClick());
 
-        pager = findViewById(R.id.pager);
+        ViewPager pager = findViewById(R.id.pager);
 
         pagerAdapter = new SwipeFragmentPagerAdapter(getSupportFragmentManager(), model);
         pager.setAdapter(pagerAdapter);
 
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.d("qweqweqwe", "onPageSelected, position = " + position);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset,
-                                       int positionOffsetPixels) {
-                Log.d("qweqweqwe", "onPageScrolled, position = " + position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                Log.d("qweqweqwe", "onPageScrollStateChanged, state = " + state);
-            }
-        });
-
-        // Give the PagerSlidingTabStrip the ViewPager
+        // Give the PagerSlidingTabStrip the ViewPager and attach the view pager to the tab strip
         TabLayout tabsStrip = findViewById(R.id.sliding_tabs);
-        // Attach the view pager to the tab strip
         tabsStrip.setupWithViewPager(pager);
 
         controller.run();
