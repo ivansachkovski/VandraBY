@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.R;
-import com.example.vandraby.activities.profile.ProfileActivity;
 import com.example.vandraby.information.DatabaseHandler;
 import com.example.vandraby.information.User;
 import com.example.vandraby.requests.RequestFactory;
@@ -97,9 +96,9 @@ public class AuthorizationActivity extends AppCompatActivity {
                 DatabaseHandler databaseHandler = DatabaseHandler.getInstance(getCacheDir());
                 databaseHandler.setUser(user);
 
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
+                // Intent intent = new Intent(this, ProfileActivity.class);
+                // startActivity(intent);
+                // finish();
                 return;
             }
             // TODO::

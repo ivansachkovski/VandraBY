@@ -31,7 +31,6 @@ public class SwipeModel {
         this.ready = ready;
         Log.d(LOGGER_TAG, "public void loadDataFromDatabase()");
         StringRequest request = RequestFactory.createGetAllSightsRequest(this::onSuccessGetAllSightsRequest, this::onFailGetAllSightsRequest);
-
         RequestQueue requestQueue = RequestQueue.getInstance(null);
         requestQueue.sendRequest(request);
     }
@@ -53,9 +52,8 @@ public class SwipeModel {
                 this.sights.addAll(Arrays.asList(sights));
                 ready.call();
                 //onSuccessLoadSights(sights);
-            } else {
-                // TODO::
-            }
+            }  // TODO::
+
         } catch (JSONException e) {
             Toast.makeText(null, "Невозможно распарсить json.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();

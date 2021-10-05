@@ -1,4 +1,4 @@
-package com.example.vandraby;
+package com.example.vandraby.activities.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class SwipesFragment  extends Fragment {
-    public static SwipesFragment newInstance() {
-        return new SwipesFragment();
+import com.example.vandraby.R;
+
+public class ProfileFragment extends Fragment {
+    public static ProfileFragment newInstance() {
+        return new ProfileFragment();
     }
 
     @Override
@@ -21,6 +23,6 @@ public class SwipesFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_swipes, null);
+        return inflater.inflate(R.layout.fragment_profile, null);
     }
 }

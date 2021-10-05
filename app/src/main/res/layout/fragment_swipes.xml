@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ProfileFragment">
+    android:layout_height="match_parent"
+    tools:context=".activities.main.SwipesFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -13,7 +13,12 @@
         android:layout_margin="15dp"
         app:cardCornerRadius="20dp">
 
-        <!--Layout for object's name-->
+        <FrameLayout
+            android:id="@+id/view_pager_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,22 +40,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:paddingBottom="30dp"
+            android:foreground="#20000000"
             android:orientation="vertical">
 
-            <!--Layout for object's location-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +54,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_swipe_map_pin" />
+                    android:src="@drawable/ic_map_pin" />
 
                 <TextView
                     android:id="@+id/sight_location"
@@ -73,7 +67,6 @@
 
             </LinearLayout>
 
-            <!--Layout for control buttons: like, dislike, info-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,15 +101,8 @@
 
             </LinearLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/sliding_tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#00000000"
-                app:tabMode="auto" />
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

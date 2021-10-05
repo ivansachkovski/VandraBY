@@ -11,29 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VandraBY">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.objectdetails.ObjectDetailsActivity"
-            android:label="@string/title_activity_object_details"
-            android:theme="@style/Theme.VandraBY.NoActionBar" />
-        <activity android:name=".activities.swipe.SwipeActivity" />
-        <activity android:name=".activities.authorization.AuthorizationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.profile.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.VandraBY.NoActionBar" />
+        <activity android:name=".activities.authorization.AuthorizationActivity" />
     </application>
 
 </manifest>

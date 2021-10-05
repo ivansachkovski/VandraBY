@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">VandraBY</string>
 
-    <string name="title_activity_profile">VANDRA</string>
-    <string name="title_activity_object_details">ObjectDetails</string>
-
     <string name="tmp_full_name">Имя Фамилия</string>
     <string name="tmp_nickname">_@nickname</string>
 
@@ -102,7 +99,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="default_object_name">Мирский замок</string>
-    <string name="default_object_location">Брестская область, Пинский район, город Пинск</string>
+    <string name="default_object_name">Название объекта</string>
+    <string name="default_object_location">Ресрублика Беларусь, Брестская область, город Пинск</string>
 
 </resources>

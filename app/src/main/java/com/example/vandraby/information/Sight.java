@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Sight {
+    public int[] photoIds = new int[100];
     private final int id;
     private final String name;
     private final String description;
@@ -16,6 +17,9 @@ public class Sight {
         description = jsonObject.getString("description");
         location = "Брестская область, город Пинск";
         photoUrls = jsonObject.getString("urls").split(";");
+        for (int i = 0; i < photoUrls.length; ++i) {
+            photoIds[i] = -1;
+        }
     }
 
     public int getId() {
