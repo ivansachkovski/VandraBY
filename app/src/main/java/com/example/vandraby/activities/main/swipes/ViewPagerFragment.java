@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main;
+package com.example.vandraby.activities.main.swipes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.swipe.ObjectPhotoFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -43,6 +42,7 @@ public class ViewPagerFragment extends Fragment {
         ObjectPhotoFragmentAdapter adapter = new ObjectPhotoFragmentAdapter(this, photoUrls);
 
         ViewPager2 viewPager = view.findViewById(R.id.view_pager);
+        viewPager.setOffscreenPageLimit(photoUrls.length / 2);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = view.findViewById(R.id.sliding_tabs);

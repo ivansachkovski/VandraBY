@@ -67,7 +67,6 @@ public class User {
      * Convert User object to JSON format.
      *
      * @return JSON presentation of User object.
-     *
      * @throws JSONException if any issues during creating JSON object.
      */
     public JSONObject toJson() throws JSONException {

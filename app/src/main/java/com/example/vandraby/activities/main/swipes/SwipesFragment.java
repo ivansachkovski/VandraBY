@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main;
+package com.example.vandraby.activities.main.swipes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.swipe.SwipeModel;
 import com.example.vandraby.information.Sight;
 
 public class SwipesFragment extends Fragment {

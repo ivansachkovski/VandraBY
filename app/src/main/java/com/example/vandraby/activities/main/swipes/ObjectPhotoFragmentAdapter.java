@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.swipe;
+package com.example.vandraby.activities.main.swipes;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.main.SwipesFragment">
+    android:background="@color/main_background"
+    tools:context=".activities.main.swipes.SwipesFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:paddingBottom="30dp"
-            android:foreground="#20000000"
+            android:background="#20000000"
             android:orientation="vertical">
 
             <LinearLayout

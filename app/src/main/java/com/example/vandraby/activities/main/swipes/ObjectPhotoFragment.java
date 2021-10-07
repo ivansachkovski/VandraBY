@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.swipe;
+package com.example.vandraby.activities.main.swipes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -40,10 +40,5 @@ public class ObjectPhotoFragment extends Fragment {
         Picasso.with(view.getContext()).load(photoUrl).fit().into(imageView);
 
         return view;
-    }
-
-    void update(String photoUrl) {
-        ImageView imageView = getView().findViewById(R.id.sight_picture1);
-        Picasso.with(getView().getContext()).load(photoUrl).fit().into(imageView);
     }
 }

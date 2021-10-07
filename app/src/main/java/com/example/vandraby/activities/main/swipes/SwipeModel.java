@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.swipe;
+package com.example.vandraby.activities.main.swipes;
 
 import android.util.Log;
 import android.widget.Toast;

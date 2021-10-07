@@ -1,3 +1,4 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="navigation_panel_height">55dp</dimen>
 </resources>

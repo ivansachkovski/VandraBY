@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main;
+package com.example.vandraby.activities.main.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
