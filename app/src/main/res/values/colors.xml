@@ -10,4 +10,5 @@
     <color name="main_background">#E5E5E5</color>
     <color name="bottom_navigation_icon">#023E8A</color>
     <color name="text_color">#0077B6</color>
+    <color name="details_text_color">#023E8A</color>
 </resources>

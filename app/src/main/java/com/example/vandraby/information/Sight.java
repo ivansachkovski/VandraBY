@@ -4,22 +4,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Sight {
-    public int[] photoIds = new int[100];
     private final int id;
     private final String name;
+    private final String type;
     private final String description;
-    private final String location;
+    private final String locationRegion;
+    private final String locationDistrict;
+    private final String locationLocalityName;
+    private final String locationLocalityType;
     private final String[] photoUrls;
 
     public Sight(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
-        name = jsonObject.getString("name");
-        description = jsonObject.getString("description");
-        location = "Брестская область, город Пинск";
-        photoUrls = jsonObject.getString("urls").split(";");
-        for (int i = 0; i < photoUrls.length; ++i) {
-            photoIds[i] = -1;
-        }
+        name = jsonObject.getString("object_name");
+        description = jsonObject.getString("object_description");
+        photoUrls = jsonObject.getString("object_photo_urls").split(";");
+        type = jsonObject.getString("object_type");
+        locationRegion = jsonObject.getString("location_region");
+        locationDistrict = jsonObject.getString("location_district");
+        locationLocalityType = jsonObject.getString("location_locality_type");
+        locationLocalityName = jsonObject.getString("location_locality_name");
     }
 
     public int getId() {
@@ -30,12 +34,16 @@ public class Sight {
         return name;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public String getLocation() {
-        return location;
+        return String.format("%s %s, %s р-н, %s обл.", locationLocalityType, locationLocalityName, locationDistrict, locationRegion);
     }
 
     public String[] getPhotoUrls() {

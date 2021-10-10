@@ -50,4 +50,6 @@ public class DatabaseHandler {
     public User getCurrentUser() {
         return user;
     }
+
+    public static Sight sight;
 }
