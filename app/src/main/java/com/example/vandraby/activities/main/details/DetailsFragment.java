@@ -43,6 +43,12 @@ public class DetailsFragment extends Fragment {
         TextView tvObjectDescription = view.findViewById(R.id.tv_object_description);
         tvObjectDescription.setText(object.getDescription());
 
+        TextView tvObjectBuildYear = view.findViewById(R.id.tv_object_build_year);
+        tvObjectBuildYear.setText("" + object.getBuildYear());
+
+        TextView tvObjectType = view.findViewById(R.id.tv_object_type);
+        tvObjectType.setText(object.getType());
+
         return view;
     }
 }

@@ -13,6 +13,7 @@ public class Sight {
     private final String locationLocalityName;
     private final String locationLocalityType;
     private final String[] photoUrls;
+    private final int buildYear;
 
     public Sight(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
@@ -24,6 +25,7 @@ public class Sight {
         locationDistrict = jsonObject.getString("location_district");
         locationLocalityType = jsonObject.getString("location_locality_type");
         locationLocalityName = jsonObject.getString("location_locality_name");
+        buildYear = jsonObject.getInt("object_build_year");
     }
 
     public int getId() {
@@ -44,6 +46,10 @@ public class Sight {
 
     public String getLocation() {
         return String.format("%s %s, %s р-н, %s обл.", locationLocalityType, locationLocalityName, locationDistrict, locationRegion);
+    }
+
+    public int getBuildYear() {
+        return buildYear;
     }
 
     public String[] getPhotoUrls() {
