@@ -33,7 +33,6 @@ public class SwipesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_swipes, null);
 
         cvRoot = view.findViewById(R.id.card_view);

@@ -12,6 +12,9 @@ import com.example.vandraby.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import me.relex.circleindicator.CircleIndicator2;
+import me.relex.circleindicator.CircleIndicator3;
+
 public class ViewPagerFragment extends Fragment {
     private static final String ARGUMENT_PHOTO_URLS = "arg_photo_urls";
     private String[] photoUrls;
@@ -45,11 +48,8 @@ public class ViewPagerFragment extends Fragment {
         viewPager.setOffscreenPageLimit(photoUrls.length / 2);
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = view.findViewById(R.id.sliding_tabs);
-        new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> {
-                    tab.setIcon(R.drawable.ic_indicator_circle);
-                }).attach();
+        CircleIndicator3 circleIndicator = view.findViewById(R.id.indicator);
+        circleIndicator.setViewPager(viewPager);
 
         return view;
     }

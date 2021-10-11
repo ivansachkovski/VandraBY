@@ -10,12 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/sliding_tabs"
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         android:layout_gravity="bottom"
-        android:background="#00000000"
-        app:tabGravity="center" />
+        android:layout_marginBottom="15dp"
+        app:ci_animator="@animator/scale_with_alpha"
+        app:ci_gravity="center"
+        app:ci_height="10dp"
+        app:ci_width="10dp" />
 
 </FrameLayout>

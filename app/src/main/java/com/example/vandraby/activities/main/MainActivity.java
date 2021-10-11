@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.profile.ProfileFragment;
 import com.example.vandraby.activities.main.swipes.SwipesFragment;
+import com.example.vandraby.information.DatabaseHandler;
 import com.example.vandraby.requests.RequestQueue;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -27,24 +28,35 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_swipes:
-                    if (currentFragmentId == R.id.item_swipes) {
-                        return false;
-                    }
-                    currentFragmentId = R.id.item_swipes;
-                    loadFragment(SwipesFragment.newInstance());
-                    return true;
+                    return onClickSwipes();
                 case R.id.item_profile:
-                    if (currentFragmentId == R.id.item_profile) {
-                        return false;
-                    }
-                    currentFragmentId = R.id.item_profile;
-                    loadFragment(ProfileFragment.newInstance());
-                    return true;
+                    return onClickProfile();
+                default:
+                    return false;
             }
-            return false;
         });
 
         bottomNavigationView.setSelectedItemId(R.id.item_profile);
+    }
+
+    private boolean onClickSwipes() {
+        if (currentFragmentId == R.id.item_swipes) {
+            // swipes page is open now
+            return false;
+        }
+        currentFragmentId = R.id.item_swipes;
+        loadFragment(SwipesFragment.newInstance());
+        return true;
+    }
+
+    private boolean onClickProfile() {
+        if (currentFragmentId == R.id.item_profile) {
+            // profile page is open now
+            return false;
+        }
+        currentFragmentId = R.id.item_profile;
+        loadFragment(ProfileFragment.newInstance());
+        return true;
     }
 
     private void loadFragment(Fragment fragment) {

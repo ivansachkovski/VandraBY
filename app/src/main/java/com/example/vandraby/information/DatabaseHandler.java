@@ -10,11 +10,10 @@ import java.io.File;
 import java.util.concurrent.Callable;
 
 public class DatabaseHandler {
-
     private final RequestQueue requestQueue;
-
     private static DatabaseHandler instance = null;
     private User user = null;
+    public static Sight sight;
 
     private DatabaseHandler(File cacheDir) {
         requestQueue = RequestQueue.getInstance(cacheDir);
@@ -24,8 +23,11 @@ public class DatabaseHandler {
         if (instance == null) {
             instance = new DatabaseHandler(cacheDir);
         }
-
         return instance;
+    }
+
+    public void loadObjects(Callable<Void> callback) {
+
     }
 
     public void loadUser(String login, String password, Callable<Void> onSuccess, Callable<Void> onFail) {
@@ -50,6 +52,4 @@ public class DatabaseHandler {
     public User getCurrentUser() {
         return user;
     }
-
-    public static Sight sight;
 }
