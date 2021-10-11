@@ -11,7 +11,7 @@ import java.util.concurrent.Callable;
 
 public class DatabaseHandler {
 
-    private RequestQueue requestQueue;
+    private final RequestQueue requestQueue;
 
     private static DatabaseHandler instance = null;
     private User user = null;

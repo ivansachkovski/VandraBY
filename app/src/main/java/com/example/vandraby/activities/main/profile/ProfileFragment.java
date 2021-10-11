@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -66,6 +67,14 @@ public class ProfileFragment extends Fragment {
 
         SimpleAdapter likedObjectsAdapter = new SimpleAdapter(getContext(), data, R.layout.list_item, from, to);
         lvLikedObjects.setAdapter(likedObjectsAdapter);
+
+        Button btnReset = view.findViewById(R.id.btn_reset);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO
+            }
+        });
 
         return view;
     }
