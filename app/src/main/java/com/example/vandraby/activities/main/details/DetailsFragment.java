@@ -11,13 +11,10 @@ import androidx.fragment.app.Fragment;
 import com.example.vandraby.R;
 import com.example.vandraby.information.DatabaseHandler;
 import com.example.vandraby.information.Sight;
-import com.example.vandraby.information.User;
 
 public class DetailsFragment extends Fragment {
-    private Sight object;
-
     public static DetailsFragment newInstance(Sight object) {
-        DatabaseHandler.getInstance(null).sight = object;
+        DatabaseHandler.sight = object;
         return new DetailsFragment();
     }
 
@@ -31,8 +28,7 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, null);
 
-        DatabaseHandler handler = DatabaseHandler.getInstance(null);
-        Sight object = DatabaseHandler.getInstance(null).sight;
+        Sight object = DatabaseHandler.sight;
 
         TextView tvObjectName = view.findViewById(R.id.tv_object_name);
         tvObjectName.setText(object.getName());
