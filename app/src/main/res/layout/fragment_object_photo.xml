@@ -7,7 +7,7 @@
 
     <ImageView
         android:layout_gravity="center"
-        android:id="@+id/sight_picture1"
+        android:id="@+id/sight_picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

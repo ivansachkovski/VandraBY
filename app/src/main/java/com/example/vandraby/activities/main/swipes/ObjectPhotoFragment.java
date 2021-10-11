@@ -36,7 +36,7 @@ public class ObjectPhotoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_object_photo, null);
 
-        ImageView imageView = view.findViewById(R.id.sight_picture1);
+        ImageView imageView = view.findViewById(R.id.sight_picture);
         Picasso.with(view.getContext()).load(photoUrl).fit().into(imageView);
 
         return view;
