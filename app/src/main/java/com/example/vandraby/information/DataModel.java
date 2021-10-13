@@ -6,28 +6,31 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.requests.RequestQueue;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
-public class DatabaseHandler {
-    private final RequestQueue requestQueue;
-    private static DatabaseHandler instance = null;
+public class DataModel {
+    private static DataModel instance = null;
     private User user = null;
     public static Sight sight;
+    private ArrayList<Sight> objects;
 
-    private DatabaseHandler(File cacheDir) {
-        requestQueue = RequestQueue.getInstance(cacheDir);
+    private DataModel() {
     }
 
-    public static DatabaseHandler getInstance(File cacheDir) {
+    public static DataModel getInstance() {
         if (instance == null) {
-            instance = new DatabaseHandler(cacheDir);
+            instance = new DataModel();
         }
         return instance;
     }
 
-    public void loadObjects(Callable<Void> callback) {
+    public ArrayList<Sight> getObjects() {
+        return objects;
+    }
 
+    public void setObjects(ArrayList<Sight> objects) {
+        this.objects = objects;
     }
 
     public void loadUser(String login, String password, Callable<Void> onSuccess, Callable<Void> onFail) {
@@ -39,10 +42,11 @@ public class DatabaseHandler {
     }
 
     public void updateUser() {
+        RequestQueue requestQueue;
         StringRequest request = RequestFactory.createUpdateUserInformationRequest(user, this::onSuccess, null);
         Log.i("request", "" + request.toString());
 
-        requestQueue.sendRequest(request);
+        //requestQueue.sendRequest(request);
     }
 
     public void setUser(User user) {

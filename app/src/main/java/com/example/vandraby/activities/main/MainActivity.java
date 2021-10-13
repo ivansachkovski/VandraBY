@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.profile.ProfileFragment;
 import com.example.vandraby.activities.main.swipes.SwipesFragment;
-import com.example.vandraby.information.DatabaseHandler;
 import com.example.vandraby.requests.RequestQueue;
 import com.google.android.material.navigation.NavigationBarView;
 

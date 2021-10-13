@@ -5,11 +5,14 @@ import android.util.Log;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.information.User;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,33 +25,23 @@ public class RequestFactory {
     private final static String UPDATE_USER_INFORMATION_URL = "requests/UpdateUserInformation.php";
     private final static String GET_ALL_SIGHTS_URL = "requests/GetAllSights.php";
 
-    public static StringRequest createAuthorizationRequest(String login, String password, Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
+    public static JsonObjectRequest createAuthorizationRequest(String login, String password, RequestFuture<JSONObject> future) throws JSONException {
         String url = String.format("%s/%s", BASE_URL, AUTHORIZATION_URL);
 
-        return new StringRequest(Request.Method.POST, url, onSuccess, onFail) {
-            @Override
-            protected @NotNull Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("login", login);
-                params.put("password", password);
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("login", login);
+        requestBody.put("password", password);
 
-                return params;
-            }
-        };
+        return new JsonObjectRequest(Request.Method.POST, url, requestBody, future, future);
     }
 
-    public static StringRequest createGetUserInformationByIdRequest(int userId, Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
+    public static JsonObjectRequest createGetUserInformationByIdRequest(int userId, RequestFuture<JSONObject> future) throws JSONException {
         String url = String.format("%s/%s", BASE_URL, GET_USER_INFORMATION_BY_ID_URL);
 
-        return new StringRequest(Request.Method.POST, url, onSuccess, onFail) {
-            @Override
-            protected @NotNull Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("id", Integer.toString(userId));
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("id", userId);
 
-                return params;
-            }
-        };
+        return new JsonObjectRequest(Request.Method.POST, url, requestBody, future, future);
     }
 
     public static StringRequest createUpdateUserInformationRequest(User user, Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
@@ -74,9 +67,9 @@ public class RequestFactory {
         };
     }
 
-    public static StringRequest createGetAllSightsRequest(Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
+    public static JsonObjectRequest createGetAllSightsRequest(RequestFuture<JSONObject> future) {
         String url = String.format("%s/%s", BASE_URL, GET_ALL_SIGHTS_URL);
 
-        return new StringRequest(Request.Method.GET, url, onSuccess, onFail);
+        return new JsonObjectRequest(Request.Method.GET, url, null, future, future);
     }
 }

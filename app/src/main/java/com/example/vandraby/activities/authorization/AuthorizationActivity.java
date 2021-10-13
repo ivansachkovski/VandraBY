@@ -1,44 +1,43 @@
 package com.example.vandraby.activities.authorization;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.MainActivity;
-import com.example.vandraby.information.DatabaseHandler;
+import com.example.vandraby.information.DataModel;
+import com.example.vandraby.information.Sight;
 import com.example.vandraby.information.User;
 import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.requests.RequestQueue;
 
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AuthorizationActivity extends AppCompatActivity {
     private final static String LOGGER_TAG = "VANDRA_LOGGER";
-
-    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorization);
 
-        requestQueue = RequestQueue.getInstance(getCacheDir());
+        // Initialize
+        RequestQueue.getInstance(getCacheDir());
     }
 
-    public void onAttemptToBeAuthorized(View view) {
-        // Block the screen to avoid user's manipulation during running the requests
-        blockScreen();
-
+    public void onBtnLoginClick(View view) {
         // Get user's input
         String login = ((TextView) findViewById(R.id.login_box)).getText().toString();
         String password = ((TextView) findViewById(R.id.password_box)).getText().toString();
@@ -47,76 +46,8 @@ public class AuthorizationActivity extends AppCompatActivity {
         login = login.isEmpty() ? "admin" : login;
         password = password.isEmpty() ? "admin" : password;
 
-        DatabaseHandler databaseHandler = DatabaseHandler.getInstance(getCacheDir());
-        databaseHandler.loadUser(login, password,
-                () -> null,
-                () -> null
-        );
-
-        // Check if the user with these credentials exists
-        StringRequest request = RequestFactory.createAuthorizationRequest(login, password, this::onSuccessAuthorizationRequest, this::onFailAuthorizationRequest);
-        requestQueue.sendRequest(request);
-    }
-
-    public void onSuccessAuthorizationRequest(String response) {
-        try {
-            JSONObject jsonResponse = new JSONObject(response);
-            int returnCode = jsonResponse.getInt("code");
-            if (0 == returnCode) {
-                // Get user's id from json response
-                int userId = jsonResponse.getInt("id");
-
-                // Get general information about the user by id
-                StringRequest request = RequestFactory.createGetUserInformationByIdRequest(userId, this::onSuccessGetUserInformationLoadingRequest, this::onFailGetUserInformationLoadingRequest);
-                requestQueue.sendRequest(request);
-                return;
-            }  // TODO::check return code to check if there are some issues or user is not exist
-
-        } catch (JSONException e) {
-            Log.e(LOGGER_TAG, Arrays.toString(e.getStackTrace()));
-        }
-
-        // Unblock screen because authorization request was not successful
-        unblockScreen();
-    }
-
-    public void onFailAuthorizationRequest(VolleyError error) {
-        Log.e(LOGGER_TAG, error.getMessage());
-
-        // Unblock screen because authorization request failed
-        unblockScreen();
-    }
-
-    public void onSuccessGetUserInformationLoadingRequest(String response) {
-        try {
-            JSONObject jsonResponse = new JSONObject(response);
-            int returnCode = jsonResponse.getInt("code");
-            if (0 == returnCode) {
-                User user = new User(jsonResponse);
-
-                DatabaseHandler databaseHandler = DatabaseHandler.getInstance(getCacheDir());
-                databaseHandler.setUser(user);
-
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                return;
-            }
-            // TODO::
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        // Unblock screen because get user information request failed
-        unblockScreen();
-    }
-
-    public void onFailGetUserInformationLoadingRequest(VolleyError error) {
-        Log.e(LOGGER_TAG, error.getMessage());
-
-        // Unblock screen because get user information request failed
-        unblockScreen();
+        LoadDataTask loadDataTask = new LoadDataTask();
+        loadDataTask.execute(login, password);
     }
 
     private void blockScreen() {
@@ -125,5 +56,91 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     private void unblockScreen() {
         findViewById(R.id.authorization_layout).setVisibility(View.VISIBLE);
+    }
+
+    public class LoadDataTask extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            // Input strings: [0] - login, [1] - password
+            try {
+                int userId = getUserId(strings[0], strings[1]);
+                User user = getUser(userId);
+                ArrayList<Sight> objects = getObjects();
+
+                DataModel dataModel = DataModel.getInstance();
+                dataModel.setUser(user);
+                dataModel.setObjects(objects);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            blockScreen();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (aBoolean) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                unblockScreen();
+            }
+        }
+
+        private int getUserId(String login, String password) throws Exception {
+            RequestFuture<JSONObject> future = RequestFuture.newFuture();
+            JsonObjectRequest request = RequestFactory.createAuthorizationRequest(login, password, future);
+            RequestQueue.getInstance(null).sendRequest(request);
+
+            JSONObject response = future.get();
+            int returnCode = response.getInt("code");
+            if (returnCode == 0) {
+                return response.getInt("id");
+            } else {
+                throw new Exception();
+            }
+        }
+
+        private User getUser(int userId) throws Exception {
+            RequestFuture<JSONObject> future = RequestFuture.newFuture();
+            JsonObjectRequest request = RequestFactory.createGetUserInformationByIdRequest(userId, future);
+            RequestQueue.getInstance(null).sendRequest(request);
+
+            JSONObject response = future.get();
+            int returnCode = response.getInt("code");
+            if (returnCode == 0) {
+                return new User(response);
+            } else {
+                throw new Exception();
+            }
+        }
+
+        private ArrayList<Sight> getObjects() throws Exception {
+            RequestFuture<JSONObject> future = RequestFuture.newFuture();
+            JsonObjectRequest request = RequestFactory.createGetAllSightsRequest(future);
+            RequestQueue.getInstance(null).sendRequest(request);
+
+            JSONObject response = future.get();
+            int returnCode = response.getInt("code");
+            if (returnCode == 0) {
+
+                JSONArray jsonArrSights = response.getJSONArray("sights");
+                Sight[] sights = new Sight[jsonArrSights.length()];
+                for (int i = 0; i < jsonArrSights.length(); i++) {
+                    sights[i] = new Sight(jsonArrSights.getJSONObject(i));
+                }
+                return new ArrayList<>(Arrays.asList(sights));
+            } else {
+                throw new Exception();
+            }
+        }
     }
 }

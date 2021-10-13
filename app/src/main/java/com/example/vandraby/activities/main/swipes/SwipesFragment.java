@@ -13,10 +13,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.details.DetailsFragment;
+import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.Sight;
 
 public class SwipesFragment extends Fragment {
-    private final SwipeModel model = new SwipeModel();
+    private final SwipeModel model = new SwipeModel(DataModel.getInstance().getObjects());
     CardView cvRoot;
     TextView tvObjectName;
     TextView tvObjectLocation;
@@ -42,30 +43,27 @@ public class SwipesFragment extends Fragment {
         ImageView ivLike = view.findViewById(R.id.btn_like);
         ivLike.setOnClickListener(v -> {
             model.swipe();
-            update();
+            showObject();
         });
 
         ImageView ivDislike = view.findViewById(R.id.btn_dislike);
         ivDislike.setOnClickListener(v -> {
             model.swipe();
-            update();
+            showObject();
         });
 
         ImageView ivDetails = view.findViewById(R.id.btn_details);
         ivDetails.setOnClickListener(v -> {
-            loadFragment(DetailsFragment.newInstance(model.getCurrentSight()));
+            loadFragment(DetailsFragment.newInstance(model.getCurrentObject()));
         });
 
-        model.loadDataFromDatabase(() -> {
-            update();
-            return null;
-        });
+        showObject();
 
         return view;
     }
 
-    private void update() {
-        Sight object = model.getCurrentSight();
+    private void showObject() {
+        Sight object = model.getCurrentObject();
 
         if (object == null) {
             cvRoot.setVisibility(View.INVISIBLE);

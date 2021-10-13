@@ -1,11 +1,9 @@
 package com.example.vandraby.activities.main.profile;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -14,7 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
-import com.example.vandraby.information.DatabaseHandler;
+import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.User;
 
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, null);
 
-        DatabaseHandler handler = DatabaseHandler.getInstance(null);
+        DataModel handler = DataModel.getInstance();
         User user = handler.getCurrentUser();
 
         TextView tvFullName = view.findViewById(R.id.user_full_name_view);
