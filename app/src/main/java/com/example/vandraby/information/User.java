@@ -79,11 +79,20 @@ public class User {
         return jsonObject;
     }
 
-    public void addLikedSight(int id) {
+    public void addLikedObject(int id) {
         likedSights.add(id);
     }
 
-    public void addDislikedSight(int id) {
+    public void addDislikedObject(int id) {
         dislikedSights.add(id);
+    }
+
+    public boolean doLike(int objectId) {
+        for (int id: likedSights) {
+            if (id == objectId) {
+                return true;
+            }
+        }
+        return false;
     }
 }

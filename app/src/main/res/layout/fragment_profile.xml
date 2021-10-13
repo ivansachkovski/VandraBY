@@ -55,12 +55,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Сбросить" />
-
         <ListView
             android:id="@+id/lv_liked_objects"
             android:layout_width="match_parent"
