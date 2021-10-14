@@ -46,6 +46,9 @@ public class ProfileFragment extends Fragment {
         TextView tvFullName = view.findViewById(R.id.user_full_name_view);
         tvFullName.setText(user.getFullName());
 
+        TextView tvNickname = view.findViewById(R.id.user_nickname_view);
+        tvNickname.setText("@" + user.getNickname());
+
         ArrayList<Sight> objects = dataModel.getUserLikedObjects();
         ArrayList<HashMap<String, Object>> data = new ArrayList<>(objects.size());
 
