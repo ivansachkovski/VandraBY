@@ -76,6 +76,7 @@ public class User {
         jsonObject.put("last_name", lastName);
         jsonObject.put("photo_url", photoUrl);
         jsonObject.put("liked_sights", likedSights);
+        jsonObject.put("disliked_sights", dislikedSights);
         return jsonObject;
     }
 
@@ -87,8 +88,17 @@ public class User {
         dislikedSights.add(id);
     }
 
-    public boolean doLike(int objectId) {
+    public boolean isLiked(int objectId) {
         for (int id: likedSights) {
+            if (id == objectId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isDisliked(int objectId) {
+        for (int id: dislikedSights) {
             if (id == objectId) {
                 return true;
             }

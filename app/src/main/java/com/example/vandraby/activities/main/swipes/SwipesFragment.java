@@ -17,7 +17,7 @@ import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.Sight;
 
 public class SwipesFragment extends Fragment {
-    private final SwipeModel model = new SwipeModel(DataModel.getInstance().getAllObjects());
+    private final SwipeModel model = new SwipeModel(DataModel.getInstance().getObjectsForSwipes());
     CardView cvRoot;
     TextView tvObjectName;
     TextView tvObjectLocation;
@@ -56,7 +56,7 @@ public class SwipesFragment extends Fragment {
 
         ImageView ivDetails = view.findViewById(R.id.btn_details);
         ivDetails.setOnClickListener(v -> {
-            loadFragment(DetailsFragment.newInstance(model.getCurrentObject()));
+            loadFragment(DetailsFragment.newInstance(model.getCurrentObject(), 2));
         });
 
         showObject();
