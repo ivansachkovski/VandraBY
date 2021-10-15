@@ -12,8 +12,7 @@
         android:background="#023E8A"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
+        android:paddingHorizontal="15dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -42,7 +41,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:onClick="onBtnLoginClick"
             android:text="@string/btn_login" />
 
