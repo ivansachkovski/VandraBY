@@ -65,4 +65,8 @@ public class DataModel {
         }
         return likedObjects;
     }
+
+    public void reset() {
+        user.resetObjects();
+    }
 }

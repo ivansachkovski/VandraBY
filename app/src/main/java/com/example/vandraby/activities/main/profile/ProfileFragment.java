@@ -1,15 +1,20 @@
 package com.example.vandraby.activities.main.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
+import com.example.vandraby.activities.main.MainActivity;
+import com.example.vandraby.activities.main.settings.ProfileSettingsFragment;
 import com.example.vandraby.adapters.ObjectsAdapter;
 import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.User;
@@ -47,6 +52,18 @@ public class ProfileFragment extends Fragment {
         RecyclerView listLikedObjects = view.findViewById(R.id.lv_liked_objects);
         listLikedObjects.setAdapter(new ObjectsAdapter(dataModel.getUserLikedObjects()));
 
+        CardView buttonSettings = view.findViewById(R.id.button_settings);
+        buttonSettings.setOnClickListener(v -> {
+            // TODO::open settings fragment
+            loadFragment(ProfileSettingsFragment.newInstance());
+        });
+
         return view;
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_fragment, fragment);
+        fragmentTransaction.commit();
     }
 }

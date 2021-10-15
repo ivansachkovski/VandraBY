@@ -105,4 +105,9 @@ public class User {
         }
         return false;
     }
+
+    public void resetObjects() {
+        likedSights.clear();
+        dislikedSights.clear();
+    }
 }
