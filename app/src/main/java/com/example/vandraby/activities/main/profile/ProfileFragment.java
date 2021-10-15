@@ -1,6 +1,5 @@
 package com.example.vandraby.activities.main.profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.MainActivity;
 import com.example.vandraby.activities.main.settings.ProfileSettingsFragment;
 import com.example.vandraby.adapters.ObjectsAdapter;
 import com.example.vandraby.information.DataModel;
@@ -54,7 +52,6 @@ public class ProfileFragment extends Fragment {
 
         CardView buttonSettings = view.findViewById(R.id.button_settings);
         buttonSettings.setOnClickListener(v -> {
-            // TODO::open settings fragment
             loadFragment(ProfileSettingsFragment.newInstance());
         });
 

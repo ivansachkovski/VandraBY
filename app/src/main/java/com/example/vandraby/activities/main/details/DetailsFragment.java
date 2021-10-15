@@ -47,23 +47,23 @@ public class DetailsFragment extends Fragment {
 
         Sight object = DataModel.sight;
 
-        TextView tvObjectName = view.findViewById(R.id.tv_object_name);
-        tvObjectName.setText(object.getName());
+        TextView textObjectName = view.findViewById(R.id.tv_object_name);
+        textObjectName.setText(object.getName());
 
-        TextView tvObjectLocation = view.findViewById(R.id.tv_object_location);
-        tvObjectLocation.setText(object.getLocation());
+        TextView textObjectLocation = view.findViewById(R.id.tv_object_location);
+        textObjectLocation.setText(object.getLocation());
 
-        TextView tvObjectDescription = view.findViewById(R.id.tv_object_description);
-        tvObjectDescription.setText(object.getDescription());
+        TextView textObjectDescription = view.findViewById(R.id.tv_object_description);
+        textObjectDescription.setText(object.getDescription());
 
-        TextView tvObjectBuildYear = view.findViewById(R.id.tv_object_build_year);
-        tvObjectBuildYear.setText("" + object.getBuildYear());
+        TextView textObjectBuildYear = view.findViewById(R.id.tv_object_build_year);
+        textObjectBuildYear.setText("" + object.getBuildYear());
 
-        TextView tvObjectType = view.findViewById(R.id.tv_object_type);
-        tvObjectType.setText(object.getType());
+        TextView textObjectType = view.findViewById(R.id.tv_object_type);
+        textObjectType.setText(object.getType());
 
-        CardView btnBack = view.findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> {
+        CardView buttonBack = view.findViewById(R.id.btn_back);
+        buttonBack.setOnClickListener(v -> {
             openPreviousPage();
         });
 

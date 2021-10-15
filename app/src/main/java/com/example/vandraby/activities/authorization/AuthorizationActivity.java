@@ -22,7 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AuthorizationActivity extends AppCompatActivity {
     private final static String LOGGER_TAG = "VANDRA_LOGGER";
@@ -130,13 +129,12 @@ public class AuthorizationActivity extends AppCompatActivity {
             JSONObject response = future.get();
             int returnCode = response.getInt("code");
             if (returnCode == 0) {
-
                 JSONArray jsonArrSights = response.getJSONArray("sights");
-                Sight[] sights = new Sight[jsonArrSights.length()];
+                ArrayList<Sight> objects = new ArrayList<>();
                 for (int i = 0; i < jsonArrSights.length(); i++) {
-                    sights[i] = new Sight(jsonArrSights.getJSONObject(i));
+                    objects.add(new Sight(jsonArrSights.getJSONObject(i)));
                 }
-                return new ArrayList<>(Arrays.asList(sights));
+                return objects;
             } else {
                 throw new Exception();
             }

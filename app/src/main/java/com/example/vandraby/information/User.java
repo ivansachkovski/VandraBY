@@ -7,6 +7,16 @@ import org.json.JSONObject;
 import java.util.Vector;
 
 public class User {
+    private final int id;
+    private final String nickname;
+    private final String firstName;
+    private final String lastName;
+    int followersNumber;
+    int followingsNumber;
+    private String photoUrl;
+    private final boolean is_owner; // TODO::change the name of the flag
+    private Vector<Integer> likedSights = new Vector<>();
+    private Vector<Integer> dislikedSights = new Vector<>();
 
     public User(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
@@ -46,23 +56,6 @@ public class User {
         return photoUrl;
     }
 
-    private final int id;
-
-    private final String nickname;
-
-    private final String firstName;
-    private final String lastName;
-
-    int followersNumber;
-    int followingsNumber;
-
-    private String photoUrl;
-
-    private Vector<Integer> likedSights = new Vector<>();
-    private Vector<Integer> dislikedSights = new Vector<>();
-
-    private final boolean is_owner; // TODO::change the name of the flag
-
     /**
      * Convert User object to JSON format.
      *
@@ -89,7 +82,7 @@ public class User {
     }
 
     public boolean isLiked(int objectId) {
-        for (int id: likedSights) {
+        for (int id : likedSights) {
             if (id == objectId) {
                 return true;
             }
@@ -98,7 +91,7 @@ public class User {
     }
 
     public boolean isDisliked(int objectId) {
-        for (int id: dislikedSights) {
+        for (int id : dislikedSights) {
             if (id == objectId) {
                 return true;
             }
