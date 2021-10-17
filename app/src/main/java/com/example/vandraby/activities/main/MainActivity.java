@@ -13,6 +13,8 @@ import com.example.vandraby.activities.main.swipes.SwipesFragment;
 import com.example.vandraby.requests.RequestQueue;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     private int currentFragmentId = -1;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         // Init request queue
         RequestQueue.getInstance(getCacheDir());
