@@ -41,8 +41,8 @@ public class AuthorizationActivity extends AppCompatActivity {
         String password = ((TextView) findViewById(R.id.edit_password)).getText().toString();
 
         // TODO::remove this default values
-        login = login.isEmpty() ? "admin" : login;
-        password = password.isEmpty() ? "admin" : password;
+        login = login.isEmpty() ? "sachkovski" : login;
+        password = password.isEmpty() ? "123" : password;
 
         AuthorizationTask task = new AuthorizationTask();
         task.execute(login, password);

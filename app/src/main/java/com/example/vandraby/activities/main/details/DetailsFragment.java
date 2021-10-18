@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.swipes.SwipesFragment;
+import com.example.vandraby.activities.main.swipes.ViewPagerFragment;
 import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.Place;
 
@@ -44,6 +45,12 @@ public class DetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_details, null);
 
         Place place = DataModel.place;
+
+        Fragment fragment = ViewPagerFragment.newInstance(place.getPhotoUrls());
+
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.view_pager_fragment, fragment);
+        fragmentTransaction.commit();
 
         TextView textObjectName = view.findViewById(R.id.tv_object_name);
         textObjectName.setText(place.getName());
