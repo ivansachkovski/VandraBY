@@ -13,7 +13,6 @@ import com.squareup.picasso.Picasso;
 
 public class ObjectPhotoFragment extends Fragment {
     private static final String ARGUMENT_PHOTO_URL = "arg_photo_url";
-
     private String photoUrl;
 
     public static ObjectPhotoFragment newInstance(String photoUrl) {

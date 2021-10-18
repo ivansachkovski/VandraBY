@@ -37,15 +37,15 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     public void onBtnLoginClick(View view) {
         // Get user's input
-        String login = ((TextView) findViewById(R.id.login_box)).getText().toString();
-        String password = ((TextView) findViewById(R.id.password_box)).getText().toString();
+        String login = ((TextView) findViewById(R.id.edit_login)).getText().toString();
+        String password = ((TextView) findViewById(R.id.edit_password)).getText().toString();
 
         // TODO::remove this default values
         login = login.isEmpty() ? "admin" : login;
         password = password.isEmpty() ? "admin" : password;
 
-        LoadDataTask loadDataTask = new LoadDataTask();
-        loadDataTask.execute(login, password);
+        AuthorizationTask task = new AuthorizationTask();
+        task.execute(login, password);
     }
 
     private void blockScreen() {
@@ -56,7 +56,7 @@ public class AuthorizationActivity extends AppCompatActivity {
         findViewById(R.id.authorization_layout).setVisibility(View.VISIBLE);
     }
 
-    public class LoadDataTask extends AsyncTask<String, Void, Boolean> {
+    public class AuthorizationTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... strings) {
             // Input strings: [0] - login, [1] - password
@@ -64,7 +64,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                 int userId = getUserId(strings[0], strings[1]);
                 User user = getUser(userId);
                 ArrayList<Sight> objects = getObjects();
-
+                // Data was loaded successfully, save it
                 DataModel dataModel = DataModel.getInstance();
                 dataModel.setUser(user);
                 dataModel.setObjects(objects);
