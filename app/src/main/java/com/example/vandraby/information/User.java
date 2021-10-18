@@ -9,8 +9,8 @@ import java.util.Vector;
 public class User {
     private final int id;
     private final String nickname;
-    private final String firstName;
-    private final String lastName;
+    private String firstName;
+    private String lastName;
     int followersNumber;
     int followingsNumber;
     private String photoUrl;
@@ -46,6 +46,22 @@ public class User {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getNickname() {

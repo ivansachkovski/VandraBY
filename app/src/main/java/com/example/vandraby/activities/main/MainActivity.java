@@ -1,6 +1,7 @@
 package com.example.vandraby.activities.main;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.profile.ProfileFragment;
@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
+        toolbar.setNavigationOnClickListener(v -> {
+            this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+            this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+        });
+
         // Init request queue
         RequestQueue.getInstance(getCacheDir());
 
@@ -47,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bottomNavigationView.setSelectedItemId(R.id.item_profile);
+        bottomNavigationView.setSelectedItemId(R.id.item_swipes);
     }
 
     @Override
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_profile_settings:
-                loadFragment(ProfileSettingsFragment.newInstance());
+                loadFragment(ProfileSettingsFragment.newInstance(), true);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         currentFragmentId = R.id.item_swipes;
-        loadFragment(SwipesFragment.newInstance());
+        loadFragment(SwipesFragment.newInstance(), false);
         return true;
     }
 
@@ -83,13 +88,15 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         currentFragmentId = R.id.item_profile;
-        loadFragment(ProfileFragment.newInstance());
+        loadFragment(ProfileFragment.newInstance(), true);
         return true;
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, fragment);
-        fragmentTransaction.commit();
+    private void loadFragment(Fragment fragment, boolean bSave) {
+        if (bSave) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment).addToBackStack(null).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment).commit();
+        }
     }
 }
