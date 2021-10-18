@@ -1,7 +1,12 @@
 package com.example.vandraby.activities.main;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.profile.ProfileFragment;
+import com.example.vandraby.activities.main.settings.ProfileSettingsFragment;
 import com.example.vandraby.activities.main.swipes.SwipesFragment;
 import com.example.vandraby.requests.RequestQueue;
 import com.google.android.material.navigation.NavigationBarView;
@@ -43,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setSelectedItemId(R.id.item_profile);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_profile_settings:
+                loadFragment(ProfileSettingsFragment.newInstance());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean onClickSwipes() {

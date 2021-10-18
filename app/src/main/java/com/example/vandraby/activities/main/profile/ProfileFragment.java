@@ -50,11 +50,6 @@ public class ProfileFragment extends Fragment {
         RecyclerView listLikedObjects = view.findViewById(R.id.lv_liked_objects);
         listLikedObjects.setAdapter(new ObjectsAdapter(dataModel.getUserLikedObjects()));
 
-        CardView buttonSettings = view.findViewById(R.id.button_settings);
-        buttonSettings.setOnClickListener(v -> {
-            loadFragment(ProfileSettingsFragment.newInstance());
-        });
-
         return view;
     }
 
