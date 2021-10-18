@@ -1,7 +1,6 @@
 package com.example.vandraby.activities.main.details;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.swipes.ObjectPhotoFragment;
 import com.example.vandraby.activities.main.swipes.SwipesFragment;
 import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.Sight;

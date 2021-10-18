@@ -3,6 +3,8 @@ package com.example.vandraby.information;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+// TODO::rename the class to Place
+// TODO::rename all the fields
 public class Sight {
     private final int id;
     private final String name;
