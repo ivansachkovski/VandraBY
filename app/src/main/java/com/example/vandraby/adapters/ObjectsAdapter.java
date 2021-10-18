@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
-import com.example.vandraby.information.Sight;
+import com.example.vandraby.information.Place;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ObjectsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final List<Sight> items;
+    private final List<Place> items;
 
-    public ObjectsAdapter(List<Sight> items) {
+    public ObjectsAdapter(List<Place> items) {
         this.items = items;
     }
 
@@ -51,7 +51,7 @@ public class ObjectsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             textObjectLocation = itemView.findViewById(R.id.tv_location);
         }
 
-        void fill(Sight item) {
+        void fill(Place item) {
             Picasso.with(imageObjectPhoto.getContext()).load(item.getPhotoUrls()[0]).fit().into(imageObjectPhoto);
             textObjectName.setText(item.getName());
             textObjectLocation.setText(item.getLocation());

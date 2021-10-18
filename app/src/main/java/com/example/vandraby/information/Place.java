@@ -3,9 +3,8 @@ package com.example.vandraby.information;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-// TODO::rename the class to Place
 // TODO::rename all the fields
-public class Sight {
+public class Place {
     private final int id;
     private final String name;
     private final String type;
@@ -17,7 +16,7 @@ public class Sight {
     private final String[] photoUrls;
     private final int buildYear;
 
-    public Sight(JSONObject jsonObject) throws JSONException {
+    public Place(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
         name = jsonObject.getString("object_name");
         description = jsonObject.getString("object_description");

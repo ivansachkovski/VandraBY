@@ -13,16 +13,16 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.swipes.SwipesFragment;
 import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.Sight;
+import com.example.vandraby.information.Place;
 
 public class DetailsFragment extends Fragment {
     private final static String LOGGER_TAG = "LOG_VANDRA_DETAILS";
     private static final String ARGUMENT_PREV_PAGE_ID = "arg_prev_page_id";
     private int prevPageId;
 
-    public static DetailsFragment newInstance(Sight object, int previousPageId) {
+    public static DetailsFragment newInstance(Place object, int previousPageId) {
         // TODO::change
-        DataModel.sight = object;
+        DataModel.place = object;
 
         Bundle arguments = new Bundle();
         arguments.putInt(ARGUMENT_PREV_PAGE_ID, previousPageId);
@@ -43,22 +43,22 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, null);
 
-        Sight object = DataModel.sight;
+        Place place = DataModel.place;
 
         TextView textObjectName = view.findViewById(R.id.tv_object_name);
-        textObjectName.setText(object.getName());
+        textObjectName.setText(place.getName());
 
         TextView textObjectLocation = view.findViewById(R.id.tv_object_location);
-        textObjectLocation.setText(object.getLocation());
+        textObjectLocation.setText(place.getLocation());
 
         TextView textObjectDescription = view.findViewById(R.id.tv_object_description);
-        textObjectDescription.setText(object.getDescription());
+        textObjectDescription.setText(place.getDescription());
 
         TextView textObjectBuildYear = view.findViewById(R.id.tv_object_build_year);
-        textObjectBuildYear.setText("" + object.getBuildYear());
+        textObjectBuildYear.setText("" + place.getBuildYear());
 
         TextView textObjectType = view.findViewById(R.id.tv_object_type);
-        textObjectType.setText(object.getType());
+        textObjectType.setText(place.getType());
 
         CardView buttonBack = view.findViewById(R.id.btn_back);
         buttonBack.setOnClickListener(v -> {

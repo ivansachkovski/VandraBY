@@ -13,7 +13,7 @@ import com.android.volley.toolbox.RequestFuture;
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.MainActivity;
 import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.Sight;
+import com.example.vandraby.information.Place;
 import com.example.vandraby.information.User;
 import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.requests.RequestQueue;
@@ -63,7 +63,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             try {
                 int userId = getUserId(strings[0], strings[1]);
                 User user = getUser(userId);
-                ArrayList<Sight> objects = getObjects();
+                ArrayList<Place> objects = getObjects();
                 // Data was loaded successfully, save it
                 DataModel dataModel = DataModel.getInstance();
                 dataModel.setUser(user);
@@ -121,7 +121,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             }
         }
 
-        private ArrayList<Sight> getObjects() throws Exception {
+        private ArrayList<Place> getObjects() throws Exception {
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
             JsonObjectRequest request = RequestFactory.createGetAllSightsRequest(future);
             RequestQueue.getInstance(null).sendRequest(request);
@@ -130,9 +130,9 @@ public class AuthorizationActivity extends AppCompatActivity {
             int returnCode = response.getInt("code");
             if (returnCode == 0) {
                 JSONArray jsonArrSights = response.getJSONArray("sights");
-                ArrayList<Sight> objects = new ArrayList<>();
+                ArrayList<Place> objects = new ArrayList<>();
                 for (int i = 0; i < jsonArrSights.length(); i++) {
-                    objects.add(new Sight(jsonArrSights.getJSONObject(i)));
+                    objects.add(new Place(jsonArrSights.getJSONObject(i)));
                 }
                 return objects;
             } else {

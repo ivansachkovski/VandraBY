@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.details.DetailsFragment;
 import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.Sight;
+import com.example.vandraby.information.Place;
 
 public class SwipesFragment extends Fragment {
     private final SwipeModel model = new SwipeModel(DataModel.getInstance().getObjectsForSwipes());
@@ -65,7 +65,7 @@ public class SwipesFragment extends Fragment {
     }
 
     private void showObject() {
-        Sight object = model.getCurrentObject();
+        Place object = model.getCurrentObject();
 
         if (object == null) {
             cvRoot.setVisibility(View.INVISIBLE);

@@ -8,8 +8,8 @@ public class DataModel {
     private final static String LOGGER_TAG = "LOG_VANDRA_DATA_MODEL";
     private static DataModel instance = null;
     private User user = null;
-    private ArrayList<Sight> objects = null;
-    public static Sight sight;
+    private ArrayList<Place> objects = null;
+    public static Place place;
 
     private DataModel() {
     }
@@ -25,18 +25,18 @@ public class DataModel {
         this.user = user;
     }
 
-    public void setObjects(ArrayList<Sight> objects) {
+    public void setObjects(ArrayList<Place> objects) {
         this.objects = objects;
     }
 
-    public ArrayList<Sight> getAllObjects() {
+    public ArrayList<Place> getAllObjects() {
         return objects;
     }
 
-    public ArrayList<Sight> getObjectsForSwipes() {
+    public ArrayList<Place> getObjectsForSwipes() {
         Log.i(LOGGER_TAG, "getObjectsForSwipes()");
-        ArrayList<Sight> objectsForSwipes = new ArrayList<>();
-        for (Sight object : objects) {
+        ArrayList<Place> objectsForSwipes = new ArrayList<>();
+        for (Place object : objects) {
             if (!user.isLiked(object.getId()) && !user.isDisliked(object.getId())) {
                 objectsForSwipes.add(object);
             }
@@ -56,9 +56,9 @@ public class DataModel {
         user.addDislikedObject(id);
     }
 
-    public ArrayList<Sight> getUserLikedObjects() {
-        ArrayList<Sight> likedObjects = new ArrayList<>();
-        for (Sight object : objects) {
+    public ArrayList<Place> getUserLikedObjects() {
+        ArrayList<Place> likedObjects = new ArrayList<>();
+        for (Place object : objects) {
             if (user.isLiked(object.getId())) {
                 likedObjects.add(object);
             }
