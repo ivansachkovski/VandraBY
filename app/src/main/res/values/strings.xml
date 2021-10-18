@@ -103,5 +103,7 @@
     <string name="default_object_location">Страна, область, город</string>
     <string name="default_year">1996</string>
     <string name="default_type">Тип</string>
+    <string name="nav_swipes">Свайпы</string>
+    <string name="nav_profile">Профиль</string>
 
 </resources>
