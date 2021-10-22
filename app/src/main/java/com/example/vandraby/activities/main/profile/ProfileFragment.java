@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
         User user = dataModel.getCurrentUser();
 
         CircleImageView imageUserPhoto = view.findViewById(R.id.user_profile_image);
-        Picasso.with(view.getContext()).load(user.getPhotoUrl()).fit().into(imageUserPhoto);
+        Picasso.with(view.getContext()).load(user.getPhotoUrl()).fit().centerCrop().into(imageUserPhoto);
 
         TextView textUserFullName = view.findViewById(R.id.user_full_name_view);
         textUserFullName.setText(user.getFullName());
