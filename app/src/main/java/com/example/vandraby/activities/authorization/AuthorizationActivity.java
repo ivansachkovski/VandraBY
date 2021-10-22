@@ -129,12 +129,12 @@ public class AuthorizationActivity extends AppCompatActivity {
             JSONObject response = future.get();
             int returnCode = response.getInt("code");
             if (returnCode == 0) {
-                JSONArray jsonArrSights = response.getJSONArray("sights");
-                ArrayList<Place> objects = new ArrayList<>();
-                for (int i = 0; i < jsonArrSights.length(); i++) {
-                    objects.add(new Place(jsonArrSights.getJSONObject(i)));
+                JSONArray jsonArrPlaces = response.getJSONArray("places");
+                ArrayList<Place> places = new ArrayList<>();
+                for (int i = 0; i < jsonArrPlaces.length(); i++) {
+                    places.add(new Place(jsonArrPlaces.getJSONObject(i)));
                 }
-                return objects;
+                return places;
             } else {
                 throw new Exception();
             }

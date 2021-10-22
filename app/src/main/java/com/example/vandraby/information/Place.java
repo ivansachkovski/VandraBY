@@ -3,30 +3,35 @@ package com.example.vandraby.information;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-// TODO::rename all the fields
-public class Place {
+import java.io.Serializable;
+
+public class Place implements Serializable {
     private final int id;
+
     private final String name;
-    private final String type;
     private final String description;
-    private final String locationRegion;
-    private final String locationDistrict;
-    private final String locationLocalityName;
-    private final String locationLocalityType;
+    private final String type;
     private final String[] photoUrls;
     private final int buildYear;
 
+    private final String locationRegion;
+    private final String locationDistrict;
+    private final String locationLocalityType;
+    private final String locationLocalityName;
+
     public Place(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
-        name = jsonObject.getString("object_name");
-        description = jsonObject.getString("object_description");
-        photoUrls = jsonObject.getString("object_photo_urls").split(";");
-        type = jsonObject.getString("object_type");
+
+        name = jsonObject.getString("place_name");
+        description = jsonObject.getString("place_description");
+        type = jsonObject.getString("place_type");
+        photoUrls = jsonObject.getString("place_photo_urls").split(";");
+        buildYear = jsonObject.getInt("place_build_year");
+
         locationRegion = jsonObject.getString("location_region");
         locationDistrict = jsonObject.getString("location_district");
         locationLocalityType = jsonObject.getString("location_locality_type");
         locationLocalityName = jsonObject.getString("location_locality_name");
-        buildYear = jsonObject.getInt("object_build_year");
     }
 
     public int getId() {
@@ -45,15 +50,15 @@ public class Place {
         return description;
     }
 
-    public String getLocation() {
-        return String.format("%s %s, %s р-н, %s обл.", locationLocalityType, locationLocalityName, locationDistrict, locationRegion);
+    public String[] getPhotoUrls() {
+        return photoUrls;
     }
 
     public int getBuildYear() {
         return buildYear;
     }
 
-    public String[] getPhotoUrls() {
-        return photoUrls;
+    public String getLocation() {
+        return String.format("%s %s, %s р-н, %s обл.", locationLocalityType, locationLocalityName, locationDistrict, locationRegion);
     }
 }
