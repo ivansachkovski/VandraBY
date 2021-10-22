@@ -59,10 +59,15 @@
 
         <Button
             android:id="@+id/button_save"
-            android:layout_width="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/selector_authorization_button"
             android:text="Сохранить"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
 
         <View
             android:layout_width="wrap_content"
@@ -84,10 +89,15 @@
 
         <Button
             android:id="@+id/button_reset"
-            android:layout_width="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/selector_authorization_button"
             android:text="Сброс"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
 
         <View
             android:layout_width="wrap_content"

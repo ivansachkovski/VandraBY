@@ -56,7 +56,7 @@ public class ObjectPhotoFragmentAdapter extends androidx.viewpager2.adapter.Frag
             View view = inflater.inflate(R.layout.fragment_object_photo, null);
 
             ImageView imageView = view.findViewById(R.id.sight_picture);
-            Picasso.with(view.getContext()).load(photoUrl).fit().into(imageView);
+            Picasso.with(view.getContext()).load(photoUrl).fit().centerCrop().into(imageView);
 
             return view;
         }
