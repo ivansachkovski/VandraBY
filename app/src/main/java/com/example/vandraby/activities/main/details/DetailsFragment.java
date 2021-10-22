@@ -1,6 +1,7 @@
 package com.example.vandraby.activities.main.details;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,13 @@ import com.example.vandraby.information.Place;
 public class DetailsFragment extends Fragment {
     private final static String LOGGER_TAG = "LOG_VANDRA_DETAILS";
     private static final String ARGUMENT_PREV_PAGE_ID = "arg_prev_page_id";
+    private static final String ARGUMENT_PLACE = "arg_place";
     private int prevPageId;
+    private Place place;
 
-    public static DetailsFragment newInstance(Place object, int previousPageId) {
-        // TODO::change
-        DataModel.place = object;
-
+    public static DetailsFragment newInstance(Place object, int previousPageId, Place place) {
         Bundle arguments = new Bundle();
+        arguments.putSerializable(ARGUMENT_PLACE, place);
         arguments.putInt(ARGUMENT_PREV_PAGE_ID, previousPageId);
         DetailsFragment fragment = new DetailsFragment();
         fragment.setArguments(arguments);
@@ -37,14 +38,13 @@ public class DetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         assert getArguments() != null;
         prevPageId = getArguments().getInt(ARGUMENT_PREV_PAGE_ID);
+        place = (Place) getArguments().getSerializable(ARGUMENT_PLACE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, null);
-
-        Place place = DataModel.place;
 
         Fragment fragment = ViewPagerFragment.newInstance(place.getPhotoUrls());
 
@@ -66,11 +66,6 @@ public class DetailsFragment extends Fragment {
 
         TextView textObjectType = view.findViewById(R.id.tv_object_type);
         textObjectType.setText(place.getType());
-
-        CardView buttonBack = view.findViewById(R.id.btn_back);
-        buttonBack.setOnClickListener(v -> {
-            openPreviousPage();
-        });
 
         return view;
     }

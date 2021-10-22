@@ -6,106 +6,112 @@
     android:layout_height="match_parent"
     tools:context=".activities.main.profile.ProfileFragment">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_user_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="15dp" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginVertical="30dp"
-            android:background="@color/black" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/last_name" />
+            android:layout_margin="15dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edit_last_name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/selector_authorization_input"
-            android:inputType="textPersonName"
-            android:paddingStart="@dimen/text_margin"
-            android:paddingLeft="@dimen/text_margin"
-            android:paddingRight="@dimen/text_margin" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_user_photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/first_name" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginVertical="30dp"
+                android:background="@color/black" />
 
-        <EditText
-            android:id="@+id/edit_first_name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/selector_authorization_input"
-            android:inputType="textPersonName"
-            android:paddingStart="@dimen/text_margin"
-            android:paddingLeft="@dimen/text_margin"
-            android:paddingRight="@dimen/text_margin" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/last_name" />
 
-        <Button
-            android:id="@+id/button_save"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:background="@drawable/selector_blue_button"
-            android:text="Сохранить"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:backgroundTint="@null" />
+            <EditText
+                android:id="@+id/edit_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/selector_authorization_input"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/text_margin"
+                android:paddingLeft="@dimen/text_margin"
+                android:paddingRight="@dimen/text_margin" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginVertical="30dp"
-            android:background="@color/black" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/first_name" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Сброс мэтчей"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/edit_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/selector_authorization_input"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/text_margin"
+                android:paddingLeft="@dimen/text_margin"
+                android:paddingRight="@dimen/text_margin" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:text="Нажав эту кнопку, вы сбросите счетик мэтчей. Все заминусованные ранее объекты вернутся в подборку на главной странице." />
+            <Button
+                android:id="@+id/button_save"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/selector_blue_button"
+                android:text="Сохранить"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/button_reset"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:background="@drawable/selector_blue_button"
-            android:text="Сброс"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:backgroundTint="@null" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginVertical="30dp"
+                android:background="@color/black" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginVertical="30dp"
-            android:background="@color/black" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Сброс мэтчей"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Нажав эту кнопку, вы сбросите счетик мэтчей. Все заминусованные ранее объекты вернутся в подборку на главной странице." />
+
+            <Button
+                android:id="@+id/button_reset"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/selector_blue_button"
+                android:text="Сброс"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:backgroundTint="@null" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginVertical="30dp"
+                android:background="@color/black" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

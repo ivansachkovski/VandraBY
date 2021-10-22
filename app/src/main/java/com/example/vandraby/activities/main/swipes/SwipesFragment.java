@@ -56,7 +56,7 @@ public class SwipesFragment extends Fragment {
 
         ImageView ivDetails = view.findViewById(R.id.btn_details);
         ivDetails.setOnClickListener(v -> {
-            loadFragment(DetailsFragment.newInstance(model.getCurrentObject(), 2));
+            loadFragment(DetailsFragment.newInstance(model.getCurrentObject(), 2, model.getCurrentObject()));
         });
 
         showObject();
@@ -84,7 +84,7 @@ public class SwipesFragment extends Fragment {
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, fragment);
+        fragmentTransaction.replace(R.id.content_fragment, fragment).addToBackStack(null);
         fragmentTransaction.commit();
     }
 }
