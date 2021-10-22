@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="8dp"
-            android:background="@drawable/selector_authorization_button"
+            android:background="@drawable/selector_blue_button"
             android:onClick="onBtnLoginClick"
             android:text="@string/btn_login"
             android:textAllCaps="false"

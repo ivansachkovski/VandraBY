@@ -13,4 +13,6 @@
     <color name="text_color">#0077B6</color>
     <color name="details_text_color">#023E8A</color>
     <color name="gold">#B7B7A4</color>
+    <color name="blue">#2D9CDB</color>
+    <color name="dark_blue">#2D9CDB</color>
 </resources>
