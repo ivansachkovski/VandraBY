@@ -4,17 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
     tools:context=".activities.main.swipes.SwipesFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        app:cardCornerRadius="20dp">
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -51,8 +48,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginHorizontal="15dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
