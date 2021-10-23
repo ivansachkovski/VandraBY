@@ -10,12 +10,8 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.example.vandraby.information.User;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RequestFactory {
     private final static String BASE_URL = "https://vandraby.000webhostapp.com";
@@ -23,7 +19,7 @@ public class RequestFactory {
     private final static String AUTHORIZATION_URL = "requests/Authorization.php";
     private final static String GET_USER_INFORMATION_BY_ID_URL = "requests/GetUserInformationById.php";
     private final static String UPDATE_USER_INFORMATION_URL = "requests/UpdateUserInformation.php";
-    private final static String GET_ALL_SIGHTS_URL = "requests/GetAllSights.php";
+    private final static String GET_ALL_PLACES_URL = "requests/GetAllPlaces.php";
 
     public static JsonObjectRequest createAuthorizationRequest(String login, String password, RequestFuture<JSONObject> future) throws JSONException {
         String url = String.format("%s/%s", BASE_URL, AUTHORIZATION_URL);
@@ -67,8 +63,8 @@ public class RequestFactory {
         };
     }
 
-    public static JsonObjectRequest createGetAllSightsRequest(RequestFuture<JSONObject> future) {
-        String url = String.format("%s/%s", BASE_URL, GET_ALL_SIGHTS_URL);
+    public static JsonObjectRequest createGetAllPlacesRequest(RequestFuture<JSONObject> future) {
+        String url = String.format("%s/%s", BASE_URL, GET_ALL_PLACES_URL);
 
         return new JsonObjectRequest(Request.Method.GET, url, null, future, future);
     }

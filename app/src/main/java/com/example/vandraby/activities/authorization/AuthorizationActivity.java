@@ -123,7 +123,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         private ArrayList<Place> getObjects() throws Exception {
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
-            JsonObjectRequest request = RequestFactory.createGetAllSightsRequest(future);
+            JsonObjectRequest request = RequestFactory.createGetAllPlacesRequest(future);
             RequestQueue.getInstance(null).sendRequest(request);
 
             JSONObject response = future.get();
