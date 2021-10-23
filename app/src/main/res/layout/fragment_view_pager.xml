@@ -16,7 +16,9 @@
         android:layout_height="20dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="15dp"
-        app:ci_animator="@animator/scale_with_alpha"
+        app:ci_animator="@animator/no_scale"
+        app:ci_drawable_unselected="@drawable/ic_circle_indicator_white"
+        app:ci_drawable="@drawable/ic_circle_indicator_blue"
         app:ci_gravity="center"
         app:ci_height="10dp"
         app:ci_width="10dp" />
