@@ -7,12 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
-import com.example.vandraby.adapters.ObjectsAdapter;
 import com.example.vandraby.adapters.ProfilePagesAdapter;
 import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.User;

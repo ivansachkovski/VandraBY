@@ -1,11 +1,9 @@
 package com.example.vandraby.adapters;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
 import com.example.vandraby.information.DataModel;
-import com.squareup.picasso.Picasso;
 
 public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
     public ProfilePagesAdapter(Fragment fragment) {
@@ -54,7 +51,7 @@ public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentSta
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_liked_places, null);
-            view.setAdapter(new ObjectsAdapter(DataModel.getInstance().getUserLikedObjects()));
+            view.setAdapter(new PlacesViewAdapter(DataModel.getInstance().getUserLikedObjects()));
             return view;
         }
     }

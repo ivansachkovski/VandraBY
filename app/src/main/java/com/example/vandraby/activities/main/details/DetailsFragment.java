@@ -24,7 +24,7 @@ public class DetailsFragment extends Fragment {
     private int prevPageId;
     private Place place;
 
-    public static DetailsFragment newInstance(Place object, int previousPageId, Place place) {
+    public static DetailsFragment newInstance(Place place, int previousPageId) {
         Bundle arguments = new Bundle();
         arguments.putSerializable(ARGUMENT_PLACE, place);
         arguments.putInt(ARGUMENT_PREV_PAGE_ID, previousPageId);
