@@ -15,7 +15,6 @@ import com.example.vandraby.R;
 import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
 import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
-import com.example.vandraby.requests.RequestQueue;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
@@ -36,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
             this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
             this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
         });
-
-        // Init request queue
-        RequestQueue.getInstance(getCacheDir());
 
         NavigationBarView bottomNavigationView = findViewById(R.id.bottom_navigation_panel);
         bottomNavigationView.setOnItemSelectedListener(item -> {
