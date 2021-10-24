@@ -1,21 +1,18 @@
-package com.example.vandraby.activities.main.details;
+package com.example.vandraby.activities.main.pages.details;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.swipes.SwipesFragment;
-import com.example.vandraby.activities.main.swipes.ViewPagerFragment;
-import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.Place;
+import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
+import com.example.vandraby.activities.main.pages.swipes.ViewPagerFragment;
+import com.example.vandraby.model.Place;
 
 public class DetailsFragment extends Fragment {
     private final static String LOGGER_TAG = "LOG_VANDRA_DETAILS";

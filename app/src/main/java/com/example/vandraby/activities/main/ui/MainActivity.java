@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main;
+package com.example.vandraby.activities.main.ui;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,9 +12,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.profile.ProfileFragment;
-import com.example.vandraby.activities.main.settings.ProfileSettingsFragment;
-import com.example.vandraby.activities.main.swipes.SwipesFragment;
+import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
+import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
+import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
 import com.example.vandraby.requests.RequestQueue;
 import com.google.android.material.navigation.NavigationBarView;
 

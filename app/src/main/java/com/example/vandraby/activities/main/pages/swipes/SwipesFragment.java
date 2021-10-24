@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.swipes;
+package com.example.vandraby.activities.main.pages.swipes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.details.DetailsFragment;
-import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.Place;
+import com.example.vandraby.activities.main.pages.details.DetailsFragment;
+import com.example.vandraby.model.DataModel;
+import com.example.vandraby.model.Place;
 
 public class SwipesFragment extends Fragment {
-    private final SwipeModel model = new SwipeModel(DataModel.getInstance().getObjectsForSwipes());
+    private final SwipeModel model = new SwipeModel(DataModel.getInstance().getNotSwipedPlaces());
     CardView cvRoot;
     TextView tvObjectName;
     TextView tvObjectLocation;

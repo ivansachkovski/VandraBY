@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.authorization;
+package com.example.vandraby.activities.authorization.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.MainActivity;
-import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.Place;
-import com.example.vandraby.information.User;
+import com.example.vandraby.activities.main.ui.MainActivity;
+import com.example.vandraby.model.DataModel;
+import com.example.vandraby.model.Place;
+import com.example.vandraby.model.User;
 import com.example.vandraby.requests.RequestFactory;
 import com.example.vandraby.requests.RequestQueue;
 

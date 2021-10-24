@@ -1,6 +1,6 @@
-package com.example.vandraby.activities.main.swipes;
+package com.example.vandraby.activities.main.pages.swipes;
 
-import com.example.vandraby.information.Place;
+import com.example.vandraby.model.Place;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

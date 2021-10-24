@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.settings;
+package com.example.vandraby.activities.main.pages.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
-import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.User;
+import com.example.vandraby.model.DataModel;
+import com.example.vandraby.model.User;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;

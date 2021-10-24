@@ -1,4 +1,4 @@
-package com.example.vandraby.information;
+package com.example.vandraby.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;

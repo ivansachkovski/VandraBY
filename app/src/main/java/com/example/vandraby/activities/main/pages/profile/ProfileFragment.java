@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.profile;
+package com.example.vandraby.activities.main.pages.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
 import com.example.vandraby.adapters.ProfilePagesAdapter;
-import com.example.vandraby.information.DataModel;
-import com.example.vandraby.information.User;
+import com.example.vandraby.model.DataModel;
+import com.example.vandraby.model.User;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;

@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.swipes;
+package com.example.vandraby.activities.main.pages.swipes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.example.vandraby.adapters.PlacePhotosAdapter;
 
-import me.relex.circleindicator.CircleIndicator2;
 import me.relex.circleindicator.CircleIndicator3;
 
 public class ViewPagerFragment extends Fragment {
@@ -42,7 +40,7 @@ public class ViewPagerFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_view_pager, null);
 
-        ObjectPhotoFragmentAdapter adapter = new ObjectPhotoFragmentAdapter(this, photoUrls);
+        PlacePhotosAdapter adapter = new PlacePhotosAdapter(this, photoUrls);
 
         ViewPager2 viewPager = view.findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(photoUrls.length / 2);

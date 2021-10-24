@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.swipes;
+package com.example.vandraby.adapters;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment;
 import com.example.vandraby.R;
 import com.squareup.picasso.Picasso;
 
-public class ObjectPhotoFragmentAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
+public class PlacePhotosAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
     private final String[] photoUrls;
 
-    public ObjectPhotoFragmentAdapter(Fragment fragment, String[] photoUrls) {
+    public PlacePhotosAdapter(Fragment fragment, String[] photoUrls) {
         super(fragment);
         this.photoUrls = photoUrls;
     }

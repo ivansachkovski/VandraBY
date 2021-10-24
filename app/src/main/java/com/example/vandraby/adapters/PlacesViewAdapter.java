@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
-import com.example.vandraby.information.Place;
+import com.example.vandraby.model.Place;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

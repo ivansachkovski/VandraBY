@@ -8,7 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
-import com.example.vandraby.information.User;
+import com.example.vandraby.model.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +40,7 @@ public class RequestFactory {
         return new JsonObjectRequest(Request.Method.POST, url, requestBody, future, future);
     }
 
+    // TODO::implement this method and use it when it's required
     public static StringRequest createUpdateUserInformationRequest(User user, Response.Listener<String> onSuccess, Response.ErrorListener onFail) {
         String url = String.format("%s/%s", BASE_URL, UPDATE_USER_INFORMATION_URL);
 

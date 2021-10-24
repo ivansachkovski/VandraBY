@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
-import com.example.vandraby.information.DataModel;
+import com.example.vandraby.model.DataModel;
 
 public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
+    private final static int NUMBER_OF_PAGES = 3;
+
     public ProfilePagesAdapter(Fragment fragment) {
         super(fragment);
     }
@@ -33,7 +35,7 @@ public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentSta
 
     @Override
     public int getItemCount() {
-        return 3;
+        return NUMBER_OF_PAGES;
     }
 
     // TODO::pass arguments
@@ -51,7 +53,7 @@ public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentSta
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_liked_places, null);
-            view.setAdapter(new PlacesViewAdapter(DataModel.getInstance().getUserLikedObjects()));
+            view.setAdapter(new PlacesViewAdapter(DataModel.getInstance().getUserLikedPlaces()));
             return view;
         }
     }
