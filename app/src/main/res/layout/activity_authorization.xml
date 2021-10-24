@@ -10,6 +10,7 @@
         android:id="@+id/authorization_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingHorizontal="15dp">
@@ -30,7 +31,8 @@
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/text_margin"
             android:paddingLeft="@dimen/text_margin"
-            android:paddingRight="@dimen/text_margin" />
+            android:paddingRight="@dimen/text_margin"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/edit_password"
@@ -43,7 +45,8 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/text_margin"
             android:paddingLeft="@dimen/text_margin"
-            android:paddingRight="@dimen/text_margin" />
+            android:paddingRight="@dimen/text_margin"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/button_login"
