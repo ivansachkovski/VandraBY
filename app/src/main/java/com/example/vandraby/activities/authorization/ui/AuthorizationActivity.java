@@ -1,10 +1,12 @@
 package com.example.vandraby.activities.authorization.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,23 +28,50 @@ import java.util.ArrayList;
 public class AuthorizationActivity extends AppCompatActivity {
     private final static String LOGGER_TAG = "VANDRA_LOGGER";
 
+    SharedPreferences settings;
+    private static final String SETTINGS_NAME = "userCredentials";
+    private static final String LOGIN_FIELD_NAME = "login";
+    private static final String PASSWORD_FIELD_NAME = "password";
+    private static final String AUTO_LOGIN_FLAG_NAME = "auto-login";
+
+    EditText editLoginInput;
+    EditText editPasswordInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorization);
-
-        // Initialize
+        // Initialize singleton
         RequestQueue.getInstance(getCacheDir());
+        // Init views
+        editLoginInput = findViewById(R.id.edit_login);
+        editPasswordInput = findViewById(R.id.edit_password);
+        // Fill views with the credentials from the  previous session
+        settings = getSharedPreferences(SETTINGS_NAME, 0);
+        editLoginInput.setText(settings.getString(LOGIN_FIELD_NAME, ""));
+        editPasswordInput.setText(settings.getString(PASSWORD_FIELD_NAME, ""));
+
+        Button buttonLogin = findViewById(R.id.button_login);
+        buttonLogin.setOnClickListener(v -> {
+            loginWithCredentials();
+        });
+
+        // Try to log in if auto-login is on
+        if (settings.getBoolean(AUTO_LOGIN_FLAG_NAME, false)) {
+            loginWithCredentials();
+        }
     }
 
-    public void onBtnLoginClick(View view) {
+    private void loginWithCredentials() {
         // Get user's input
-        String login = ((TextView) findViewById(R.id.edit_login)).getText().toString();
-        String password = ((TextView) findViewById(R.id.edit_password)).getText().toString();
+        String login = editLoginInput.getText().toString();
+        String password = editPasswordInput.getText().toString();
 
-        // TODO::remove this default values
-        login = login.isEmpty() ? "sachkovski" : login;
-        password = password.isEmpty() ? "123" : password;
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(LOGIN_FIELD_NAME, login);
+        editor.putString(PASSWORD_FIELD_NAME, password);
+        editor.putBoolean(AUTO_LOGIN_FLAG_NAME, true);
+        editor.apply();
 
         AuthorizationTask task = new AuthorizationTask();
         task.execute(login, password);
@@ -63,11 +92,11 @@ public class AuthorizationActivity extends AppCompatActivity {
             try {
                 int userId = getUserId(strings[0], strings[1]);
                 User user = getUser(userId);
-                ArrayList<Place> objects = getObjects();
+                ArrayList<Place> places = getPlaces();
                 // Data was loaded successfully, save it
                 DataModel dataModel = DataModel.getInstance();
                 dataModel.setUser(user);
-                dataModel.setObjects(objects);
+                dataModel.setPlaces(places);
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
@@ -121,7 +150,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             }
         }
 
-        private ArrayList<Place> getObjects() throws Exception {
+        private ArrayList<Place> getPlaces() throws Exception {
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
             JsonObjectRequest request = RequestFactory.createGetAllPlacesRequest(future);
             RequestQueue.getInstance(null).sendRequest(request);

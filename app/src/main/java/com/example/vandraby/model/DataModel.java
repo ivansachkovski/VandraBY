@@ -24,7 +24,7 @@ public class DataModel {
         this.user = user;
     }
 
-    public void setObjects(ArrayList<Place> places) {
+    public void setPlaces(ArrayList<Place> places) {
         this.places = places;
     }
 
