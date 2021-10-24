@@ -6,16 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.settings.ProfileSettingsFragment;
 import com.example.vandraby.adapters.ObjectsAdapter;
+import com.example.vandraby.adapters.ProfilePagesAdapter;
 import com.example.vandraby.information.DataModel;
 import com.example.vandraby.information.User;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -47,15 +49,26 @@ public class ProfileFragment extends Fragment {
         TextView textUserNickname = view.findViewById(R.id.user_nickname_view);
         textUserNickname.setText("@" + user.getNickname());
 
-        RecyclerView listLikedObjects = view.findViewById(R.id.lv_liked_objects);
-        listLikedObjects.setAdapter(new ObjectsAdapter(dataModel.getUserLikedObjects()));
+        ProfilePagesAdapter adapter = new ProfilePagesAdapter(this);
+
+        ViewPager2 viewPager = view.findViewById(R.id.view_pager);
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setText("Объекты");
+                    break;
+                case 1:
+                    tab.setText("Маршруты");
+                    break;
+                case 2:
+                    tab.setText("Статистика");
+                    break;
+            }
+        }).attach();
 
         return view;
-    }
-
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, fragment);
-        fragmentTransaction.commit();
     }
 }
