@@ -5,10 +5,12 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class DataModel {
+
     private final static String LOGGER_TAG = "LOG_VANDRA_DATA_MODEL";
+
     private static DataModel instance;
-    private User user;
     private ArrayList<Place> places;
+    private User user;
 
     private DataModel() {
     }

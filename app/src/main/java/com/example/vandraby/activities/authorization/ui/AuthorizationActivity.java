@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class AuthorizationActivity extends AppCompatActivity {
+
     private final static String LOGGER_TAG = "VANDRA_LOGGER";
 
     SharedPreferences settings;

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 public class Place implements Serializable {
+
     private final int id;
 
     private final String name;

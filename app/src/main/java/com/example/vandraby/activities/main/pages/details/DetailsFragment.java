@@ -15,7 +15,9 @@ import com.example.vandraby.activities.main.pages.swipes.ViewPagerFragment;
 import com.example.vandraby.model.Place;
 
 public class DetailsFragment extends Fragment {
+
     private final static String LOGGER_TAG = "LOG_VANDRA_DETAILS";
+
     private static final String ARGUMENT_PLACE = "arg_place";
     private Place place;
 

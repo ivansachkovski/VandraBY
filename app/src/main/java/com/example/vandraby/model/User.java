@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.Vector;
 
 public class User {
+
     private final int id;
     private final String nickname;
     private String firstName;

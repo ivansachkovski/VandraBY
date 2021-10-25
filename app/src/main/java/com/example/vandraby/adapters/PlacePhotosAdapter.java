@@ -13,6 +13,7 @@ import com.example.vandraby.R;
 import com.squareup.picasso.Picasso;
 
 public class PlacePhotosAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
+
     private final String[] photoUrls;
 
     public PlacePhotosAdapter(Fragment fragment, String[] photoUrls) {

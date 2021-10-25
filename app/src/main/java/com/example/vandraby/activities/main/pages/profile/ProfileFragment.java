@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
+
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
