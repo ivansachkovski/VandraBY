@@ -18,8 +18,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileSettingsFragment extends Fragment {
 
-    public static ProfileSettingsFragment newInstance() {
-        return new ProfileSettingsFragment();
+    private final OnAccountExitListener onAccountExitListener;
+
+    private ProfileSettingsFragment(OnAccountExitListener onAccountExitListener) {
+        this.onAccountExitListener = onAccountExitListener;
+    }
+
+    public static ProfileSettingsFragment newInstance(OnAccountExitListener onAccountExitListener) {
+        return new ProfileSettingsFragment(onAccountExitListener);
     }
 
     @Override
@@ -55,6 +61,15 @@ public class ProfileSettingsFragment extends Fragment {
             model.reset();
         });
 
+        Button buttonExit = view.findViewById(R.id.button_exit);
+        buttonExit.setOnClickListener(v -> {
+            onAccountExitListener.onAccountExitAction();
+        });
+
         return view;
+    }
+
+    public interface OnAccountExitListener {
+        void onAccountExitAction();
     }
 }

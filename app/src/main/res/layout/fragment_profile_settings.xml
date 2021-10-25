@@ -110,6 +110,18 @@
                 android:layout_marginVertical="30dp"
                 android:background="@color/black" />
 
+            <Button
+                android:id="@+id/button_exit"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/selector_blue_button"
+                android:text="Выйти из аккаунта"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:backgroundTint="@null" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

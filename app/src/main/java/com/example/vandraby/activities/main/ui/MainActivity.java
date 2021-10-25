@@ -1,5 +1,7 @@
 package com.example.vandraby.activities.main.ui;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
+import com.example.vandraby.activities.authorization.ui.AuthorizationActivity;
 import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
 import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
@@ -19,7 +22,13 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ProfileSettingsFragment.OnAccountExitListener {
+
+    private static final String SETTINGS_NAME = "userCredentials";
+    private static final String LOGIN_FIELD_NAME = "login";
+    private static final String PASSWORD_FIELD_NAME = "password";
+    private static final String AUTO_LOGIN_FLAG_NAME = "auto-login";
+
     private int currentFragmentId = -1;
 
     @Override
@@ -62,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_profile_settings:
-                loadFragment(ProfileSettingsFragment.newInstance(), true);
+                loadFragment(ProfileSettingsFragment.newInstance(this), true);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -94,5 +103,23 @@ public class MainActivity extends AppCompatActivity {
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment).commit();
         }
+    }
+
+    @Override
+    public void onAccountExitAction() {
+        // Reset SharedPreferences
+        SharedPreferences settings = getSharedPreferences(SETTINGS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(LOGIN_FIELD_NAME, "");
+        editor.putString(PASSWORD_FIELD_NAME, "");
+        editor.putBoolean(AUTO_LOGIN_FLAG_NAME, false);
+        editor.apply();
+
+        // Open authorization activity
+        Intent intent = new Intent(this, AuthorizationActivity.class);
+        startActivity(intent);
+
+        // Close current activity
+        finish();
     }
 }
