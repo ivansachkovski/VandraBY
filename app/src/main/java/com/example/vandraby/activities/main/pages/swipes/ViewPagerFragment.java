@@ -43,8 +43,10 @@ public class ViewPagerFragment extends Fragment {
         PlacePhotosAdapter adapter = new PlacePhotosAdapter(this, photoUrls);
 
         ViewPager2 viewPager = view.findViewById(R.id.view_pager);
-        viewPager.setOffscreenPageLimit(photoUrls.length / 2);
         viewPager.setAdapter(adapter);
+
+        int limit = (photoUrls.length > 1) ? photoUrls.length / 2 : 1;
+        viewPager.setOffscreenPageLimit(limit);
 
         CircleIndicator3 circleIndicator = view.findViewById(R.id.indicator);
         circleIndicator.setViewPager(viewPager);
