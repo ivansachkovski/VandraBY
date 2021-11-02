@@ -1,5 +1,6 @@
 package com.example.vandraby.activities.main.pages.details;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,24 +17,14 @@ import com.example.vandraby.model.Place;
 
 public class DetailsFragment extends Fragment {
 
-    private final static String LOGGER_TAG = "LOG_VANDRA_DETAILS";
+    private final Place place;
 
-    private static final String ARGUMENT_PLACE = "arg_place";
-    private Place place;
-
-    public static DetailsFragment newInstance(Place place, int previousPageId) {
-        Bundle arguments = new Bundle();
-        arguments.putSerializable(ARGUMENT_PLACE, place);
-        DetailsFragment fragment = new DetailsFragment();
-        fragment.setArguments(arguments);
-        return fragment;
+    private DetailsFragment(Place place) {
+        this.place = place;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        assert getArguments() != null;
-        place = (Place) getArguments().getSerializable(ARGUMENT_PLACE);
+    public static DetailsFragment newInstance(Place place) {
+        return new DetailsFragment(place);
     }
 
     @Override
@@ -56,8 +47,9 @@ public class DetailsFragment extends Fragment {
         TextView textObjectDescription = view.findViewById(R.id.tv_object_description);
         textObjectDescription.setText(place.getDescription());
 
+        String buildYearStr = Integer.toString(place.getBuildYear());
         TextView textObjectBuildYear = view.findViewById(R.id.tv_object_build_year);
-        textObjectBuildYear.setText("" + place.getBuildYear());
+        textObjectBuildYear.setText(buildYearStr);
 
         TextView textObjectType = view.findViewById(R.id.tv_object_type);
         textObjectType.setText(place.getType());
