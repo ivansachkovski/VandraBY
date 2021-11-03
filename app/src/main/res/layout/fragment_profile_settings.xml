@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Сброс мэтчей"
+                android:text="@string/reset_matches"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:text="Нажав эту кнопку, вы сбросите счетик мэтчей. Все заминусованные ранее объекты вернутся в подборку на главной странице." />
+                android:text="@string/reset_matches_description" />
 
             <Button
                 android:id="@+id/button_reset"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:background="@drawable/selector_blue_button"
-                android:text="Сброс"
+                android:text="@string/reset"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:backgroundTint="@null" />
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:background="@drawable/selector_blue_button"
-                android:text="Выйти из аккаунта"
+                android:text="@string/exit_account"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:backgroundTint="@null" />

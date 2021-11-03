@@ -112,5 +112,9 @@
     <string name="no_account_yet">Ещё нет аккаунта?</string>
     <string name="register"><u>Зарегистрироваться</u></string>
     <string name="delete_account"><u>Удалить аккаунт</u></string>
+    <string name="reset">Сброс</string>
+    <string name="reset_matches">Сброс мэтчей</string>
+    <string name="reset_matches_description">Нажав эту кнопку, вы сбросите счетик мэтчей. Все заминусованные ранее объекты вернутся в подборку на главной странице.</string>
+    <string name="exit_account">Выйти из аккаунта</string>
 
 </resources>
