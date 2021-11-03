@@ -111,5 +111,6 @@
     <string name="forgot_password"><u>Забыли пароль?</u></string>
     <string name="no_account_yet">Ещё нет аккаунта?</string>
     <string name="register"><u>Зарегистрироваться</u></string>
+    <string name="delete_account"><u>Удалить аккаунт</u></string>
 
 </resources>
