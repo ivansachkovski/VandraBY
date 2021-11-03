@@ -1,14 +1,19 @@
 package com.example.vandraby.activities.main.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -19,6 +24,7 @@ import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
 import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -58,6 +64,28 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
         });
 
         bottomNavigationView.setSelectedItemId(R.id.item_swipes);
+
+        openSearchSettingsDialog();
+    }
+
+    private void openSearchSettingsDialog() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View settingsView = inflater.inflate(R.layout.search_settings, null);
+
+        AlertDialog dialog = new AlertDialog.Builder(this).create();
+        dialog.setView(settingsView);
+
+        Button buttonApply = settingsView.findViewById(R.id.button_apply);
+        buttonApply.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        Button buttonCancel = settingsView.findViewById(R.id.button_cancel);
+        buttonCancel.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 
     @Override
