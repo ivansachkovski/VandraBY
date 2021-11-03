@@ -108,5 +108,8 @@
     <string name="nav_settings">Настройки</string>
     <string name="last_name">Фамилия</string>
     <string name="first_name">Имя</string>
+    <string name="forgot_password"><u>Забыли пароль?</u></string>
+    <string name="no_account_yet">Ещё нет аккаунта?</string>
+    <string name="register"><u>Зарегистрироваться</u></string>
 
 </resources>
