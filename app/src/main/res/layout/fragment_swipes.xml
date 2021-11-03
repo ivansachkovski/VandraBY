@@ -16,8 +16,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            app:cardCornerRadius="10dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:id="@+id/sight_name"
@@ -27,7 +27,7 @@
                 android:paddingVertical="10dp"
                 android:text="@string/default_object_name"
                 android:textColor="@color/text_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
