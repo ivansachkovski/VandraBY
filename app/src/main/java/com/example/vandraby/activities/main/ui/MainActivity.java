@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
 
     private Menu menu;
 
-    private int currentFragmentId = -1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // disable showing title on toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         toolbar.setNavigationOnClickListener(v -> {
+            // imitate clicking "back" button
             this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
             this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
         });
@@ -54,14 +54,19 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_swipes:
-                    return onOpenSwipes();
+                    return onOpenSwipesPage();
                 case R.id.item_profile:
-                    return onOpenProfile();
+                    return onOpenProfilePage();
                 default:
                     return false;
             }
         });
+        bottomNavigationView.setOnItemReselectedListener(item -> {
+            // nothing
+        });
 
+        // open swipes page
+        bottomNavigationView.setSelectedItemId(R.id.item_profile);
         bottomNavigationView.setSelectedItemId(R.id.item_swipes);
     }
 
@@ -77,55 +82,43 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_profile_settings:
-                return onOpenProfileSettings();
+                return onOpenProfileSettingsPage();
             case R.id.item_search_settings:
-                return onOpenSearchSettings();
+                return onOpenSearchSettingsPage();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean onOpenSwipes() {
-        if (currentFragmentId == R.id.item_swipes) {
-            // swipes page is open now
-            return false;
-        }
-
+    private boolean onOpenSwipesPage() {
         if (menu != null) {
             menu.findItem(R.id.item_search_settings).setVisible(true);
             menu.findItem(R.id.item_profile_settings).setVisible(false);
         }
 
-        currentFragmentId = R.id.item_swipes;
         loadFragment(SwipesFragment.newInstance(), false);
         return true;
     }
 
-    private boolean onOpenProfile() {
-        if (currentFragmentId == R.id.item_profile) {
-            // profile page is open now
-            return false;
-        }
-
+    private boolean onOpenProfilePage() {
         if (menu != null) {
             menu.findItem(R.id.item_search_settings).setVisible(false);
             menu.findItem(R.id.item_profile_settings).setVisible(true);
         }
 
-        currentFragmentId = R.id.item_profile;
         loadFragment(ProfileFragment.newInstance(), true);
         return true;
     }
 
-    private void onOpenPlaceDetails(Place place) {
+    private void onOpenPlaceDetailsPage(Place place) {
         loadFragment(DetailsFragment.newInstance(place), false);
     }
 
-    private boolean onOpenProfileSettings() {
+    private boolean onOpenProfileSettingsPage() {
         loadFragment(ProfileSettingsFragment.newInstance(this), true);
         return true;
     }
 
-    private boolean onOpenSearchSettings() {
+    private boolean onOpenSearchSettingsPage() {
         loadFragment(SearchSettingsFragment.newInstance(), true);
         return true;
     }
