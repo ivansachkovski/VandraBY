@@ -8,4 +8,11 @@
         android:title="@string/nav_settings"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/item_search_settings"
+        android:icon="@drawable/ic_search_settings"
+        android:title="Настройки поиска"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
 </menu>

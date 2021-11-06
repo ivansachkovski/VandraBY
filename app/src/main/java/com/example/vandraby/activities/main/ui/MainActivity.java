@@ -1,19 +1,14 @@
 package com.example.vandraby.activities.main.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -22,9 +17,9 @@ import com.example.vandraby.R;
 import com.example.vandraby.activities.authorization.ui.AuthorizationActivity;
 import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
+import com.example.vandraby.activities.main.pages.settings.SearchSettingsFragment;
 import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -34,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
     private static final String LOGIN_FIELD_NAME = "login";
     private static final String PASSWORD_FIELD_NAME = "password";
     private static final String AUTO_LOGIN_FLAG_NAME = "auto-login";
+
+    private Menu menu;
 
     private int currentFragmentId = -1;
 
@@ -64,32 +61,11 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
         });
 
         bottomNavigationView.setSelectedItemId(R.id.item_swipes);
-
-        openSearchSettingsDialog();
-    }
-
-    private void openSearchSettingsDialog() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View settingsView = inflater.inflate(R.layout.search_settings, null);
-
-        AlertDialog dialog = new AlertDialog.Builder(this).create();
-        dialog.setView(settingsView);
-
-        Button buttonApply = settingsView.findViewById(R.id.button_apply);
-        buttonApply.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
-
-        Button buttonCancel = settingsView.findViewById(R.id.button_cancel);
-        buttonCancel.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
-
-        dialog.show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
@@ -101,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             case R.id.item_profile_settings:
                 loadFragment(ProfileSettingsFragment.newInstance(this), true);
                 break;
+            case R.id.item_search_settings:
+                loadFragment(SearchSettingsFragment.newInstance(), true);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -110,6 +89,12 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             // swipes page is open now
             return false;
         }
+
+        if (menu != null) {
+            menu.findItem(R.id.item_search_settings).setVisible(true);
+            menu.findItem(R.id.item_profile_settings).setVisible(false);
+        }
+
         currentFragmentId = R.id.item_swipes;
         loadFragment(SwipesFragment.newInstance(), false);
         return true;
@@ -120,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             // profile page is open now
             return false;
         }
+
+        if (menu != null) {
+            menu.findItem(R.id.item_search_settings).setVisible(false);
+            menu.findItem(R.id.item_profile_settings).setVisible(true);
+        }
+
         currentFragmentId = R.id.item_profile;
         loadFragment(ProfileFragment.newInstance(), true);
         return true;

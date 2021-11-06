@@ -50,6 +50,9 @@ public class ViewPagerFragment extends Fragment {
 
         CircleIndicator3 circleIndicator = view.findViewById(R.id.indicator);
         circleIndicator.setViewPager(viewPager);
+        if (photoUrls.length == 1) {
+            circleIndicator.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }
