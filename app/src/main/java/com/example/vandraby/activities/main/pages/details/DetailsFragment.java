@@ -1,6 +1,5 @@
 package com.example.vandraby.activities.main.pages.details;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
 import com.example.vandraby.activities.main.pages.swipes.ViewPagerFragment;
 import com.example.vandraby.model.Place;
 

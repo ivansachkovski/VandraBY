@@ -15,10 +15,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.authorization.ui.AuthorizationActivity;
+import com.example.vandraby.activities.main.pages.details.DetailsFragment;
 import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
 import com.example.vandraby.activities.main.pages.settings.SearchSettingsFragment;
 import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
+import com.example.vandraby.model.Place;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
@@ -52,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_swipes:
-                    return onClickSwipes();
+                    return onOpenSwipes();
                 case R.id.item_profile:
-                    return onClickProfile();
+                    return onOpenProfile();
                 default:
                     return false;
             }
@@ -75,16 +77,14 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_profile_settings:
-                loadFragment(ProfileSettingsFragment.newInstance(this), true);
-                break;
+                return onOpenProfileSettings();
             case R.id.item_search_settings:
-                loadFragment(SearchSettingsFragment.newInstance(), true);
-                break;
+                return onOpenSearchSettings();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean onClickSwipes() {
+    private boolean onOpenSwipes() {
         if (currentFragmentId == R.id.item_swipes) {
             // swipes page is open now
             return false;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
         return true;
     }
 
-    private boolean onClickProfile() {
+    private boolean onOpenProfile() {
         if (currentFragmentId == R.id.item_profile) {
             // profile page is open now
             return false;
@@ -113,6 +113,20 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
 
         currentFragmentId = R.id.item_profile;
         loadFragment(ProfileFragment.newInstance(), true);
+        return true;
+    }
+
+    private void onOpenPlaceDetails(Place place) {
+        loadFragment(DetailsFragment.newInstance(place), false);
+    }
+
+    private boolean onOpenProfileSettings() {
+        loadFragment(ProfileSettingsFragment.newInstance(this), true);
+        return true;
+    }
+
+    private boolean onOpenSearchSettings() {
+        loadFragment(SearchSettingsFragment.newInstance(), true);
         return true;
     }
 
