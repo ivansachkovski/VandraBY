@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             menu.findItem(R.id.item_profile_settings).setVisible(true);
         }
 
-        loadFragment(ProfileFragment.newInstance(), true);
+        loadFragment(ProfileFragment.newInstance(this), true);
         return true;
     }
 

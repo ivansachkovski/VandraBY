@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
+import com.example.vandraby.activities.main.pages.details.DetailsFragment.PlaceDetailsPageListener;
 import com.example.vandraby.model.Place;
 import com.squareup.picasso.Picasso;
 
@@ -18,9 +19,11 @@ import java.util.List;
 public class PlacesViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<Place> items;
+    PlaceDetailsPageListener placeDetailsPageListener;
 
-    public PlacesViewAdapter(List<Place> items) {
+    public PlacesViewAdapter(List<Place> items, PlaceDetailsPageListener listener) {
         this.items = items;
+        this.placeDetailsPageListener = listener;
     }
 
     @NonNull
@@ -39,7 +42,9 @@ public class PlacesViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return items.size();
     }
 
-    static class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        Place place;
+
         private final ImageView imagePhoto;
         private final TextView textName;
         private final TextView textLocation;
@@ -54,6 +59,8 @@ public class PlacesViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         void fillItem(Place item) {
+            this.place = item;
+
             textName.setText(item.getName());
             textLocation.setText(item.getLocation());
             Picasso.with(imagePhoto.getContext()).load(item.getPhotoUrls()[0]).fit().into(imagePhoto);
@@ -61,7 +68,7 @@ public class PlacesViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         @Override
         public void onClick(View v) {
-
+            placeDetailsPageListener.onOpenPlaceDetailsPage(place);
         }
     }
 }

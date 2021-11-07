@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
+import com.example.vandraby.activities.main.pages.details.DetailsFragment.PlaceDetailsPageListener;
 import com.example.vandraby.adapters.ProfilePagesAdapter;
 import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.User;
@@ -22,8 +23,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
-    public static ProfileFragment newInstance() {
-        return new ProfileFragment();
+    PlaceDetailsPageListener placeDetailsPageListener;
+
+    private ProfileFragment(PlaceDetailsPageListener listener) {
+        this.placeDetailsPageListener = listener;
+    }
+
+    public static ProfileFragment newInstance(PlaceDetailsPageListener listener) {
+        return new ProfileFragment(listener);
     }
 
     @Override
@@ -43,7 +50,7 @@ public class ProfileFragment extends Fragment {
         TextView textUserNickname = view.findViewById(R.id.user_nickname_view);
         textUserNickname.setText("@" + user.getNickname());
 
-        ProfilePagesAdapter adapter = new ProfilePagesAdapter(this);
+        ProfilePagesAdapter adapter = new ProfilePagesAdapter(this, placeDetailsPageListener);
 
         ViewPager2 viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
