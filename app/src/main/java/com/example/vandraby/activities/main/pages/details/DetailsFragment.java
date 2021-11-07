@@ -54,4 +54,8 @@ public class DetailsFragment extends Fragment {
 
         return view;
     }
+
+    public interface PlaceDetailsPageListener {
+        void onOpenPlaceDetailsPage(Place place);
+    }
 }

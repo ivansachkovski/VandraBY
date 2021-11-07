@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.pages.details.DetailsFragment;
+import com.example.vandraby.activities.main.pages.details.DetailsFragment.PlaceDetailsPageListener;
 import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.Place;
 
@@ -22,8 +22,14 @@ public class SwipesFragment extends Fragment {
     TextView tvObjectName;
     TextView tvObjectLocation;
 
-    public static SwipesFragment newInstance() {
-        return new SwipesFragment();
+    PlaceDetailsPageListener placeDetailsPageListener;
+
+    private SwipesFragment(PlaceDetailsPageListener listener) {
+        this.placeDetailsPageListener = listener;
+    }
+
+    public static SwipesFragment newInstance(PlaceDetailsPageListener listener) {
+        return new SwipesFragment(listener);
     }
 
     @Override
@@ -56,7 +62,7 @@ public class SwipesFragment extends Fragment {
 
         ImageView ivDetails = view.findViewById(R.id.btn_details);
         ivDetails.setOnClickListener(v -> {
-            loadFragment(DetailsFragment.newInstance(model.getCurrentObject()));
+            placeDetailsPageListener.onOpenPlaceDetailsPage(model.getCurrentObject());
         });
 
         showObject();
@@ -79,12 +85,6 @@ public class SwipesFragment extends Fragment {
 
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.view_pager_fragment, fragment);
-        fragmentTransaction.commit();
-    }
-
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, fragment).addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

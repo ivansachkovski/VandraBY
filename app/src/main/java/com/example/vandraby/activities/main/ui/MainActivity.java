@@ -25,7 +25,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements ProfileSettingsFragment.OnAccountExitListener {
+public class MainActivity extends AppCompatActivity implements ProfileSettingsFragment.OnAccountExitListener, DetailsFragment.PlaceDetailsPageListener {
 
     private static final String SETTINGS_NAME = "userCredentials";
     private static final String LOGIN_FIELD_NAME = "login";
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             }
         });
         bottomNavigationView.setOnItemReselectedListener(item -> {
-            // nothing
+            // do nothing
         });
 
         // open swipes page
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             menu.findItem(R.id.item_profile_settings).setVisible(false);
         }
 
-        loadFragment(SwipesFragment.newInstance(), false);
+        loadFragment(SwipesFragment.newInstance(this), false);
         return true;
     }
 
@@ -107,10 +107,6 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
 
         loadFragment(ProfileFragment.newInstance(), true);
         return true;
-    }
-
-    private void onOpenPlaceDetailsPage(Place place) {
-        loadFragment(DetailsFragment.newInstance(place), false);
     }
 
     private boolean onOpenProfileSettingsPage() {
@@ -147,5 +143,10 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
 
         // Close current activity
         finish();
+    }
+
+    @Override
+    public void onOpenPlaceDetailsPage(Place place) {
+        loadFragment(DetailsFragment.newInstance(place), true);
     }
 }
