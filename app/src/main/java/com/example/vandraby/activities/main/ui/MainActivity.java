@@ -15,17 +15,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.authorization.ui.AuthorizationActivity;
-import com.example.vandraby.activities.main.pages.details.DetailsFragment;
-import com.example.vandraby.activities.main.pages.profile.ProfileFragment;
-import com.example.vandraby.activities.main.pages.settings.ProfileSettingsFragment;
-import com.example.vandraby.activities.main.pages.settings.SearchSettingsFragment;
-import com.example.vandraby.activities.main.pages.swipes.SwipesFragment;
+import com.example.vandraby.activities.main.pages.details.PlaceDetailsPage;
+import com.example.vandraby.activities.main.pages.profile.ProfilePage;
+import com.example.vandraby.activities.main.pages.settings.ProfileSettingsPage;
+import com.example.vandraby.activities.main.pages.settings.SearchSettingsPage;
+import com.example.vandraby.activities.main.pages.swipes.SwipesPage;
 import com.example.vandraby.model.Place;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements ProfileSettingsFragment.OnAccountExitListener, DetailsFragment.PlaceDetailsPageListener {
+public class MainActivity extends AppCompatActivity implements ProfileSettingsPage.OnAccountExitListener, PlaceDetailsPage.PlaceDetailsPageListener {
 
     private static final String SETTINGS_NAME = "userCredentials";
     private static final String LOGIN_FIELD_NAME = "login";
@@ -123,28 +123,28 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             return true;
         }
 
-        loadFragment(SwipesFragment.newInstance(this), SWIPES_PAGE_TAG, false);
+        loadFragment(SwipesPage.newInstance(this), SWIPES_PAGE_TAG, false);
         return true;
     }
 
     private boolean onOpenProfilePage() {
-        loadFragment(ProfileFragment.newInstance(this), PROFILE_PAGE_TAG, true);
+        loadFragment(ProfilePage.newInstance(this), PROFILE_PAGE_TAG, true);
         return true;
     }
 
     private boolean onOpenProfileSettingsPage() {
-        loadFragment(ProfileSettingsFragment.newInstance(this), PROFILE_SETTINGS_PAGE_TAG, true);
+        loadFragment(ProfileSettingsPage.newInstance(this), PROFILE_SETTINGS_PAGE_TAG, true);
         return true;
     }
 
     private boolean onOpenSearchSettingsPage() {
-        loadFragment(SearchSettingsFragment.newInstance(), SEARCH_SETTINGS_PAGE_TAG, true);
+        loadFragment(SearchSettingsPage.newInstance(), SEARCH_SETTINGS_PAGE_TAG, true);
         return true;
     }
 
     @Override
     public void onOpenPlaceDetailsPage(Place place) {
-        loadFragment(DetailsFragment.newInstance(place), PLACE_DETAILS_PAGE_TAG, true);
+        loadFragment(PlaceDetailsPage.newInstance(place), PLACE_DETAILS_PAGE_TAG, true);
     }
 
     private void loadFragment(Fragment fragment, String tag, boolean bSave) {

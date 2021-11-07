@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.pages.details.DetailsFragment.PlaceDetailsPageListener;
+import com.example.vandraby.activities.main.pages.details.PlaceDetailsPage.PlaceDetailsPageListener;
 import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.Place;
 
-public class SwipesFragment extends Fragment {
+public class SwipesPage extends Fragment {
     private final SwipeModel model = new SwipeModel(DataModel.getInstance().getNotSwipedPlaces());
     CardView cvRoot;
     TextView tvObjectName;
@@ -24,12 +24,12 @@ public class SwipesFragment extends Fragment {
 
     PlaceDetailsPageListener placeDetailsPageListener;
 
-    private SwipesFragment(PlaceDetailsPageListener listener) {
+    private SwipesPage(PlaceDetailsPageListener listener) {
         this.placeDetailsPageListener = listener;
     }
 
-    public static SwipesFragment newInstance(PlaceDetailsPageListener listener) {
-        return new SwipesFragment(listener);
+    public static SwipesPage newInstance(PlaceDetailsPageListener listener) {
+        return new SwipesPage(listener);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SwipesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_swipes, null);
+        View view = inflater.inflate(R.layout.page_swipes, null);
         getActivity().invalidateOptionsMenu();
 
         cvRoot = view.findViewById(R.id.card_view);

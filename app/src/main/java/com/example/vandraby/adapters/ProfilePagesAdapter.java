@@ -10,9 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.pages.details.DetailsFragment.PlaceDetailsPageListener;
+import com.example.vandraby.activities.main.pages.details.PlaceDetailsPage.PlaceDetailsPageListener;
 import com.example.vandraby.model.DataModel;
-import com.example.vandraby.model.Place;
 
 public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
 

@@ -13,22 +13,22 @@ import com.example.vandraby.R;
 import com.example.vandraby.activities.main.pages.swipes.ViewPagerFragment;
 import com.example.vandraby.model.Place;
 
-public class DetailsFragment extends Fragment {
+public class PlaceDetailsPage extends Fragment {
 
     private final Place place;
 
-    private DetailsFragment(Place place) {
+    private PlaceDetailsPage(Place place) {
         this.place = place;
     }
 
-    public static DetailsFragment newInstance(Place place) {
-        return new DetailsFragment(place);
+    public static PlaceDetailsPage newInstance(Place place) {
+        return new PlaceDetailsPage(place);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_details, null);
+        View view = inflater.inflate(R.layout.page_place_details, null);
         getActivity().invalidateOptionsMenu();
 
         Fragment fragment = ViewPagerFragment.newInstance(place.getPhotoUrls());

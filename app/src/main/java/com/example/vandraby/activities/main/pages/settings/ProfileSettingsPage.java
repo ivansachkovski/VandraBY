@@ -16,22 +16,22 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileSettingsFragment extends Fragment {
+public class ProfileSettingsPage extends Fragment {
 
     private final OnAccountExitListener onAccountExitListener;
 
-    private ProfileSettingsFragment(OnAccountExitListener onAccountExitListener) {
+    private ProfileSettingsPage(OnAccountExitListener onAccountExitListener) {
         this.onAccountExitListener = onAccountExitListener;
     }
 
-    public static ProfileSettingsFragment newInstance(OnAccountExitListener onAccountExitListener) {
-        return new ProfileSettingsFragment(onAccountExitListener);
+    public static ProfileSettingsPage newInstance(OnAccountExitListener onAccountExitListener) {
+        return new ProfileSettingsPage(onAccountExitListener);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile_settings, null);
+        View view = inflater.inflate(R.layout.page_profile_settings, null);
         getActivity().invalidateOptionsMenu();
 
         DataModel model = DataModel.getInstance();

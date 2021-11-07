@@ -6,12 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.pages.details.DetailsFragment.PlaceDetailsPageListener;
+import com.example.vandraby.activities.main.pages.details.PlaceDetailsPage.PlaceDetailsPageListener;
 import com.example.vandraby.adapters.ProfilePagesAdapter;
 import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.User;
@@ -21,22 +20,22 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileFragment extends Fragment {
+public class ProfilePage extends Fragment {
 
     PlaceDetailsPageListener placeDetailsPageListener;
 
-    private ProfileFragment(PlaceDetailsPageListener listener) {
+    private ProfilePage(PlaceDetailsPageListener listener) {
         this.placeDetailsPageListener = listener;
     }
 
-    public static ProfileFragment newInstance(PlaceDetailsPageListener listener) {
-        return new ProfileFragment(listener);
+    public static ProfilePage newInstance(PlaceDetailsPageListener listener) {
+        return new ProfilePage(listener);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, null);
+        View view = inflater.inflate(R.layout.page_profile, null);
         getActivity().invalidateOptionsMenu();
 
         DataModel dataModel = DataModel.getInstance();
