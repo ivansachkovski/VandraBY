@@ -32,7 +32,13 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
     private static final String PASSWORD_FIELD_NAME = "password";
     private static final String AUTO_LOGIN_FLAG_NAME = "auto-login";
 
-    private Menu menu;
+    private static final String SWIPES_PAGE_TAG = "SwipesPage";
+    private static final String PROFILE_PAGE_TAG = "ProfilePage";
+    private static final String PLACE_DETAILS_PAGE_TAG = "PlaceDetailsPage";
+    private static final String PROFILE_SETTINGS_PAGE_TAG = "ProfileSettingsPage";
+    private static final String SEARCH_SETTINGS_PAGE_TAG = "SearchSettingsPage";
+
+    NavigationBarView bottomNavigationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
             this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
         });
 
-        NavigationBarView bottomNavigationView = findViewById(R.id.bottom_navigation_panel);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_panel);
+        bottomNavigationBar.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_swipes:
                     return onOpenSwipesPage();
@@ -61,21 +67,43 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
                     return false;
             }
         });
-        bottomNavigationView.setOnItemReselectedListener(item -> {
-            // do nothing
-        });
 
         // open swipes page
-        bottomNavigationView.setSelectedItemId(R.id.item_profile);
-        bottomNavigationView.setSelectedItemId(R.id.item_swipes);
+        bottomNavigationBar.setSelectedItemId(R.id.item_swipes);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        bottomNavigationBar.setSelectedItemId(R.id.item_swipes);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.menu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem itemProfileSettings = menu.findItem(R.id.item_profile_settings);
+        MenuItem itemSearchSettings = menu.findItem(R.id.item_search_settings);
+
+        // hide all the items
+        itemProfileSettings.setVisible(false);
+        itemSearchSettings.setVisible(false);
+
+        // show required item
+        Fragment fragmentSwipes = getSupportFragmentManager().findFragmentByTag(SWIPES_PAGE_TAG);
+        Fragment fragmentProfile = getSupportFragmentManager().findFragmentByTag(PROFILE_PAGE_TAG);
+        if (fragmentSwipes != null && fragmentSwipes.isVisible()) {
+            itemSearchSettings.setVisible(true);
+        } else if (fragmentProfile != null && fragmentProfile.isVisible()) {
+            itemProfileSettings.setVisible(true);
+        }
+
+        return true;
     }
 
     @Override
@@ -90,40 +118,40 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
     }
 
     private boolean onOpenSwipesPage() {
-        if (menu != null) {
-            menu.findItem(R.id.item_search_settings).setVisible(true);
-            menu.findItem(R.id.item_profile_settings).setVisible(false);
+        Fragment fragmentSwipes = getSupportFragmentManager().findFragmentByTag(SWIPES_PAGE_TAG);
+        if (fragmentSwipes != null && fragmentSwipes.isVisible()) {
+            return true;
         }
 
-        loadFragment(SwipesFragment.newInstance(this), false);
+        loadFragment(SwipesFragment.newInstance(this), SWIPES_PAGE_TAG, false);
         return true;
     }
 
     private boolean onOpenProfilePage() {
-        if (menu != null) {
-            menu.findItem(R.id.item_search_settings).setVisible(false);
-            menu.findItem(R.id.item_profile_settings).setVisible(true);
-        }
-
-        loadFragment(ProfileFragment.newInstance(this), true);
+        loadFragment(ProfileFragment.newInstance(this), PROFILE_PAGE_TAG, true);
         return true;
     }
 
     private boolean onOpenProfileSettingsPage() {
-        loadFragment(ProfileSettingsFragment.newInstance(this), true);
+        loadFragment(ProfileSettingsFragment.newInstance(this), PROFILE_SETTINGS_PAGE_TAG, true);
         return true;
     }
 
     private boolean onOpenSearchSettingsPage() {
-        loadFragment(SearchSettingsFragment.newInstance(), true);
+        loadFragment(SearchSettingsFragment.newInstance(), SEARCH_SETTINGS_PAGE_TAG, true);
         return true;
     }
 
-    private void loadFragment(Fragment fragment, boolean bSave) {
+    @Override
+    public void onOpenPlaceDetailsPage(Place place) {
+        loadFragment(DetailsFragment.newInstance(place), PLACE_DETAILS_PAGE_TAG, true);
+    }
+
+    private void loadFragment(Fragment fragment, String tag, boolean bSave) {
         if (bSave) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment, tag).addToBackStack(null).commit();
         } else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment, tag).commit();
         }
     }
 
@@ -143,10 +171,5 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsFr
 
         // Close current activity
         finish();
-    }
-
-    @Override
-    public void onOpenPlaceDetailsPage(Place place) {
-        loadFragment(DetailsFragment.newInstance(place), true);
     }
 }

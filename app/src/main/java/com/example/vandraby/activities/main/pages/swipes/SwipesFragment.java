@@ -41,6 +41,7 @@ public class SwipesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_swipes, null);
+        getActivity().invalidateOptionsMenu();
 
         cvRoot = view.findViewById(R.id.card_view);
         tvObjectName = view.findViewById(R.id.sight_name);

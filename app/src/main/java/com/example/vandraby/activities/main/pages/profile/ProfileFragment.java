@@ -37,6 +37,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, null);
+        getActivity().invalidateOptionsMenu();
 
         DataModel dataModel = DataModel.getInstance();
         User user = dataModel.getCurrentUser();
