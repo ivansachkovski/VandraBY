@@ -1,5 +1,7 @@
 package com.example.vandraby.model;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +20,21 @@ public class User {
     private final boolean is_owner; // TODO::change the name of the flag
     private Vector<Integer> likedSights = new Vector<>();
     private Vector<Integer> dislikedSights = new Vector<>();
+
+    public User(FirebaseUser user) {
+        id = 111;
+
+        nickname = user.getEmail();
+
+        firstName = user.getDisplayName();
+        lastName = user.getPhoneNumber();
+
+        if (user.getPhotoUrl() != null) {
+            photoUrl = user.getPhotoUrl().toString();
+        }
+
+        is_owner = true;
+    }
 
     public User(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");

@@ -9,7 +9,7 @@ public class DataModel {
     private final static String LOGGER_TAG = "LOG_VANDRA_DATA_MODEL";
 
     private static DataModel instance;
-    private ArrayList<Place> places;
+    private ArrayList<Place> places = new ArrayList<>();
     private User user;
 
     private DataModel() {

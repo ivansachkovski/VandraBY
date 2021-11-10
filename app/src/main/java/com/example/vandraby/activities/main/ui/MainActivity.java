@@ -3,6 +3,7 @@ package com.example.vandraby.activities.main.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,8 +21,12 @@ import com.example.vandraby.activities.main.pages.profile.ProfilePage;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsPage;
 import com.example.vandraby.activities.main.pages.settings.SearchSettingsPage;
 import com.example.vandraby.activities.main.pages.swipes.SwipesPage;
+import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.Place;
+import com.example.vandraby.model.User;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -44,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        User user1 = new User(user);
+
+        DataModel.getInstance().setUser(user1);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -157,13 +167,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
 
     @Override
     public void onAccountExitAction() {
-        // Reset SharedPreferences
-        SharedPreferences settings = getSharedPreferences(SETTINGS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(LOGIN_FIELD_NAME, "");
-        editor.putString(PASSWORD_FIELD_NAME, "");
-        editor.putBoolean(AUTO_LOGIN_FLAG_NAME, false);
-        editor.apply();
+        FirebaseAuth.getInstance().signOut();
 
         // Open authorization activity
         Intent intent = new Intent(this, AuthorizationActivity.class);

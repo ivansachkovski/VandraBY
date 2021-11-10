@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "500975300334",
+    "firebase_url": "https://vandraby-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "vandraby",
+    "storage_bucket": "vandraby.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500975300334:android:5d81834ebb262124d04dff",
+        "android_client_info": {
+          "package_name": "com.example.vandraby"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500975300334-q7b78f6k9uheuoh5la66mevjtjpiktcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY-3_tUSBToR8PDkjdfCuATVOaqKRbMPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500975300334-q7b78f6k9uheuoh5la66mevjtjpiktcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

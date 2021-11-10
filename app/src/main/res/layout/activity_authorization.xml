@@ -92,12 +92,12 @@
                 android:background="@color/white"
                 android:src="@drawable/ic_facebook_pic" />
 
-            <ImageButton
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/button_sign_in_with_google"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:background="@color/white"
-                android:src="@drawable/ic_google_pic" />
+                android:background="@color/white" />
 
         </LinearLayout>
 
