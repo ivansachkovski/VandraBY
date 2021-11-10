@@ -31,7 +31,7 @@ public class PlaceDetailsPage extends Fragment {
         View view = inflater.inflate(R.layout.page_place_details, null);
         getActivity().invalidateOptionsMenu();
 
-        Fragment fragment = ViewPagerFragment.newInstance(place.getPhotoUrls());
+        Fragment fragment = ViewPagerFragment.newInstance(new String[2]);
 
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.view_pager_fragment, fragment);

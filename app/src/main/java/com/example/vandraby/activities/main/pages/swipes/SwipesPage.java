@@ -82,7 +82,7 @@ public class SwipesPage extends Fragment {
         tvObjectName.setText(object.getName());
         tvObjectLocation.setText(object.getLocation());
 
-        Fragment fragment = ViewPagerFragment.newInstance(object.getPhotoUrls());
+        Fragment fragment = ViewPagerFragment.newInstance(new String[2]);
 
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.view_pager_fragment, fragment);

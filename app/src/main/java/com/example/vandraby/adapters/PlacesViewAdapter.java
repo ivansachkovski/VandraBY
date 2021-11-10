@@ -63,7 +63,7 @@ public class PlacesViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             textName.setText(item.getName());
             textLocation.setText(item.getLocation());
-            Picasso.with(imagePhoto.getContext()).load(item.getPhotoUrls()[0]).fit().into(imagePhoto);
+            Picasso.with(imagePhoto.getContext()).load("item.getPhotoUrls()[0]").fit().into(imagePhoto);
         }
 
         @Override

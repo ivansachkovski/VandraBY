@@ -12,7 +12,7 @@ public class Place implements Serializable {
     private final String name;
     private final String description;
     private final String type;
-    private final String[] photoUrls;
+    //private final String[] photoUrls;
     private final int buildYear;
 
     private final String locationRegion;
@@ -20,13 +20,27 @@ public class Place implements Serializable {
     private final String locationLocalityType;
     private final String locationLocalityName;
 
+    public Place() {
+        id = 1;
+
+        name = "my name";
+        description = "my desc";
+        type = "my type";
+        buildYear = 1;
+        //photoUrls = new String[2];
+        locationLocalityType = "loc type";
+        locationLocalityName = "loc name";
+        locationDistrict = " loc dis";
+        locationRegion = "loc reg";
+    }
+
     public Place(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
 
         name = jsonObject.getString("place_name");
         description = jsonObject.getString("place_description");
         type = jsonObject.getString("place_type");
-        photoUrls = jsonObject.getString("place_photo_urls").split(";");
+        //photoUrls = jsonObject.getString("place_photo_urls").split(";");
         buildYear = jsonObject.getInt("place_build_year");
 
         locationRegion = jsonObject.getString("location_region");
@@ -51,9 +65,9 @@ public class Place implements Serializable {
         return description;
     }
 
-    public String[] getPhotoUrls() {
-        return photoUrls;
-    }
+    //public String[] getPhotoUrls() {
+    //    return new String[2];
+    //}
 
     public int getBuildYear() {
         return buildYear;
