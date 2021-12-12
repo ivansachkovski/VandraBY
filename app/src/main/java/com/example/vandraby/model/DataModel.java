@@ -49,11 +49,11 @@ public class DataModel {
         return user;
     }
 
-    public void likeObject(int id) {
+    public void likeObject(long id) {
         user.addLikedObject(id);
     }
 
-    public void dislikeObject(int id) {
+    public void dislikeObject(long id) {
         user.addDislikedObject(id);
     }
 

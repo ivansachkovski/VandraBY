@@ -12,24 +12,26 @@ import androidx.fragment.app.Fragment;
 import com.example.vandraby.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class PlacePhotosAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
 
-    private final String[] photoUrls;
+    private final List<String> mPhotoUrls;
 
-    public PlacePhotosAdapter(Fragment fragment, String[] photoUrls) {
+    public PlacePhotosAdapter(Fragment fragment, List<String> photoUrls) {
         super(fragment);
-        this.photoUrls = photoUrls;
+        mPhotoUrls = photoUrls;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return ObjectPhotoFragment.newInstance(photoUrls[position]);
+        return ObjectPhotoFragment.newInstance(mPhotoUrls.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return photoUrls.length;
+        return mPhotoUrls.size();
     }
 
     static public class ObjectPhotoFragment extends Fragment {

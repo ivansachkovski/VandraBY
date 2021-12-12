@@ -31,14 +31,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements ProfileSettingsPage.OnAccountExitListener, PlaceDetailsPage.PlaceDetailsPageListener {
-
-    private static final String SETTINGS_NAME = "userCredentials";
-    private static final String LOGIN_FIELD_NAME = "login";
-    private static final String PASSWORD_FIELD_NAME = "password";
-    private static final String AUTO_LOGIN_FLAG_NAME = "auto-login";
 
     private static final String SWIPES_PAGE_TAG = "SwipesPage";
     private static final String PROFILE_PAGE_TAG = "ProfilePage";
@@ -55,30 +52,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        User user1 = new User(user);
-
-        DataModel.getInstance().setUser(user1);
-
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("places");
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Place place = ds.getValue(Place.class);
-                    int a = 2;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Place place = new Place();
-        
-        mDatabaseReference.push().setValue(place);
+        loadData();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -104,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
         });
 
         // open swipes page
+        //bottomNavigationBar.setSelectedItemId(R.id.item_profile);
         bottomNavigationBar.setSelectedItemId(R.id.item_swipes);
     }
 
@@ -188,6 +163,53 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, fragment, tag).commit();
         }
+    }
+
+    public void loadData() {
+        DataModel model = DataModel.getInstance();
+
+        DatabaseReference databasePlacesReference = FirebaseDatabase.getInstance().getReference("places");
+        databasePlacesReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Place> places = new ArrayList<>();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String, Object> value = (Map) ds.getValue();
+                    Place place = new Place(value);
+                    places.add(place);
+                }
+                model.setPlaces(places);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference databaseUsersReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseUsersReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String, Object> value = (Map) ds.getValue();
+                    if (value != null) {
+                        if (value.get("uid").toString().equals(uid)) {
+                            model.setUser(new User(value));
+                            return;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

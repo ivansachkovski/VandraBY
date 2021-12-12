@@ -11,27 +11,20 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.vandraby.R;
 import com.example.vandraby.adapters.PlacePhotosAdapter;
 
+import java.util.List;
+
 import me.relex.circleindicator.CircleIndicator3;
 
 public class ViewPagerFragment extends Fragment {
     private static final String ARGUMENT_PHOTO_URLS = "arg_photo_urls";
-    private String[] photoUrls;
+    private final List<String> mPhotoUrls;
 
-    public static ViewPagerFragment newInstance(String[] photoUrls) {
-        Bundle arguments = new Bundle();
-        arguments.putStringArray(ARGUMENT_PHOTO_URLS, photoUrls);
-
-        ViewPagerFragment fragment = new ViewPagerFragment();
-        fragment.setArguments(arguments);
-
-        return fragment;
+    private ViewPagerFragment(List<String> photoUrls) {
+        mPhotoUrls = photoUrls;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        assert getArguments() != null;
-        photoUrls = getArguments().getStringArray(ARGUMENT_PHOTO_URLS);
+    public static ViewPagerFragment newInstance(List<String> photoUrls) {
+        return new ViewPagerFragment(photoUrls);
     }
 
     @Override
@@ -40,17 +33,17 @@ public class ViewPagerFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_view_pager, null);
 
-        PlacePhotosAdapter adapter = new PlacePhotosAdapter(this, photoUrls);
+        PlacePhotosAdapter adapter = new PlacePhotosAdapter(this, mPhotoUrls);
 
         ViewPager2 viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
 
-        int limit = (photoUrls.length > 1) ? photoUrls.length / 2 : 1;
+        int limit = (mPhotoUrls.size() > 1) ? mPhotoUrls.size() / 2 : 1;
         viewPager.setOffscreenPageLimit(limit);
 
         CircleIndicator3 circleIndicator = view.findViewById(R.id.indicator);
         circleIndicator.setViewPager(viewPager);
-        if (photoUrls.length == 1) {
+        if (mPhotoUrls.size() == 1) {
             circleIndicator.setVisibility(View.INVISIBLE);
         }
 

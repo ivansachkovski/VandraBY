@@ -1,122 +1,75 @@
 package com.example.vandraby.model;
 
-import com.google.firebase.auth.FirebaseUser;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.util.Map;
 import java.util.Vector;
 
 public class User {
+    private final long mId;
 
-    private final int id;
-    private final String nickname;
-    private String firstName;
-    private String lastName;
-    int followersNumber;
-    int followingsNumber;
-    private String photoUrl;
-    private final boolean is_owner; // TODO::change the name of the flag
-    private Vector<Integer> likedSights = new Vector<>();
-    private Vector<Integer> dislikedSights = new Vector<>();
+    private final String mNickname;
+    private String mFirstName;
+    private String mLastName;
 
-    public User(FirebaseUser user) {
-        id = 111;
+    private final String mPhotoUrl;
 
-        nickname = user.getEmail();
+    private final Vector<Long> mLikedSights;
+    private final Vector<Long> mDislikedSights;
 
-        firstName = user.getDisplayName();
-        lastName = user.getPhoneNumber();
+    public User(Map<String, Object> value) {
+        mId = Long.parseLong(value.get("id").toString());
 
-        if (user.getPhotoUrl() != null) {
-            photoUrl = user.getPhotoUrl().toString();
-        }
+        mNickname = value.get("nickname").toString();
+        mFirstName = value.get("firstName").toString();
+        mLastName = value.get("lastName").toString();
 
-        is_owner = true;
+        mPhotoUrl = value.get("photoUrl").toString();
+
+        mLikedSights = new Vector<>();
+        mDislikedSights = new Vector<>();
     }
 
-    public User(JSONObject jsonObject) throws JSONException {
-        id = jsonObject.getInt("id");
-
-        nickname = jsonObject.getString("nickname");
-
-        firstName = jsonObject.getString("first_name");
-        lastName = jsonObject.getString("last_name");
-
-        photoUrl = jsonObject.getString("photo_url");
-
-        followersNumber = jsonObject.getInt("followers_counter");
-        followingsNumber = jsonObject.getInt("followings_counter");
-
-        likedSights.clear();
-        try {
-            JSONArray jsonArray = jsonObject.getJSONArray("liked_sights");
-            for (int i = 0; i < jsonArray.length(); ++i) {
-                likedSights.add(jsonArray.getInt(i));
-            }
-        } catch (JSONException exception) {
-            exception.printStackTrace();
-        }
-
-        is_owner = jsonObject.getBoolean("is_owner");
+    public long getId() {
+        return mId;
     }
 
     public String getFullName() {
-        return firstName + " " + lastName;
+        return mFirstName + " " + mLastName;
     }
 
     public String getFirstName() {
-        return firstName;
+        return mFirstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+        mFirstName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return mLastName;
+    }
+
+    public void setLastName(String lastName) {
+        mLastName = lastName;
     }
 
     public String getNickname() {
-        return nickname;
+        return mNickname;
     }
 
     public String getPhotoUrl() {
-        return photoUrl;
+        return mPhotoUrl;
     }
 
-    /**
-     * Convert User object to JSON format.
-     *
-     * @return JSON presentation of User object.
-     * @throws JSONException if any issues during creating JSON object.
-     */
-    public JSONObject toJson() throws JSONException {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("nickname", nickname);
-        jsonObject.put("first_name", firstName);
-        jsonObject.put("last_name", lastName);
-        jsonObject.put("photo_url", photoUrl);
-        jsonObject.put("liked_sights", likedSights);
-        jsonObject.put("disliked_sights", dislikedSights);
-        return jsonObject;
+    public void addLikedObject(long id) {
+        mLikedSights.add(id);
     }
 
-    public void addLikedObject(int id) {
-        likedSights.add(id);
+    public void addDislikedObject(long id) {
+        mDislikedSights.add(id);
     }
 
-    public void addDislikedObject(int id) {
-        dislikedSights.add(id);
-    }
-
-    public boolean isLiked(int objectId) {
-        for (int id : likedSights) {
+    public boolean isLiked(long objectId) {
+        for (long id : mLikedSights) {
             if (id == objectId) {
                 return true;
             }
@@ -124,8 +77,8 @@ public class User {
         return false;
     }
 
-    public boolean isDisliked(int objectId) {
-        for (int id : dislikedSights) {
+    public boolean isDisliked(long objectId) {
+        for (long id : mDislikedSights) {
             if (id == objectId) {
                 return true;
             }
@@ -134,7 +87,7 @@ public class User {
     }
 
     public void resetObjects() {
-        likedSights.clear();
-        dislikedSights.clear();
+        mLikedSights.clear();
+        mDislikedSights.clear();
     }
 }

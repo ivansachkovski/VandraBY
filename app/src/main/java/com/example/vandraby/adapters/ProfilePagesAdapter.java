@@ -16,7 +16,7 @@ import com.example.vandraby.model.DataModel;
 public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
 
     private final static int NUMBER_OF_PAGES = 3;
-    private PlaceDetailsPageListener placeDetailsPageListener;
+    private final PlaceDetailsPageListener placeDetailsPageListener;
 
     public ProfilePagesAdapter(Fragment fragment, PlaceDetailsPageListener listener) {
         super(fragment);

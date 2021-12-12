@@ -31,7 +31,7 @@ public class PlaceDetailsPage extends Fragment {
         View view = inflater.inflate(R.layout.page_place_details, null);
         getActivity().invalidateOptionsMenu();
 
-        Fragment fragment = ViewPagerFragment.newInstance(new String[2]);
+        Fragment fragment = ViewPagerFragment.newInstance(place.getPhotoUrls());
 
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.view_pager_fragment, fragment);
@@ -46,7 +46,7 @@ public class PlaceDetailsPage extends Fragment {
         TextView textObjectDescription = view.findViewById(R.id.tv_object_description);
         textObjectDescription.setText(place.getDescription());
 
-        String buildYearStr = Integer.toString(place.getBuildYear());
+        String buildYearStr = Long.toString(place.getBuildYear());
         TextView textObjectBuildYear = view.findViewById(R.id.tv_object_build_year);
         textObjectBuildYear.setText(buildYearStr);
 

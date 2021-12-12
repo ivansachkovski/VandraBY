@@ -1,26 +1,21 @@
 package com.example.vandraby.activities.authorization.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.main.ui.MainActivity;
-import com.example.vandraby.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,14 +60,6 @@ public class AuthorizationActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(v -> {
             // TODO::
         });
-
-        /*
-
-        // Try to log in if auto-login is on
-        if (settings.getBoolean(AUTO_LOGIN_FLAG_NAME, false)) {
-            loginWithCredentials();
-        }
-         */
     }
 
     @Override

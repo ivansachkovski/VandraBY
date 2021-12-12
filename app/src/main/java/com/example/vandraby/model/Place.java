@@ -1,79 +1,87 @@
 package com.example.vandraby.model;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
-import java.io.Serializable;
+public class Place {
 
-public class Place implements Serializable {
+    private final long mId;
 
-    private final int id;
+    private final String mName;
+    private final String mDescription;
+    private final String mType;
+    private final long mBuildYear;
 
-    private final String name;
-    private final String description;
-    private final String type;
-    //private final String[] photoUrls;
-    private final int buildYear;
+    private final List<String> mPhotoUrls;
 
-    private final String locationRegion;
-    private final String locationDistrict;
-    private final String locationLocalityType;
-    private final String locationLocalityName;
+    private final String mLocationRegion;
+    private final String mLocationDistrict;
+    private final String mLocationLocalityType;
+    private final String mLocationLocalityName;
 
     public Place() {
-        id = 1;
+        mId = 0;
 
-        name = "my name";
-        description = "my desc";
-        type = "my type";
-        buildYear = 1;
-        //photoUrls = new String[2];
-        locationLocalityType = "loc type";
-        locationLocalityName = "loc name";
-        locationDistrict = " loc dis";
-        locationRegion = "loc reg";
+        mName = "undefined";
+        mDescription = "undefined";
+        mType = "undefined";
+        mBuildYear = 0;
+
+        mPhotoUrls = new ArrayList<>();
+
+        mLocationLocalityType = "undefined";
+        mLocationLocalityName = "undefined";
+        mLocationDistrict = "undefined";
+        mLocationRegion = "undefined";
     }
 
-    public Place(JSONObject jsonObject) throws JSONException {
-        id = jsonObject.getInt("id");
+    public Place(Map<String, Object> value) {
+        mId = Long.parseLong(value.get("id").toString());
 
-        name = jsonObject.getString("place_name");
-        description = jsonObject.getString("place_description");
-        type = jsonObject.getString("place_type");
-        //photoUrls = jsonObject.getString("place_photo_urls").split(";");
-        buildYear = jsonObject.getInt("place_build_year");
+        mName = value.get("name").toString();
+        mDescription = value.get("description").toString();
+        mType = value.get("type").toString();
+        mPhotoUrls = new ArrayList<>(Arrays.asList(value.get("photoUrls").toString()
+                .replace("[", "")
+                .replace("]", "")
+                .replace(" ", "")
+                .split(",")));
 
-        locationRegion = jsonObject.getString("location_region");
-        locationDistrict = jsonObject.getString("location_district");
-        locationLocalityType = jsonObject.getString("location_locality_type");
-        locationLocalityName = jsonObject.getString("location_locality_name");
+        mBuildYear = Long.parseLong(value.get("buildYear").toString());
+
+        mLocationRegion = value.get("locationRegion").toString();
+        mLocationDistrict = value.get("locationDistrict").toString();
+        mLocationLocalityType = value.get("locationLocalityType").toString();
+        mLocationLocalityName = value.get("locationLocalityName").toString();
     }
 
-    public int getId() {
-        return id;
+    public long getId() {
+        return mId;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public String getType() {
-        return type;
+        return mType;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
-    //public String[] getPhotoUrls() {
-    //    return new String[2];
-    //}
+    public List<String> getPhotoUrls() {
+        return mPhotoUrls;
+    }
 
-    public int getBuildYear() {
-        return buildYear;
+    public long getBuildYear() {
+        return mBuildYear;
     }
 
     public String getLocation() {
-        return String.format("%s %s, %s р-н, %s обл.", locationLocalityType, locationLocalityName, locationDistrict, locationRegion);
+        return String.format("%s %s, %s р-н, %s обл.", mLocationLocalityType, mLocationLocalityName, mLocationDistrict, mLocationRegion);
     }
 }
