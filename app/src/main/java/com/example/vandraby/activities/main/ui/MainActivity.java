@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
 
     NavigationBarView bottomNavigationBar;
 
-    DatabaseReference mDatabaseReference;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

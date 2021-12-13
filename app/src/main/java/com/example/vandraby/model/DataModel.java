@@ -8,68 +8,69 @@ public class DataModel {
 
     private final static String LOGGER_TAG = "LOG_VANDRA_DATA_MODEL";
 
-    private static DataModel instance;
-    private ArrayList<Place> places = new ArrayList<>();
-    private User user;
+    private static DataModel mInstance;
+    private ArrayList<Place> mAllPlaces;
+    private User mUser;
 
     private DataModel() {
+        mAllPlaces = new ArrayList<>();
     }
 
     public static DataModel getInstance() {
-        if (instance == null) {
-            instance = new DataModel();
+        if (mInstance == null) {
+            mInstance = new DataModel();
         }
-        return instance;
+        return mInstance;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        mUser = user;
     }
 
     public void setPlaces(ArrayList<Place> places) {
-        this.places = places;
+        mAllPlaces = places;
     }
 
-    public ArrayList<Place> getAllObjects() {
-        return places;
+    public ArrayList<Place> getAllPlaces() {
+        return mAllPlaces;
     }
 
     public ArrayList<Place> getNotSwipedPlaces() {
         Log.i(LOGGER_TAG, "getObjectsForSwipes()");
-        ArrayList<Place> notSwipedPlaces = new ArrayList<>();
-        for (Place place : places) {
-            if (!user.isLiked(place.getId()) && !user.isDisliked(place.getId())) {
-                notSwipedPlaces.add(place);
+        ArrayList<Place> result = new ArrayList<>();
+        for (Place place : mAllPlaces) {
+            if (!mUser.isLiked(place.getId()) && !mUser.isDisliked(place.getId())) {
+                result.add(place);
             }
         }
-        return notSwipedPlaces;
+        return result;
     }
 
     public User getCurrentUser() {
-        return user;
+        return mUser;
     }
 
     public void likeObject(long id) {
-        user.addLikedObject(id);
+        mUser.addLikedObject(id);
     }
 
     public void dislikeObject(long id) {
-        user.addDislikedObject(id);
+        mUser.addDislikedObject(id);
     }
 
     public ArrayList<Place> getUserLikedPlaces() {
-        ArrayList<Place> likedPlaces = new ArrayList<>();
-        for (Place place : places) {
-            if (user.isLiked(place.getId())) {
-                likedPlaces.add(place);
-                //likedPlaces.add(place);
-                //likedPlaces.add(place);
+        ArrayList<Place> result = new ArrayList<>();
+        for (Place place : mAllPlaces) {
+            if (mUser.isLiked(place.getId())) {
+                result.add(place);
+                // result.add(place);
+                // result.add(place);
             }
         }
-        return likedPlaces;
+        return result;
     }
 
     public void reset() {
-        user.resetObjects();
+        mUser.resetObjects();
     }
 }
