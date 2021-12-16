@@ -19,8 +19,10 @@ import com.example.vandraby.activities.main.pages.profile.ProfilePage;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsPage;
 import com.example.vandraby.activities.main.pages.settings.SearchSettingsPage;
 import com.example.vandraby.activities.main.pages.swipes.SwipesPage;
+import com.example.vandraby.model.Contract;
 import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.Place;
+import com.example.vandraby.model.Presenter;
 import com.example.vandraby.model.User;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements ProfileSettingsPage.OnAccountExitListener, PlaceDetailsPage.PlaceDetailsPageListener {
+public class MainActivity extends AppCompatActivity implements ProfileSettingsPage.OnAccountExitListener, PlaceDetailsPage.PlaceDetailsPageListener, Contract.View {
 
     private static final String SWIPES_PAGE_TAG = "SwipesPage";
     private static final String PROFILE_PAGE_TAG = "ProfilePage";
@@ -45,12 +47,15 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
 
     NavigationBarView bottomNavigationBar;
 
+    Contract.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadData();
+        mPresenter = new Presenter(this);
+        mPresenter.initializeData();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -163,53 +168,6 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
         }
     }
 
-    public void loadData() {
-        DataModel model = DataModel.getInstance();
-
-        DatabaseReference databasePlacesReference = FirebaseDatabase.getInstance().getReference("places");
-        databasePlacesReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Place> places = new ArrayList<>();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String, Object> value = (Map) ds.getValue();
-                    Place place = new Place(value);
-                    places.add(place);
-                }
-                model.setPlaces(places);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        DatabaseReference databaseUsersReference = FirebaseDatabase.getInstance().getReference("users");
-        databaseUsersReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = user.getUid();
-
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String, Object> value = (Map) ds.getValue();
-                    if (value != null) {
-                        if (value.get("uid").toString().equals(uid)) {
-                            model.setUser(new User(value));
-                            return;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
     @Override
     public void onAccountExitAction() {
         FirebaseAuth.getInstance().signOut();
@@ -220,5 +178,20 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
 
         // Close current activity
         finish();
+    }
+
+    @Override
+    public void showLoadingScreen() {
+
+    }
+
+    @Override
+    public void showProfileScreen() {
+
+    }
+
+    @Override
+    public void showSwipesScreen() {
+
     }
 }

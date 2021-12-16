@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.ui.MainActivity;
+import com.example.vandraby.activities.loading.SplashActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -67,7 +67,7 @@ public class AuthorizationActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser user = mAuth.getCurrentUser();
-        openApplicationActivity(user);
+        openSplashActivity(user);
 
         mGoogleSignInClient.signOut();
     }
@@ -92,16 +92,16 @@ public class AuthorizationActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();
-                openApplicationActivity(user);
+                openSplashActivity(user);
             } else {
                 Toast.makeText(this, "Google sign in failed", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void openApplicationActivity(FirebaseUser user) {
+    private void openSplashActivity(FirebaseUser user) {
         if (user != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
             startActivity(intent);
             finish();
         }
