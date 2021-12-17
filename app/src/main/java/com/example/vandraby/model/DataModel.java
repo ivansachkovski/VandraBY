@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DataModel implements Contract.Model {
@@ -20,8 +21,9 @@ public class DataModel implements Contract.Model {
     private final static String LOGGER_TAG = "LOG_VANDRA_DATA_MODEL";
 
     private static DataModel mInstance;
-    private ArrayList<Place> mAllPlaces;
+
     private User mUser;
+    private ArrayList<Place> mAllPlaces;
 
     private DataModel() {
         mAllPlaces = new ArrayList<>();
@@ -34,8 +36,54 @@ public class DataModel implements Contract.Model {
         return mInstance;
     }
 
+    @Override
+    public void initialize() {
+        addUpdateUserListener();
+        addUpdatePlacesListener();
+    }
+
+    @Override
     public boolean isReady() {
         return mUser != null && mAllPlaces != null;
+    }
+
+    private void addUpdateUserListener() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = firebaseUser.getUid();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                setUser(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void addUpdatePlacesListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("places");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Place> places = new ArrayList<>();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Place place = ds.getValue(Place.class);
+                    places.add(place);
+                }
+                setPlaces(places);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void setUser(User user) {
@@ -67,6 +115,15 @@ public class DataModel implements Contract.Model {
 
     public void likeObject(long id) {
         mUser.addLikedObject(id);
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = firebaseUser.getUid();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("likedPlaces", mUser.getLikedPlaces());
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference.child(uid).updateChildren(childUpdates);
     }
 
     public void dislikeObject(long id) {
@@ -78,8 +135,6 @@ public class DataModel implements Contract.Model {
         for (Place place : mAllPlaces) {
             if (mUser.isLiked(place.getId())) {
                 result.add(place);
-                // result.add(place);
-                // result.add(place);
             }
         }
         return result;
@@ -87,51 +142,15 @@ public class DataModel implements Contract.Model {
 
     public void reset() {
         mUser.resetObjects();
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = firebaseUser.getUid();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("likedPlaces", mUser.getLikedPlaces());
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference.child(uid).updateChildren(childUpdates);
     }
 
-    @Override
-    public void loadDataFromDatabase() {
-        DatabaseReference databasePlacesReference = FirebaseDatabase.getInstance().getReference("places");
-        databasePlacesReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Place> places = new ArrayList<>();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String, Object> value = (Map) ds.getValue();
-                    Place place = new Place(value);
-                    places.add(place);
-                }
-                setPlaces(places);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        DatabaseReference databaseUsersReference = FirebaseDatabase.getInstance().getReference("users");
-        databaseUsersReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = user.getUid();
-
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String, Object> value = (Map) ds.getValue();
-                    if (value != null) {
-                        if (value.get("uid").toString().equals(uid)) {
-                            setUser(new User(value));
-                            return;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }

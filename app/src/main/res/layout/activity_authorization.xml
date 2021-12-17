@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:background="@color/white" />
+                app:buttonSize="icon_only" />
 
         </LinearLayout>
 

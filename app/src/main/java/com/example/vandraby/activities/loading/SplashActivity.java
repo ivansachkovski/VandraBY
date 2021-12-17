@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        DataModel.getInstance().loadDataFromDatabase();
+        DataModel.getInstance().initialize();
 
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
 
-        timer.schedule(timerTask, 1000, 1000);
+        timer.schedule(timerTask, 2000, 1000);
     }
 
 }

@@ -1,75 +1,92 @@
 package com.example.vandraby.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 public class User {
-    private final long mId;
+    private final long id;
 
-    private final String mNickname;
-    private String mFirstName;
-    private String mLastName;
+    private final String nickname;
+    private String firstName;
+    private String lastName;
 
-    private final String mPhotoUrl;
+    private final String photoUrl;
 
-    private final Vector<Long> mLikedSights;
-    private final Vector<Long> mDislikedSights;
+    private final ArrayList<Long> likedPlaces;
+    private final ArrayList<Long> dislikedPlaces;
 
-    public User(Map<String, Object> value) {
-        mId = Long.parseLong(value.get("id").toString());
+    public User() {
+        id = 0;
+        nickname = ""; // todo::
+        photoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png";
 
-        mNickname = value.get("nickname").toString();
-        mFirstName = value.get("firstName").toString();
-        mLastName = value.get("lastName").toString();
+        likedPlaces = new ArrayList<>();
+        dislikedPlaces = new ArrayList<>();
+    }
 
-        mPhotoUrl = value.get("photoUrl").toString();
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
 
-        mLikedSights = new Vector<>();
-        mDislikedSights = new Vector<>();
+        result.put("nickname", nickname);
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+
+        result.put("photoUrl", photoUrl);
+
+        result.put("likedPlaces", likedPlaces);
+        result.put("dislikedPlaces", dislikedPlaces);
+
+        return result;
     }
 
     public long getId() {
-        return mId;
+        return id;
     }
 
     public String getFullName() {
-        return mFirstName + " " + mLastName;
+        return firstName + " " + lastName;
     }
 
     public String getFirstName() {
-        return mFirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        mFirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return mLastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        mLastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getNickname() {
-        return mNickname;
+        return nickname;
     }
 
     public String getPhotoUrl() {
-        return mPhotoUrl;
+        return photoUrl;
+    }
+
+    public ArrayList<Long> getLikedPlaces() {
+        return likedPlaces;
     }
 
     public void addLikedObject(long id) {
-        mLikedSights.add(id);
+        likedPlaces.add(id);
     }
 
     public void addDislikedObject(long id) {
-        mDislikedSights.add(id);
+        dislikedPlaces.add(id);
     }
 
     public boolean isLiked(long objectId) {
-        for (long id : mLikedSights) {
+        for (long id : likedPlaces) {
             if (id == objectId) {
                 return true;
             }
@@ -78,7 +95,7 @@ public class User {
     }
 
     public boolean isDisliked(long objectId) {
-        for (long id : mDislikedSights) {
+        for (long id : dislikedPlaces) {
             if (id == objectId) {
                 return true;
             }
@@ -87,7 +104,7 @@ public class User {
     }
 
     public void resetObjects() {
-        mLikedSights.clear();
-        mDislikedSights.clear();
+        likedPlaces.clear();
+        dislikedPlaces.clear();
     }
 }

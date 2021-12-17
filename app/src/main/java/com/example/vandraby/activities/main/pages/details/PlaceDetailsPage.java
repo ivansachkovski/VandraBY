@@ -41,7 +41,7 @@ public class PlaceDetailsPage extends Fragment {
         textObjectName.setText(place.getName());
 
         TextView textObjectLocation = view.findViewById(R.id.tv_object_location);
-        textObjectLocation.setText(place.getLocation());
+        textObjectLocation.setText(place.getFormattedLocation());
 
         TextView textObjectDescription = view.findViewById(R.id.tv_object_description);
         textObjectDescription.setText(place.getDescription());

@@ -8,7 +8,8 @@ public interface Contract {
     }
 
     interface Model {
-        void loadDataFromDatabase();
+        void initialize();
+        boolean isReady();
     }
 
     interface Presenter {

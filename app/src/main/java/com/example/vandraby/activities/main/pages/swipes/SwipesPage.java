@@ -80,7 +80,7 @@ public class SwipesPage extends Fragment {
         }
 
         tvObjectName.setText(object.getName());
-        tvObjectLocation.setText(object.getLocation());
+        tvObjectLocation.setText(object.getFormattedLocation());
 
         Fragment fragment = ViewPagerFragment.newInstance(object.getPhotoUrls());
 

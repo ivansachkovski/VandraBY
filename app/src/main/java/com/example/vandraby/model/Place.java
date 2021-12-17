@@ -7,81 +7,65 @@ import java.util.Map;
 
 public class Place {
 
-    private final long mId;
+    private long id;
 
-    private final String mName;
-    private final String mDescription;
-    private final String mType;
-    private final long mBuildYear;
+    private String name;
+    private String description;
+    private String type;
+    private long buildYear;
 
-    private final List<String> mPhotoUrls;
+    private ArrayList<String> photoUrls;
 
-    private final String mLocationRegion;
-    private final String mLocationDistrict;
-    private final String mLocationLocalityType;
-    private final String mLocationLocalityName;
+    private String locationRegion;
+    private String locationDistrict;
+    private String locationLocalityType;
+    private String locationLocalityName;
 
     public Place() {
-        mId = 0;
-
-        mName = "undefined";
-        mDescription = "undefined";
-        mType = "undefined";
-        mBuildYear = 0;
-
-        mPhotoUrls = new ArrayList<>();
-
-        mLocationLocalityType = "undefined";
-        mLocationLocalityName = "undefined";
-        mLocationDistrict = "undefined";
-        mLocationRegion = "undefined";
-    }
-
-    public Place(Map<String, Object> value) {
-        mId = Long.parseLong(value.get("id").toString());
-
-        mName = value.get("name").toString();
-        mDescription = value.get("description").toString();
-        mType = value.get("type").toString();
-        mPhotoUrls = new ArrayList<>(Arrays.asList(value.get("photoUrls").toString()
-                .replace("[", "")
-                .replace("]", "")
-                .replace(" ", "")
-                .split(",")));
-
-        mBuildYear = Long.parseLong(value.get("buildYear").toString());
-
-        mLocationRegion = value.get("locationRegion").toString();
-        mLocationDistrict = value.get("locationDistrict").toString();
-        mLocationLocalityType = value.get("locationLocalityType").toString();
-        mLocationLocalityName = value.get("locationLocalityName").toString();
+        photoUrls = new ArrayList<>();
     }
 
     public long getId() {
-        return mId;
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public String getType() {
-        return mType;
+        return type;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public List<String> getPhotoUrls() {
-        return mPhotoUrls;
+        return photoUrls;
     }
 
     public long getBuildYear() {
-        return mBuildYear;
+        return buildYear;
     }
 
-    public String getLocation() {
-        return String.format("%s %s, %s р-н, %s обл.", mLocationLocalityType, mLocationLocalityName, mLocationDistrict, mLocationRegion);
+    public String getLocationRegion() {
+        return locationRegion;
+    }
+
+    public String getLocationDistrict() {
+        return locationDistrict;
+    }
+
+    public String getLocationLocalityType() {
+        return locationLocalityType;
+    }
+
+    public String getLocationLocalityName() {
+        return locationLocalityName;
+    }
+
+    public String getFormattedLocation() {
+        return String.format("%s %s, %s р-н, %s обл.", locationLocalityType, locationLocalityName, locationDistrict, locationRegion);
     }
 }

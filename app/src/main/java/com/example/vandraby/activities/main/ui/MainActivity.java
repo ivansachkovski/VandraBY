@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
         setContentView(R.layout.activity_main);
 
         mPresenter = new Presenter(this);
-        mPresenter.initializeData();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
