@@ -17,24 +17,23 @@ import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.Place;
 
 public class SwipesPage extends Fragment {
-    private final SwipeModel model = new SwipeModel(DataModel.getInstance().getNotSwipedPlaces());
-    CardView cvRoot;
-    TextView tvObjectName;
-    TextView tvObjectLocation;
 
-    PlaceDetailsPageListener placeDetailsPageListener;
+    private final SwipeModel mSwipeModel;
+
+    CardView mViewRoot;
+    TextView mViewPlaceName;
+    TextView mViewPlaceLocation;
+
+    PlaceDetailsPageListener mPlaceDetailsPageListener;
 
     private SwipesPage(PlaceDetailsPageListener listener) {
-        this.placeDetailsPageListener = listener;
+        this.mPlaceDetailsPageListener = listener;
+
+        mSwipeModel = new SwipeModel(DataModel.getInstance().getUnratedPlaces());
     }
 
     public static SwipesPage newInstance(PlaceDetailsPageListener listener) {
         return new SwipesPage(listener);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -43,49 +42,55 @@ public class SwipesPage extends Fragment {
         View view = inflater.inflate(R.layout.page_swipes, null);
         getActivity().invalidateOptionsMenu();
 
-        cvRoot = view.findViewById(R.id.card_view);
-        tvObjectName = view.findViewById(R.id.sight_name);
-        tvObjectLocation = view.findViewById(R.id.tv_object_location);
+        mViewRoot = view.findViewById(R.id.card_view);
+        mViewPlaceName = view.findViewById(R.id.sight_name);
+        mViewPlaceLocation = view.findViewById(R.id.tv_object_location);
 
         ImageView ivLike = view.findViewById(R.id.btn_like);
         ivLike.setOnClickListener(v -> {
-            DataModel.getInstance().likeObject(model.getCurrentObject().getId());
-            model.swipe();
-            showObject();
+            DataModel.getInstance().likeObject(mSwipeModel.getCurrentObject().getId());
+            mSwipeModel.swipe();
+            updateScreen();
         });
 
         ImageView ivDislike = view.findViewById(R.id.btn_dislike);
         ivDislike.setOnClickListener(v -> {
-            DataModel.getInstance().dislikeObject(model.getCurrentObject().getId());
-            model.swipe();
-            showObject();
+            DataModel.getInstance().dislikeObject(mSwipeModel.getCurrentObject().getId());
+            mSwipeModel.swipe();
+            updateScreen();
         });
 
         ImageView ivDetails = view.findViewById(R.id.btn_details);
         ivDetails.setOnClickListener(v -> {
-            placeDetailsPageListener.onOpenPlaceDetailsPage(model.getCurrentObject());
+            mPlaceDetailsPageListener.onOpenPlaceDetailsPage(mSwipeModel.getCurrentObject());
         });
 
-        showObject();
+        updateScreen();
 
         return view;
     }
 
-    private void showObject() {
-        Place object = model.getCurrentObject();
-
-        if (object == null) {
-            cvRoot.setVisibility(View.INVISIBLE);
-            return;
+    private void updateScreen() {
+        Place place = mSwipeModel.getCurrentObject();
+        if (place != null) {
+            showPlace(place);
+        } else {
+            showEmptyScreen();
         }
+    }
 
-        tvObjectName.setText(object.getName());
-        tvObjectLocation.setText(object.getFormattedLocation());
+    private void showPlace(Place place) {
+        mViewPlaceName.setText(place.getName());
+        mViewPlaceLocation.setText(place.getFormattedLocation());
 
-        Fragment fragment = ViewPagerFragment.newInstance(object.getPhotoUrls());
+        Fragment fragment = ViewPagerFragment.newInstance(place.getPhotoUrls());
 
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.view_pager_fragment, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void showEmptyScreen() {
+        mViewRoot.setVisibility(View.INVISIBLE);
     }
 }

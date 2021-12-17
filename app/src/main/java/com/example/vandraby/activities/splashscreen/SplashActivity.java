@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.loading;
+package com.example.vandraby.activities.splashscreen;
 
 import android.content.Intent;
 import android.os.Bundle;

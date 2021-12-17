@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.loading.SplashActivity" />
+        <activity android:name=".activities.splashscreen.SplashActivity" />
         <activity android:name=".activities.main.ui.MainActivity" />
     </application>
 

@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.loading.SplashActivity;
+import com.example.vandraby.activities.splashscreen.SplashActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

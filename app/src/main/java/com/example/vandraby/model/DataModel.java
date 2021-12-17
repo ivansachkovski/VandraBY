@@ -22,11 +22,13 @@ public class DataModel implements Contract.Model {
 
     private static DataModel mInstance;
 
+    private final Object mUserLock = new Object(); // uses for synchronization
     private User mUser;
+
+    private final Object mAllPlacesLock = new Object(); // uses for synchronization
     private ArrayList<Place> mAllPlaces;
 
     private DataModel() {
-        mAllPlaces = new ArrayList<>();
     }
 
     public static DataModel getInstance() {
@@ -44,7 +46,17 @@ public class DataModel implements Contract.Model {
 
     @Override
     public boolean isReady() {
-        return mUser != null && mAllPlaces != null;
+        boolean result = true;
+
+        synchronized (mUserLock) {
+            result = mUser != null;
+        }
+
+        synchronized (mAllPlacesLock) {
+            result = result && mAllPlaces != null;
+        }
+
+        return result;
     }
 
     private void addUpdateUserListener() {
@@ -87,30 +99,42 @@ public class DataModel implements Contract.Model {
     }
 
     public void setUser(User user) {
-        mUser = user;
+        synchronized (mUserLock) {
+            mUser = user;
+        }
     }
 
     public void setPlaces(ArrayList<Place> places) {
-        mAllPlaces = places;
+        synchronized (mAllPlacesLock) {
+            mAllPlaces = places;
+        }
     }
 
-    public ArrayList<Place> getAllPlaces() {
-        return mAllPlaces;
-    }
+    public ArrayList<Place> getUnratedPlaces() {
+        Log.i(LOGGER_TAG, "call getUnratedPlaces");
 
-    public ArrayList<Place> getNotSwipedPlaces() {
-        Log.i(LOGGER_TAG, "getObjectsForSwipes()");
         ArrayList<Place> result = new ArrayList<>();
-        for (Place place : mAllPlaces) {
-            if (!mUser.isLiked(place.getId()) && !mUser.isDisliked(place.getId())) {
-                result.add(place);
+
+        // TODO::possible deadlock - refactor
+        synchronized (mUserLock) {
+            synchronized (mAllPlacesLock) {
+                for (Place place : mAllPlaces) {
+                    if (!mUser.isLiked(place.getId()) && !mUser.isDisliked(place.getId())) {
+                        result.add(place);
+                    }
+                }
             }
         }
         return result;
     }
 
     public User getCurrentUser() {
-        return mUser;
+        User user;
+        synchronized (mUserLock) {
+            user = mUser;
+        }
+
+        return user;
     }
 
     public void likeObject(long id) {
