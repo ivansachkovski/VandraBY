@@ -1,44 +1,42 @@
 package com.example.vandraby.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class User {
-    private final long id;
+    private long id;
 
-    private final String nickname;
+    private String nickname;
     private String firstName;
     private String lastName;
 
-    private final String photoUrl;
+    private String photoUrl;
 
     private final ArrayList<Long> likedPlaces;
     private final ArrayList<Long> dislikedPlaces;
 
     public User() {
         id = 0;
-        nickname = ""; // todo::
+        nickname = "UNDEFINED"; // todo::
         photoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png";
 
         likedPlaces = new ArrayList<>();
         dislikedPlaces = new ArrayList<>();
     }
 
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("id", id);
+    public void copyFrom(User src) {
+        id = src.id;
 
-        result.put("nickname", nickname);
-        result.put("firstName", firstName);
-        result.put("lastName", lastName);
+        nickname = src.nickname;
+        firstName = src.firstName;
+        lastName = src.lastName;
 
-        result.put("photoUrl", photoUrl);
+        photoUrl = src.photoUrl;
 
-        result.put("likedPlaces", likedPlaces);
-        result.put("dislikedPlaces", dislikedPlaces);
+        likedPlaces.clear();
+        likedPlaces.addAll(src.likedPlaces);
 
-        return result;
+        dislikedPlaces.clear();
+        dislikedPlaces.addAll(src.dislikedPlaces);
     }
 
     public long getId() {
@@ -75,6 +73,10 @@ public class User {
 
     public ArrayList<Long> getLikedPlaces() {
         return likedPlaces;
+    }
+
+    public ArrayList<Long> getDislikedPlaces() {
+        return dislikedPlaces;
     }
 
     public void addLikedObject(long id) {

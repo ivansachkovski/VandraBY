@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_no_places"
     tools:context=".activities.main.pages.swipes.SwipesPage">
 
     <androidx.cardview.widget.CardView
