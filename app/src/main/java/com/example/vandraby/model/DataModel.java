@@ -28,6 +28,8 @@ public class DataModel extends FirebaseDatabaseHelper implements Contract.Model 
 
     @Override
     public void initialize() {
+        checkIfUserExistsOrCreate();
+
         addUpdateUserListener();
         addUpdatePlacesListener();
     }
@@ -49,8 +51,10 @@ public class DataModel extends FirebaseDatabaseHelper implements Contract.Model 
 
     @Override
     protected void setUser(User user) {
-        synchronized (mUser) {
-            mUser.copyFrom(user);
+        if (user != null) {
+            synchronized (mUser) {
+                mUser.copyFrom(user);
+            }
         }
     }
 

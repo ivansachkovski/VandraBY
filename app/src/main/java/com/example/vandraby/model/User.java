@@ -1,6 +1,9 @@
 package com.example.vandraby.model;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
     private long id;
@@ -21,6 +24,35 @@ public class User {
 
         likedPlaces = new ArrayList<>();
         dislikedPlaces = new ArrayList<>();
+    }
+
+    public User(FirebaseUser firebaseUser) {
+        id = 2;
+
+        firstName = firebaseUser.getDisplayName();
+        lastName = firebaseUser.getDisplayName();
+
+        nickname = firebaseUser.getEmail();
+
+        likedPlaces = new ArrayList<>();
+        dislikedPlaces = new ArrayList<>();
+    }
+
+    HashMap<String, Object> toMap() {
+        HashMap<String, Object> result  = new HashMap<>();
+
+        result.put("id", id);
+
+        result.put("nickname", nickname);
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+
+        result.put("photoUrl", photoUrl);
+
+        result.put("likedPlaces", likedPlaces);
+        result.put("dislikedPlaces", dislikedPlaces);
+
+        return result;
     }
 
     public void copyFrom(User src) {

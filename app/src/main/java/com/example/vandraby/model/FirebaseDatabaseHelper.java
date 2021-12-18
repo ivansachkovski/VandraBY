@@ -1,5 +1,6 @@
 package com.example.vandraby.model;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -20,20 +21,51 @@ abstract class FirebaseDatabaseHelper {
 
     private final static String LOGGER_TAG = "LOG_VANDRA_FBDBHelper";
 
-    private final DatabaseReference mDatabaseCurrentUserChild;
-
+    private final DatabaseReference mDatabaseUsers;
     private final DatabaseReference mDatabasePlaces;
 
+    private DatabaseReference mDatabaseCurrentUserChild;
+
     protected FirebaseDatabaseHelper() {
+        mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
+        mDatabasePlaces = FirebaseDatabase.getInstance().getReference("places");
+    }
+
+    protected void checkIfUserExistsOrCreate() {
+        Log.i(LOGGER_TAG, "call checkIfUserExistsOrCreate");
+
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         assert firebaseUser != null;
 
-        mDatabaseCurrentUserChild = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-        mDatabasePlaces = FirebaseDatabase.getInstance().getReference("places");
+        String uid = firebaseUser.getUid();
+
+        mDatabaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(uid).exists()) {
+                    // user exists
+                } else {
+                    // user does not exist
+                    mDatabaseUsers.child(uid).setValue(new User(firebaseUser).toMap());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Log.i(LOGGER_TAG, mDatabaseUsers.child(uid).getKey());
     }
 
     protected void addUpdateUserListener() {
         Log.i(LOGGER_TAG, "call addUpdateUserListener");
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        assert firebaseUser != null;
+
+        mDatabaseCurrentUserChild = mDatabaseUsers.child(firebaseUser.getUid());
 
         mDatabaseCurrentUserChild.addValueEventListener(new ValueEventListener() {
             @Override
