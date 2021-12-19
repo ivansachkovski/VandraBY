@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.ui;
+package com.example.vandraby.activities.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,28 +18,18 @@ import com.example.vandraby.activities.main.pages.details.PlaceDetailsPage;
 import com.example.vandraby.activities.main.pages.profile.ProfilePage;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsPage;
 import com.example.vandraby.activities.main.pages.settings.SearchSettingsPage;
-import com.example.vandraby.activities.main.pages.swipes.SwipesPage;
+import com.example.vandraby.activities.main.pages.swipes.SwipesPageFragment;
 import com.example.vandraby.model.Contract;
-import com.example.vandraby.model.DataModel;
 import com.example.vandraby.model.Place;
 import com.example.vandraby.model.Presenter;
-import com.example.vandraby.model.User;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements ProfileSettingsPage.OnAccountExitListener, PlaceDetailsPage.PlaceDetailsPageListener, Contract.View {
 
-    private static final String SWIPES_PAGE_TAG = "SwipesPage";
+    private static final String SWIPES_PAGE_TAG = "SwipesPageFragment";
     private static final String PROFILE_PAGE_TAG = "ProfilePage";
     private static final String PLACE_DETAILS_PAGE_TAG = "PlaceDetailsPage";
     private static final String PROFILE_SETTINGS_PAGE_TAG = "ProfileSettingsPage";
@@ -135,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
             return true;
         }
 
-        loadFragment(SwipesPage.newInstance(this), SWIPES_PAGE_TAG, false);
+        loadFragment(SwipesPageFragment.newInstance(this), SWIPES_PAGE_TAG, false);
         return true;
     }
 

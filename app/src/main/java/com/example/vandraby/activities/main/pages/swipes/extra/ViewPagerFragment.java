@@ -1,4 +1,4 @@
-package com.example.vandraby.activities.main.pages.swipes;
+package com.example.vandraby.activities.main.pages.swipes.extra;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import java.util.List;
 import me.relex.circleindicator.CircleIndicator3;
 
 public class ViewPagerFragment extends Fragment {
-    private static final String ARGUMENT_PHOTO_URLS = "arg_photo_urls";
+
     private final List<String> mPhotoUrls;
 
     private ViewPagerFragment(List<String> photoUrls) {

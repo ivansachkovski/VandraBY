@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.pages.swipes.ViewPagerFragment;
+import com.example.vandraby.activities.main.pages.swipes.extra.ViewPagerFragment;
 import com.example.vandraby.model.Place;
 
 public class PlaceDetailsPage extends Fragment {

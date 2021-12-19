@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vandraby.R;
-import com.example.vandraby.activities.main.ui.MainActivity;
+import com.example.vandraby.activities.main.MainActivity;
 import com.example.vandraby.model.DataModel;
 
 import java.util.Timer;
