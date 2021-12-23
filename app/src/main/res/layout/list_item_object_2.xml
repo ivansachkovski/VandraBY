@@ -1,0 +1,71 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/object_image"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:riv_corner_radius="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/default_object_name"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                android:text="@string/default_object_location"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom">
+
+                <Button
+                    android:id="@+id/buttonAdd"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_green_button"
+                    android:text="Добавить"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.vandraby.R;
 import com.example.vandraby.activities.authorization.ui.AuthorizationActivity;
+import com.example.vandraby.activities.main.pages.createtrip.CreateTripPageFragment;
 import com.example.vandraby.activities.main.pages.details.PlaceDetailsPage;
 import com.example.vandraby.activities.main.pages.profile.ProfilePage;
 import com.example.vandraby.activities.main.pages.settings.ProfileSettingsPage;
@@ -30,6 +31,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements ProfileSettingsPage.OnAccountExitListener, PlaceDetailsPage.PlaceDetailsPageListener, Contract.View {
 
     private static final String SWIPES_PAGE_TAG = "SwipesPageFragment";
+    private static final String CREATE_TRIP_PAGE_TAG = "CreateTripPageFragment";
     private static final String PROFILE_PAGE_TAG = "ProfilePage";
     private static final String PLACE_DETAILS_PAGE_TAG = "PlaceDetailsPage";
     private static final String PROFILE_SETTINGS_PAGE_TAG = "ProfileSettingsPage";
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
             switch (item.getItemId()) {
                 case R.id.item_swipes:
                     return onOpenSwipesPage();
+                case R.id.item_create_trip:
+                    return onOpenCreateTripPage();
                 case R.id.item_profile:
                     return onOpenProfilePage();
                 default:
@@ -126,6 +130,16 @@ public class MainActivity extends AppCompatActivity implements ProfileSettingsPa
         }
 
         loadFragment(SwipesPageFragment.newInstance(this), SWIPES_PAGE_TAG, false);
+        return true;
+    }
+
+    private boolean onOpenCreateTripPage() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(CREATE_TRIP_PAGE_TAG);
+        if (fragment != null && fragment.isVisible()) {
+            return true;
+        }
+
+        loadFragment(CreateTripPageFragment.newInstance(this), CREATE_TRIP_PAGE_TAG, false);
         return true;
     }
 

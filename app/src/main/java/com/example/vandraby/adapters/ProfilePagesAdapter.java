@@ -63,7 +63,7 @@ public class ProfilePagesAdapter extends androidx.viewpager2.adapter.FragmentSta
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_liked_places, null);
-            view.setAdapter(new PlacesViewAdapter(DataModel.getInstance().getUserLikedPlaces(), placeDetailsPageListener));
+            view.setAdapter(new PlacesViewAdapter(DataModel.getInstance().getUserLikedPlaces(), placeDetailsPageListener, 0));
             return view;
         }
     }

@@ -18,57 +18,109 @@ import java.util.List;
 
 public class PlacesViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final List<Place> items;
-    PlaceDetailsPageListener placeDetailsPageListener;
+    private final List<Place> mItems;
 
-    public PlacesViewAdapter(List<Place> items, PlaceDetailsPageListener listener) {
-        this.items = items;
-        this.placeDetailsPageListener = listener;
+    private final PlaceDetailsPageListener mPlaceDetailsPageListener;
+
+    private final int mType;
+
+    public PlacesViewAdapter(List<Place> items, PlaceDetailsPageListener listener, int type) {
+        mItems = items;
+        mPlaceDetailsPageListener = listener;
+
+        mType = type;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new PlaceViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_object, parent, false));
+        if (viewType == 0) {
+            return new PlaceViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_object, parent, false));
+        } else {
+            return new Place2ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_object_2, parent, false));
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((PlaceViewHolder) holder).fillItem(items.get(position));
+        if (mType == 0) {
+            ((PlaceViewHolder) holder).fillItem(mItems.get(position));
+        } else {
+            ((Place2ViewHolder) holder).fillItem(mItems.get(position));
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mType;
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return mItems.size();
     }
 
     class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        Place place;
 
-        private final ImageView imagePhoto;
-        private final TextView textName;
-        private final TextView textLocation;
+        private Place mPlace;
+
+        private final ImageView mImagePhoto;
+        private final TextView mTextName;
+        private final TextView mTextLocation;
 
         PlaceViewHolder(@NonNull View itemView) {
             super(itemView);
-            imagePhoto = itemView.findViewById(R.id.object_image);
-            textName = itemView.findViewById(R.id.tv_name);
-            textLocation = itemView.findViewById(R.id.tv_location);
+
+            mImagePhoto = itemView.findViewById(R.id.object_image);
+            mTextName = itemView.findViewById(R.id.tv_name);
+            mTextLocation = itemView.findViewById(R.id.tv_location);
 
             itemView.setOnClickListener(this);
         }
 
         void fillItem(Place item) {
-            this.place = item;
+            mPlace = item;
 
-            textName.setText(item.getName());
-            textLocation.setText(item.getFormattedLocation());
-            Picasso.with(imagePhoto.getContext()).load(item.getPhotoUrls().get(0)).fit().into(imagePhoto);
+            mTextName.setText(item.getName());
+            mTextLocation.setText(item.getFormattedLocation());
+            Picasso.with(mImagePhoto.getContext()).load(item.getPhotoUrls().get(0)).fit().into(mImagePhoto);
         }
 
         @Override
         public void onClick(View v) {
-            placeDetailsPageListener.onOpenPlaceDetailsPage(place);
+            mPlaceDetailsPageListener.onOpenPlaceDetailsPage(mPlace);
+        }
+    }
+
+    class Place2ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private Place mPlace;
+
+        private final ImageView mImagePhoto;
+        private final TextView mTextName;
+        private final TextView mTextLocation;
+
+        Place2ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            mImagePhoto = itemView.findViewById(R.id.object_image);
+            mTextName = itemView.findViewById(R.id.tv_name);
+            mTextLocation = itemView.findViewById(R.id.tv_location);
+
+            itemView.setOnClickListener(this);
+        }
+
+        void fillItem(Place item) {
+            mPlace = item;
+
+            mTextName.setText(item.getName());
+            mTextLocation.setText(item.getFormattedLocation());
+            Picasso.with(mImagePhoto.getContext()).load(item.getPhotoUrls().get(0)).fit().into(mImagePhoto);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mPlaceDetailsPageListener.onOpenPlaceDetailsPage(mPlace);
         }
     }
 }

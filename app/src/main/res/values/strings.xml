@@ -116,5 +116,6 @@
     <string name="reset_matches">Сброс мэтчей</string>
     <string name="reset_matches_description">Нажав эту кнопку, вы сбросите счетик мэтчей. Все заминусованные ранее объекты вернутся в подборку на главной странице.</string>
     <string name="exit_account">Выйти из аккаунта</string>
+    <string name="nav_create_trip">Создание маршрута</string>
 
 </resources>
