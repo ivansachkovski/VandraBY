@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:buttonGravity="center_vertical"
-            app:logo="@drawable/ic_toolbar_vandra_logo"
+            app:logo="@drawable/ic_toolbar_logo"
             app:navigationIcon="@drawable/ic_toolbar_arrow_left">
 
         </androidx.appcompat.widget.Toolbar>

@@ -33,7 +33,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_update_user_pic"
+                    android:src="@drawable/ic_settings_edit_photo"
                     app:layout_constraintBottom_toBottomOf="@+id/image_user_photo"
                     app:layout_constraintEnd_toEndOf="@+id/image_user_photo" />
 

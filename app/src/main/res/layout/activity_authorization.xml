@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="15dp"
-            android:src="@drawable/ic_vandra_logo" />
+            android:src="@drawable/ic_authorization_logo" />
 
         <EditText
             android:id="@+id/edit_login"
@@ -83,14 +83,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:background="@color/white"
-                android:src="@drawable/ic_vk_pic" />
+                android:src="@drawable/ic_sign_in_vk" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:background="@color/white"
-                android:src="@drawable/ic_facebook_pic" />
+                android:src="@drawable/ic_sign_in_facebook" />
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/button_sign_in_with_google"

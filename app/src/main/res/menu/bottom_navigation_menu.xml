@@ -4,19 +4,19 @@
 
     <item
         android:id="@+id/item_swipes"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_footer_home"
         android:title="@string/nav_swipes"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/item_create_trip"
-        android:icon="@drawable/ic_menu_middle"
+        android:icon="@drawable/ic_footer_middle"
         android:title="@string/nav_create_trip"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/item_profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_footer_profile"
         android:title="@string/nav_profile"
         app:showAsAction="ifRoom" />
 

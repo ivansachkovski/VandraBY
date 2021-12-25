@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_no_places"
+    android:background="@drawable/pic_screen_no_places"
     tools:context=".activities.main.pages.swipes.SwipesPageFragment">
 
     <androidx.cardview.widget.CardView
@@ -86,7 +86,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingHorizontal="22dp"
-                    android:src="@drawable/ic_swipe_dislike" />
+                    android:src="@drawable/ic_swipes_dislike" />
 
                 <ImageView
                     android:id="@+id/btn_details"
@@ -95,7 +95,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingHorizontal="22dp"
-                    android:src="@drawable/ic_swipe_details" />
+                    android:src="@drawable/ic_swipes_details" />
 
                 <ImageView
                     android:id="@+id/btn_like"
@@ -104,7 +104,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingHorizontal="22dp"
-                    android:src="@drawable/ic_swipe_like" />
+                    android:src="@drawable/ic_swipes_like" />
 
             </LinearLayout>
 
