@@ -45,7 +45,7 @@ public class ProfilePage extends Fragment {
         Picasso.with(view.getContext()).load(user.getPhotoUrl()).fit().centerCrop().into(imageUserPhoto);
 
         TextView textUserFullName = view.findViewById(R.id.user_full_name_view);
-        textUserFullName.setText(user.getFullName());
+        textUserFullName.setText(user.getName());
 
         TextView textUserNickname = view.findViewById(R.id.user_nickname_view);
         textUserNickname.setText("@" + user.getNickname());

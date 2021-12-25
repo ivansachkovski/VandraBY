@@ -9,13 +9,13 @@ public class User {
     private long id;
 
     private String nickname;
-    private String firstName;
-    private String lastName;
+    private String name;
 
     private String photoUrl;
 
     private final ArrayList<Long> likedPlaces;
     private final ArrayList<Long> dislikedPlaces;
+    private final ArrayList<Long> visitedPlaces;
 
     public User() {
         id = 0;
@@ -24,18 +24,19 @@ public class User {
 
         likedPlaces = new ArrayList<>();
         dislikedPlaces = new ArrayList<>();
+        visitedPlaces = new ArrayList<>();
     }
 
     public User(FirebaseUser firebaseUser) {
         id = 2;
 
-        firstName = firebaseUser.getDisplayName();
-        lastName = firebaseUser.getDisplayName();
+        name = firebaseUser.getDisplayName();
 
         nickname = firebaseUser.getEmail();
 
         likedPlaces = new ArrayList<>();
         dislikedPlaces = new ArrayList<>();
+        visitedPlaces = new ArrayList<>();
     }
 
     HashMap<String, Object> toMap() {
@@ -44,8 +45,7 @@ public class User {
         result.put("id", id);
 
         result.put("nickname", nickname);
-        result.put("firstName", firstName);
-        result.put("lastName", lastName);
+        result.put("name", name);
 
         result.put("photoUrl", photoUrl);
 
@@ -59,8 +59,7 @@ public class User {
         id = src.id;
 
         nickname = src.nickname;
-        firstName = src.firstName;
-        lastName = src.lastName;
+        name = src.name;
 
         photoUrl = src.photoUrl;
 
@@ -75,24 +74,12 @@ public class User {
         return id;
     }
 
-    public String getFullName() {
-        return firstName + " " + lastName;
+    public String getName() {
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNickname() {

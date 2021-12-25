@@ -105,6 +105,12 @@ public class DataModel extends FirebaseDatabaseHelper implements Contract.Model 
         updateDislikedPlace(mUser.getDislikedPlaces());
     }
 
+    public void setUserName(String newName) {
+        mUser.setName(newName);
+
+        updateName(mUser.getName());
+    }
+
     public ArrayList<Place> getUserLikedPlaces() {
         ArrayList<Place> result = new ArrayList<>();
         for (Place place : mAllPlaces) {

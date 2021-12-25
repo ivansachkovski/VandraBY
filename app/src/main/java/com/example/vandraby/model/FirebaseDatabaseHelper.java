@@ -118,6 +118,13 @@ abstract class FirebaseDatabaseHelper {
         mDatabaseCurrentUserChild.updateChildren(childUpdates);
     }
 
+    protected void updateName(String newName) {
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("name", newName);
+
+        mDatabaseCurrentUserChild.updateChildren(childUpdates);
+    }
+
     abstract protected void setUser(User user);
 
     abstract protected void setPlaces(ArrayList<Place> places);

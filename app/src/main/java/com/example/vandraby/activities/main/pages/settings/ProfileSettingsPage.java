@@ -40,16 +40,12 @@ public class ProfileSettingsPage extends Fragment {
         CircleImageView imageUserPhoto = view.findViewById(R.id.image_user_photo);
         Picasso.with(getContext()).load(user.getPhotoUrl()).fit().into(imageUserPhoto);
 
-        EditText editLastName = view.findViewById(R.id.edit_last_name);
-        editLastName.setText(user.getLastName());
-
-        EditText editFirstName = view.findViewById(R.id.edit_first_name);
-        editFirstName.setText(user.getFirstName());
+        EditText editName = view.findViewById(R.id.edit_name);
+        editName.setText(user.getName());
 
         Button buttonSave = view.findViewById(R.id.button_save);
         buttonSave.setOnClickListener(v -> {
-            user.setFirstName(editFirstName.getText().toString());
-            user.setLastName(editLastName.getText().toString());
+            model.setUserName(editName.getText().toString());
         });
 
         Button buttonReset = view.findViewById(R.id.button_reset);
