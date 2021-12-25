@@ -21,13 +21,14 @@
             app:cardCornerRadius="5dp">
 
             <TextView
+                android:background="#333333"
                 android:id="@+id/sight_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="10dp"
                 android:text="@string/default_object_name"
-                android:textColor="@color/text_color"
+                android:textColor="#F2F2F2"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -94,7 +95,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingHorizontal="22dp"
-                    android:src="@drawable/ic_swipe_info" />
+                    android:src="@drawable/ic_swipe_details" />
 
                 <ImageView
                     android:id="@+id/btn_like"
