@@ -3,10 +3,12 @@ package com.example.vandraby.activities.authorization.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vandraby.R;
+import com.example.vandraby.activities.registration.RegistrationActivity;
 import com.example.vandraby.activities.splashscreen.SplashActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -47,6 +49,14 @@ public class AuthorizationActivity extends AppCompatActivity {
         buttonSignInWithGoogle.setOnClickListener(v -> {
             Intent intent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(intent, RC_SIGN_IN);
+        });
+
+        TextView buttonRegistration = findViewById(R.id.button_registration);
+        buttonRegistration.setOnClickListener(v -> {
+            Log.e(LOGGER_TAG, "open registration activity");
+            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
