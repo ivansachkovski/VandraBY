@@ -4,12 +4,18 @@
     <string name="tmp_full_name">Имя Фамилия</string>
     <string name="tmp_nickname">_@nickname</string>
 
-    <string name="btn_login">Войти</string>
+    <string name="hint_enter_your_name">Введите ваше имя</string>
+    <string name="hint_enter_your_email">Введите ваш e-mail</string>
+    <string name="hint_enter_your_password">Введите ваш пароль</string>
+    <string name="hint_repeat_your_password">Повторите ваш пароль</string>
 
-    <string name="hint_edit_login">Введите ваш логин</string>
-    <string name="hint_edit_password">Введите ваш пароль</string>
+    <string name="text_accept_licence">Принимаю условия политики конфиденциальности и положения о загружаемом контенте</string>
 
-    <string name="static_welcome">Добро пожаловать\nк Vandra</string>
+    <string name="text_enter">Войти</string>
+    <string name="text_back">Назад</string>
+    <string name="text_register">Зарегистрироваться</string>
+    <string name="text_registration">Регистрация</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

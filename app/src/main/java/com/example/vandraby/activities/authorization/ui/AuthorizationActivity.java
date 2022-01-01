@@ -56,7 +56,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             Log.e(LOGGER_TAG, "open registration activity");
             Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
             startActivity(intent);
-            finish();
+            // finish();
         });
     }
 
