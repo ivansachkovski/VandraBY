@@ -139,8 +139,8 @@ public class CreateTripPagesAdapter extends androidx.viewpager2.adapter.Fragment
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_create_trip_4, null);
 
-            Button buttonGoWithYandex = view.findViewById(R.id.btn_start_trip);
-            buttonGoWithYandex.setOnClickListener(v -> {
+            Button buttonStart = view.findViewById(R.id.button_start);
+            buttonStart.setOnClickListener(v -> {
                 String url = "yandexmaps://maps.yandex.ru/?mode=routes&rtext=53.905750%2C27.430876~53.846805%2C27.534015~53.866696%2C27.603366~53.922259%2C27.576931&rtt=auto&ruri=~~~&z=12";
                                                       //"/?mode=routes&rtext=53.905750%2C27.430876~53.846805%2C27.534015~53.866696%2C27.603366~53.922259%2C27.576931&rtt=auto&ruri=~~~&z=12"
                 Intent intentYandex = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -156,6 +156,11 @@ public class CreateTripPagesAdapter extends androidx.viewpager2.adapter.Fragment
                 arr[0] = intentGoogle;
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arr);
                 startActivity(chooserIntent);
+            });
+
+            Button buttonSave = view.findViewById(R.id.button_save);
+            buttonSave.setOnClickListener(v -> {
+                // TODO::save
             });
 
             return view;

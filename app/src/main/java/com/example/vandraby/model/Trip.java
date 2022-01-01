@@ -9,6 +9,12 @@ public class Trip {
 
     private ArrayList<Long> placesIds;
 
+    private float startX;
+    private float startY;
+
+    private float finishX;
+    private float finishY;
+
     public Trip() {
 
     }
@@ -18,6 +24,12 @@ public class Trip {
 
         result.put("id", id);
         result.put("placesIds", placesIds);
+
+        result.put("startX", startX);
+        result.put("startY", startY);
+
+        result.put("finishX", finishX);
+        result.put("finishY", finishY);
 
         return result;
     }

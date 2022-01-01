@@ -15,6 +15,8 @@
     <string name="text_back">Назад</string>
     <string name="text_register">Зарегистрироваться</string>
     <string name="text_registration">Регистрация</string>
+    <string name="text_save">Сохранить</string>
+    <string name="text_start">Старт!</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

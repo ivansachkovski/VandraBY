@@ -14,27 +14,27 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_start_trip"
+            android:id="@+id/button_start"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/selector_blue_button"
-            android:text="Старт!"
+            android:text="@string/text_start"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/btn_save_trip"
+            android:id="@+id/button_save"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/selector_green_button"
-            android:text="Сохранить"
+            android:text="@string/text_save"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:backgroundTint="@null" />
